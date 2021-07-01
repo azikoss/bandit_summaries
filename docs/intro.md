@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Intro Page
 
 You can use the [editor on GitHub](https://github.com/zikaadam/bandit_summaries/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
 
