@@ -1,7 +1,7 @@
 ## 1. Introduction
 Imagine you are in a casino that has two slot machines. You played four times the first slot machine and got $20 and five time the second slot machine and got $10. The average reward of the first and second machines are $4 and $2 respectively. Say that you have 10 more pulls and you want to maximize your total reward. What is going to be your strategy? Would you exploit the first slot machine in the remaining pulls? Would you further explore the second slot machine that had up till now lowered average reward? Or would you do a combination of both? These questions capture the fundamental dilemma from the Multi-Armed Bandit domain: **to find the right balance in between exploration and exploitation**. 
   
-<img width="500" height="500" src="./assets/slot_machine.png"> <img width="500" height="500" src="./assets/slot_machine.png">
+<img width="350" height="350" src="./assets/slot_machine.png"> <img width="350" height="350" src="./assets/slot_machine.png">
 
 
 Multi-Armed Bandits (or just bandits) provide a model for decision making with uncertainty that we all face daily. Thus, the bandit algorithms have a large-scale utilization in practice. Essentially, bandit algorithms are suitable for any problem that 
@@ -27,7 +27,7 @@ The learner cannot see the future when choosing an action, so that the current a
 
 The fundamental challenge in bandit problems is that the environment is unknown to the learner. All the learner knows is that the environment lies in some set <img src="https://render.githubusercontent.com/render/math?math=\varepsilon"> called the **environment class**. 
 
-> Let's continue with our casio example and presume that the learner knows (e.g., read it in the rules) that each slot machine <img src="https://render.githubusercontent.com/render/math?math=i"> generates the reward from a Gaussian distribution <img src="https://render.githubusercontent.com/render/math?math=\N(\mu_i, \sigma_i)"> that is specific to that machine and independent of the previous action choices and rewards. In such case, the environment class would be Gaussian stationary. Note that the learner does not know the parameters of a distribution but just its type (i.e., that is Gaussian).
+<img width="25" height="25" src="./assets/slot_machine.png"> Let's continue with our casio example and presume that the learner knows (e.g., read it in the rules) that each slot machine <img src="https://render.githubusercontent.com/render/math?math=i"> generates the reward from a Gaussian distribution <img src="https://render.githubusercontent.com/render/math?math=\N(\mu_i, \sigma_i)"> that is specific to that machine and independent of the previous action choices and rewards. In such case, the environment class would be Gaussian stationary. Note that the learner does not know the parameters of a distribution but just its type (i.e., that is Gaussian).
   
 
 ### Optimization Objective - Regret
