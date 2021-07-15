@@ -1,7 +1,7 @@
 # 1. Introduction
 Imagine you are in a casino that has two slot machines. You played four times the first slot machine and got $20 and five time the second slot machine and got $10. The average reward of the first and second machines are $4 and $2 respectively. Say that you have 10 more pulls and you want to maximize your total reward. What is going to be your strategy? Would you exploit the first slot machine in the remaining pulls? Would you further explore the second slot machine that had up till now lowered average reward? Or would you do a combination of both? These questions capture the fundamental dilemma from the Multi-Armed Bandit domain: **to find the right balance in between exploration and exploitation**. 
   
-<img width="200" height="200" src="./assets/slot_machine.png"> <img width="350" height="350" src="./assets/slot_machine.png">
+<img width="200" height="200" src="./assets/slot_machine.png"> <img width="200" height="200" src="./assets/slot_machine.png">
 
 
 Multi-Armed Bandits (or just bandits) provide a model for decision making with uncertainty that we all face daily. Thus, the bandit algorithms have a large-scale utilization in practice. Essentially, bandit algorithms are suitable for any problem that 
