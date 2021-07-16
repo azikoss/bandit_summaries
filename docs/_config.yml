@@ -1,4 +1,4 @@
 theme: jekyll-theme-minimal
 title: Digests of Bandit Algos
-description: This site includes <i>my</i> summaries from the <a href="https://tor-lattimore.com/downloads/book/book.pdf">Bandit Algorithm</a> book. 
+description: <i>My</i> summaries of the <a href="https://tor-lattimore.com/downloads/book/book.pdf">Bandit Algorithm</a> book. 
 logo: /assets/logo_small.png
