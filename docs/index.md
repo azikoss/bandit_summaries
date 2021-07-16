@@ -1,7 +1,5 @@
-## Bandit Algorithm Summaries
-I started to read [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) to expand my knowledge in this domain. I decided to write down my per-chapter summaries from the book and implement the introduced algorithms to better consume the knowledge. This is what I included in this repo. I write down these summaries for my own purposes but I would only trilled if they can help to learn something from the Multi-Armed Bandit world. In any case, if you are series about the topic, you shoul definitely read up the book. These summaries are written in more simple langauge than the book is.
+# About
+I started to read [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book to expand my knowledge in the Multi-Armed Bandit domain. I decided to write digests from the book so I can better remember and understand the introduced concepts. The digests are written in a simple language, are enriched with additional examples and code, highlight the topics from the book that I find most important, and may contain mistakes. I am not following proper referencing guidelines as I am sometimes just copy&pasting the text. Rather than reading my digests that I created for my own knowledge synthetics, I would encourage you to read the book!
 
-Add
-- visualization for intuition
-- not referencing properly from teh book. 
-- the summaries are not a replacement for thourouw reading of the book
+The digests that I've written so far are
+* [1. Chapter - Introduction](intro.md)
