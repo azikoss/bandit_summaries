@@ -44,4 +44,4 @@ Let's continue with our casino example, the natural competitor class is the set 
 One of the core questions in the study of bandits is to understand the growth rate of the regret as <img src="https://render.githubusercontent.com/render/math?math=\n"> grows. **A good learner achieves sublinear regret**.
 
 # References
-This text *my* summary from the 1. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary contains copy&pasted text from the book as well as some additional text. 
+This text is *my* summary from the 1. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary contains copy&pasted text from the book as well as some additional text. 
