@@ -3,4 +3,4 @@ I started to read [Bandit Algorithm](https://tor-lattimore.com/downloads/book/bo
 
 
 The digests that I've written so far are
-* [1. Chapter - Introduction](intro.md)
+* [1. Chapter - Introduction](1_introduction.md)
