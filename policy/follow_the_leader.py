@@ -12,8 +12,8 @@ def FollowTheLeader(bandit, n):
     # plays the arm with the highest mean
     for t in range(bandit.K(), n):
         # randomly select one of the arms that has the highest mean
-        ix_pull = np.random.choice(np.argwhere(means == np.max(means)).flatten())
-        means[ix_pull] = (
-            (means[ix_pull] * total_pulls[ix_pull]) + bandit.pull(ix_pull)
-        ) / (total_pulls[ix_pull] + 1)
-        total_pulls[ix_pull] += 1
+        arm = np.random.choice(np.argwhere(means == np.max(means)).flatten())
+        means[arm] = ((means[arm] * total_pulls[arm]) + bandit.pull(arm)) / (
+            total_pulls[arm] + 1
+        )
+        total_pulls[arm] += 1

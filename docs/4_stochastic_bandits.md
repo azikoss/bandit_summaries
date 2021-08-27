@@ -65,18 +65,18 @@ An alternative how to define regret is to decompose <img src="https://render.git
 ### Decomposing the Regret
 This section presents a lemma about regret decomposition that forms a basis for majority of proofs for stochastic bandits.  
 
-Let <img src="https://render.githubusercontent.com/render/math?math=v = (P_a: a \in A)"> be a stochastic bandit and define **suboptimality gap** or **action gap** or **immediate regret** of action <img src="https://render.githubusercontent.com/render/math?math=a">  as <img src="https://render.githubusercontent.com/render/math?math=\Delta_a(v) = u^*(v) - u_a(v)">. Further, let <img src="https://render.githubusercontent.com/render/math?math=T_a(t) = \sum_{s=1}^{\t} \mathbb{1} \{A_s = a\}"> be the number of times action <img src="https://render.githubusercontent.com/render/math?math=a"> was chosen by the learner after the end of the round <img src="https://render.githubusercontent.com/render/math?math=t">. <img src="https://render.githubusercontent.com/render/math?math=T_a(t)"> is random even with a deterministic policy that chooses the same action for a given history. This is because it uses <img src="https://render.githubusercontent.com/render/math?math=A_t"> that depends on the rewards observed in the previous rounds, which are random, so <img src="https://render.githubusercontent.com/render/math?math=A_t"> and consequently <img src="https://render.githubusercontent.com/render/math?math=T_a(t)"> inherit the randomness.
+Let <img src="https://render.githubusercontent.com/render/math?math=v = (P_a: a \in A)"> be a stochastic bandit and define **suboptimality gap** or **action gap** or **immediate regret** of action <img src="https://render.githubusercontent.com/render/math?math=a">  as <img src="https://render.githubusercontent.com/render/math?math=\Delta_a(v) = u^*(v) - u_a(v)">. Further, let <img src="https://render.githubusercontent.com/render/math?math=T_a(t) = \sum_{s=1}^{\t} \mathbb{1} \{A_s = a\}"> be the number of times action <img src="https://render.githubusercontent.com/render/math?math=a"> was chosen by the learner after the end of the round <img src="https://render.githubusercontent.com/render/math?math=t">. <img src="https://render.githubusercontent.com/render/math?math=T_a(t)"> is random even with a deterministic policy that chooses the same action for a given history. This is because <img src="https://render.githubusercontent.com/render/math?math=A_s">  depends on the rewards observed in the previous rounds, which are random, so <img src="https://render.githubusercontent.com/render/math?math=A_s"> and consequently <img src="https://render.githubusercontent.com/render/math?math=T_a(t)"> inherit the randomness.
 
 >The regret decomposition lemma states that for any policy <img src="https://render.githubusercontent.com/render/math?math=\pi"> and stochastic bandit <img src="https://render.githubusercontent.com/render/math?math=v"> with finite <img src="https://render.githubusercontent.com/render/math?math=A"> and horizon <img src="https://render.githubusercontent.com/render/math?math=n \in \mathbb{N}">, the regret <img src="https://render.githubusercontent.com/render/math?math=R_n"> of policy <img src="https://render.githubusercontent.com/render/math?math=\pi"> in <img src="https://render.githubusercontent.com/render/math?math=v"> satisfies 
 <img src="https://render.githubusercontent.com/render/math?math=R_n = \sum_{a \in A} \Delta_a \mathbb{E}[T_a(n)]">.
 
-The lemma decomposes the regret with respect to the losses to be realized by each arm. This  tells us that to keep the regret small, the learner should try to to use an arm with a large suboptimally gap proportionally fewer times.
+The lemma decomposes the regret with respect to the losses of each arm. This tells us that to keep the regret small, the learner should try to use an arm with a large suboptimally gap proportionally fewer times.
 
 #### Proof
-We will prove that the regret defined by summing over time steps <img src="https://render.githubusercontent.com/render/math?math=R_n = n\mu^* - \mathbb{E}[S_n]"> is equivalent to the definition <img src="https://render.githubusercontent.com/render/math?math=\sum_{a \in A} \Delta_a \mathbb{E}[T_a(n)]"> from the lemma that sums the individual losses over individual arms. The proof goes as follows
+We will prove that the regret defined by summing over time steps <img src="https://render.githubusercontent.com/render/math?math=R_n = n\mu^* - \mathbb{E}[\sum_{t=1}^{\n} X_t]"> is equivalent to the definition <img src="https://render.githubusercontent.com/render/math?math=\sum_{a \in A} \Delta_a \mathbb{E}[T_a(n)]"> from the lemma. The proof goes as follows
 
-1. <img src="https://render.githubusercontent.com/render/math?math=R_n = n\mu^* - \mathbb{E}[S_n]"> 
-1. <img src="https://render.githubusercontent.com/render/math?math== \color{green}\sum_{t=1}^{n}\mathbb{E}[(u^* - X_t)]"> // <img src="https://render.githubusercontent.com/render/math?math=S_n"> was written out explicitly and <img src="https://render.githubusercontent.com/render/math?math=\mu^*"> was moved inside the summation  
+1. <img src="https://render.githubusercontent.com/render/math?math=R_n = n\mu^* - \mathbb{E}[\sum_{t=1}^{\n} X_t]"> 
+1. <img src="https://render.githubusercontent.com/render/math?math== \color{green}\sum_{t=1}^{n}\mathbb{E}[(u^* - X_t)]"> // the summation was moved outside of the expected value and <img src="https://render.githubusercontent.com/render/math?math=\mu^*"> was moved inside the expected value 
 1. <img src="https://render.githubusercontent.com/render/math?math== \color{green}\sum_{a \in A} \color{black}\sum_{t=1}^{n}\mathbb{E}[(u^* - X_t)\color{green}\mathbb{I}\{A_t = a\}\color{black}]"> // an indicator function <img src="https://render.githubusercontent.com/render/math?math=\mathbb{I}"> was added to the formula without changing its value since  <img src="https://render.githubusercontent.com/render/math?math=\sum_{a \in A}\mathbb{I}\{A_t = a\} = 1"> at time <img src="https://render.githubusercontent.com/render/math?math=t"> 
 1. <img src="https://render.githubusercontent.com/render/math?math== \sum_{a \in A} \sum_{t=1}^{n}\mathbb{E}[(u^* - X_t)\mathbb{I}\{A_t = a\}|\color{green}A_t)\color{black}] \color{green} P(A_t=a)"> // the expectation was conditioned by <img src="https://render.githubusercontent.com/render/math?math=A_t">
 1. <img src="https://render.githubusercontent.com/render/math?math== \sum_{a \in A} \sum_{t=1}^{n}\color{green}\mathbb{I}\{A_t = a\}\color{black}\mathbb{E}[(u^* - X_t)|A_t] P(A_t=a)"> // the indicator function was taken out of the expectation since action <img src="https://render.githubusercontent.com/render/math?math=A_t"> is given
@@ -89,10 +89,10 @@ We will prove that the regret defined by summing over time steps <img src="https
  
 
 ### Alternative Definitions
-We defined regret as an expectation. If it is desired to measure the variance of the regret caused by randomness, regret can be defined as a **random regret** <img src="https://render.githubusercontent.com/render/math?math=\widetilde{R_n} = n\mu^{*} - \sum_{t=1}^{n}X_t"> or as a **pseudo regret** <img src="https://render.githubusercontent.com/render/math?math=R_n = n\mu^{*} - \sum_{t=1}^{n}u_{A_t}">. Since  <img src="https://render.githubusercontent.com/render/math?math=\widetilde{R_n}"> is influenced by the noise <img src="https://render.githubusercontent.com/render/math?math=X_t - u_{A_t}">, **pseudo-regret appears to be a better** performance measure of a bandit policy.
+We defined regret as an expectation. If it is desired to measure the variance of the regret caused by randomness, regret can be defined as a **random regret** <img src="https://render.githubusercontent.com/render/math?math=\widetilde{R_n} = n\mu^{*} - \sum_{t=1}^{n}X_t"> or as a **pseudo regret** <img src="https://render.githubusercontent.com/render/math?math=\bar{R_n} = n\mu^{*} - \sum_{t=1}^{n}u_{A_t}">. Since  <img src="https://render.githubusercontent.com/render/math?math=\widetilde{R_n}"> is influenced by the noise <img src="https://render.githubusercontent.com/render/math?math=X_t - u_{A_t}">, **pseudo-regret appears to be a better** performance measure of a bandit policy.
  
-## Follow the Leader (Code)
-Follow-the-leader (or so called greedy algorithm) is an simple policy that chooses each action once and then chooses the action with the largest observed average reward so far. The goal of the exercise 4.8 from the book is to implement this algorithm. The implementation goes as follows ([github link](https://github.com/azikoss/bandit_summaries/blob/main/policy/follow_the_leader.py)):   
+## Follow the Leader 
+**Follow-the-leader** (or so called greedy algorithm) is an simple policy that **chooses each action once** and then **chooses the action with the largest observed average reward** so far. The goal of the exercise 4.8 from the book is to implement this algorithm. The implementation goes as follows ([github link](https://github.com/azikoss/bandit_summaries/blob/main/policy/follow_the_leader.py)):   
 
 ```python
 def FollowTheLeader(bandit, n):
@@ -106,14 +106,14 @@ def FollowTheLeader(bandit, n):
     # plays the arm with the highest mean
     for t in range(bandit.K(), n):
         # randomly select one of the arms that has the highest mean
-        ix_pull = np.random.choice(np.argwhere(means == np.max(means)).flatten())
-        means[ix_pull] = (
-            (means[ix_pull] * total_pulls[ix_pull]) + bandit.pull(ix_pull)
-        ) / (total_pulls[ix_pull] + 1)
-        total_pulls[ix_pull] += 1
+        arm = np.random.choice(np.argwhere(means == np.max(means)).flatten())
+        means[arm] = ((means[arm] * total_pulls[arm]) + bandit.pull(arm)) / (
+            total_pulls[arm] + 1
+        )
+        total_pulls[arm] += 1
 ```
 
-Running 1000 simulations of the follow-the-leader policy on the Bernoulli bandit with two arms and means <img src="https://render.githubusercontent.com/render/math?math=\mu_1=0.5"> and <img src="https://render.githubusercontent.com/render/math?math=\mu_2=0.6"> with the horizon of <img src="https://render.githubusercontent.com/render/math?math=n=100"> steps and plotting the pseudo regret of each simulation yields Figure 1 below (Exercise 4.11). The figure shows that follow-the-leader policy works very well in many cases as the regret is nearly zero but in other cases it does not as the regret is close to the maximum possible pseudo regret of 10 = (0.6-0.5) * 100. Such a volatility in the performance is typical for this policy. The volatility is caused by the limited exploration that often results in a commitment to pull the suboptimal arm.  
+Running 1000 simulations of the follow-the-leader policy on the Bernoulli bandit with two arms and means <img src="https://render.githubusercontent.com/render/math?math=\mu_1=0.5"> and <img src="https://render.githubusercontent.com/render/math?math=\mu_2=0.6"> with the horizon of <img src="https://render.githubusercontent.com/render/math?math=n=100"> steps and plotting the pseudo regret of each simulation yields Figure 1 below (Exercise 4.11). The figure shows that follow-the-leader policy works very well in many cases as the regret is nearly zero but in other cases it does not as the regret is close to the maximum possible pseudo regret of 10 = (0.6-0.5) * 100. Such a volatility in the performance is typical for this policy. The volatility is caused by the limited exploration that often results in the commitment to play a suboptimal arm.  
 
 <figure class="image" align="center">
   <img src="./assets/4_regret.png" alt="Regret of the follow-the-leader policy">
