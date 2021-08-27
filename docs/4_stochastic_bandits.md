@@ -118,7 +118,11 @@ def FollowTheLeader(bandit, n):
 
 Running 1000 simulations of the follow-the-leader policy on the Bernoulli bandit with two arms and means <img src="https://render.githubusercontent.com/render/math?math=\mu_1=0.5"> and <img src="https://render.githubusercontent.com/render/math?math=\mu_2=0.6"> with the horizon of <img src="https://render.githubusercontent.com/render/math?math=n=100"> steps and plotting the pseudo regret of each simulation yields the figure below (Exercise 4.11). The figure shows that follow-the-leader policy works very well in many cases as the regret is nearly zero but in other cases it does not as the regret is close to the maximum possible pseudo regret of 10 = (0.6-0.5) * 100. Such a volatility in the performance is typical for this policy. The volatility is caused by the limited exploration that often results in a commitment to pull the suboptimal arm.  
 
-<img src="./assets/4_regret.png"> 
+<img src="./assets/4_regret.png" align="center">
+<figure class="image">
+  <img src="./assets/4_regret.png" alt="Regret of the follow-the-leader policy">
+  <figcaption>Regret of the follow-the-leader policy</figcaption>
+</figure> 
 
 # References
 This text *my* summary from the 4. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary contains copy&pasted text from the book as well as some additional text. 
