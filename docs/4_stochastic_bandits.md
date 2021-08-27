@@ -15,7 +15,7 @@ An environment class <img src="https://render.githubusercontent.com/render/math?
 
 Typical environmental class for stochastic bandits is for instance a Bernoulli bandit <img src="https://render.githubusercontent.com/render/math?math=\varepsilon_{B}^k = \{(B(\mu_i))_i : \mu \in [0,1]^k \}"> or Gaussian bandit (with unknown variance) <img src="https://render.githubusercontent.com/render/math?math=\varepsilon_{N}^k = \{(N(\mu_i, \sigma_{i}^2))_i : \mu \in \mathbb{R}^k "> and <img src="https://render.githubusercontent.com/render/math?math=\sigma^2 \in [0,\inf)^k \}">. These two examples are **parametric** environment classes because the number of degrees of freedom that defines them is finite, otherwise they would be **non-parametric**.
 
-The implementation of the Bernoulli bandit goes as follows (Exercise 4.7 from the book).
+The implementation (Exercise 4.7 from the book) of the Bernoulli bandit goes as follows  (see it in [github](https://github.com/azikoss/bandit_summaries/blob/main/bandit/bernoulli.py))
 
 ```python
 class BernoulliBandit:
@@ -95,7 +95,7 @@ We will prove that the regret defined by summing over time steps <img src="https
 We defined regret as an expectation. If it is desired to measure the variance of the regret caused by randomness, regret can be defined as a **random regret** <img src="https://render.githubusercontent.com/render/math?math=\widetilde{R_n} = n\mu^{*} - \sum_{t=1}^{n}X_t"> or as a **pseudo regret** <img src="https://render.githubusercontent.com/render/math?math=R_n = n\mu^{*} - \sum_{t=1}^{n}u_{A_t}">. Since  <img src="https://render.githubusercontent.com/render/math?math=\widetilde{R_n}"> is influenced by the noise <img src="https://render.githubusercontent.com/render/math?math=X_t - u_{A_t}">, **pseudo-regret appears to be a better** performance measure of a bandit policy.
  
 ## Follow the Leader (Code)
-Follow-the-leader (or so called greedy algorithm) is an simple policy that chooses each action once and then chooses the action with the largest observed average reward so far. The goal of the exercise 4.8 from the book is to implement this algorithm. The implementation goes as follows:   
+Follow-the-leader (or so called greedy algorithm) is an simple policy that chooses each action once and then chooses the action with the largest observed average reward so far. The goal of the exercise 4.8 from the book is to implement this algorithm. The implementation goes as follows (see it in [github](https://github.com/azikoss/bandit_summaries/blob/main/policy/follow_the_leader.py)):   
 
 ```python
 def FollowTheLeader(bandit, n):
