@@ -1,4 +1,6 @@
 # 4. Stochastic Bandits
+<img width="" src="./assets/4_dices_small.jpg">
+
 This chapter revisits the introduced definitions about regret, learning objectives, environment class in the context of stochastic bandits. The introduced theory is a basis for the next chapters about stochastic bandits.  
 
 A **stochastic bandit** <img src="https://render.githubusercontent.com/render/math?math=v"> is a collection of distributions <img src="https://render.githubusercontent.com/render/math?math=(P_a: a \in A)"> where <img src="https://render.githubusercontent.com/render/math?math=A"> is the set of available actions. The learner and the environment interact sequentially over <img src="https://render.githubusercontent.com/render/math?math=n"> rounds. In each round <img src="https://render.githubusercontent.com/render/math?math=t \in \{1,2,...,n\}">, the learner chooses an action <img src="https://render.githubusercontent.com/render/math?math=P_{A_t} \in \A">. The environment then samples reward <img src="https://render.githubusercontent.com/render/math?math=X_t \in \mathbb{R}"> from the distribution <img src="https://render.githubusercontent.com/render/math?math=P_{A_t}">. The learner cannot see the future observations when making current decisions. 
@@ -13,16 +15,15 @@ An environment class <img src="https://render.githubusercontent.com/render/math?
 
 Typical environmental class for stochastic bandits is for instance a Bernoulli bandit <img src="https://render.githubusercontent.com/render/math?math=\varepsilon_{B}^k = \{(B(\mu_i))_i : \mu \in [0,1]^k \}"> or Gaussian bandit (with unknown variance) <img src="https://render.githubusercontent.com/render/math?math=\varepsilon_{N}^k = \{(N(\mu_i, \sigma_{i}^2))_i : \mu \in \mathbb{R}^k "> and <img src="https://render.githubusercontent.com/render/math?math=\sigma^2 \in [0,\inf)^k \}">. These two examples are **parametric** environment classes because the number of degrees of freedom that defines them is finite, otherwise they would be **non-parametric**.
 
-The implementation of the Bernoulli bandit goes as follows (Exercise 4.7).
+The implementation of the Bernoulli bandit goes as follows (Exercise 4.7 from the book).
 
-```
+```python
 class BernoulliBandit:
     def __init__(self, means):
         """Accepts a list of K >= 2 floats , each lying in [0 ,1]"""
         self._means = means
-        self._ix_max_mean = np.argmax(self._means)
-        self._acc_reward_optimal_arm = 0        
-        self._acc_reward = 0
+        self._max_mean = np.max(self._means)
+        self._acc_pseudo_regret = 0
 
     def K(self):
         """Function should return the number of arms"""
@@ -33,13 +34,12 @@ class BernoulliBandit:
         realisation of random variable X with P(X = 1) being
         the mean of the (a +1) th arm ."""
         reward = np.random.binomial(1, self._means[a])
-        self._acc_reward += reward
-        self._acc_reward_optimal_arm += np.random.binomial(1, self._means[self._ix_max_mean])
+        self._acc_pseudo_regret += self._max_mean - self._means[a]
         return reward
 
     def regret(self):
-        """Returns the regret incurred so far"""
-        return self._acc_reward_optimal_arm - self._acc_reward
+        """Returns the (pseudo) regret incurred so far"""
+        return self._acc_pseudo_regret
 ```
 
 The knowledge (or the assumption that a learner makes) about an environment class influences the performance. With a larger environmental class, it is more difficult to achieve good performance.
@@ -94,10 +94,31 @@ We will prove that the regret defined by summing over time steps <img src="https
 ### Alternative Definitions
 We defined regret as an expectation. If it is desired to measure the variance of the regret caused by randomness, regret can be defined as a **random regret** <img src="https://render.githubusercontent.com/render/math?math=\widetilde{R_n} = n\mu^{*} - \sum_{t=1}^{n}X_t"> or as a **pseudo regret** <img src="https://render.githubusercontent.com/render/math?math=R_n = n\mu^{*} - \sum_{t=1}^{n}u_{A_t}">. Since  <img src="https://render.githubusercontent.com/render/math?math=\widetilde{R_n}"> is influenced by the noise <img src="https://render.githubusercontent.com/render/math?math=X_t - u_{A_t}">, **pseudo-regret appears to be a better** performance measure of a bandit policy.
  
-# Code
-* 4.7. Implement Bernoulli bandit
-* 4.8. Implement Follow the Leader algo
-* 4.11. and 4.12 run simulations with the bandit 
+## Follow the Leader (Code)
+Follow-the-leader (or so called greedy algorithm) is an simple policy that chooses each action once and then chooses the action with the largest observed average reward so far. The goal of the exercise 4.8 from the book is to implement this algorithm. The implementation goes as follows:   
+
+```python
+def FollowTheLeader(bandit, n):
+    means = [0] * bandit.K()
+
+    # pulls each arm once
+    for t in range(bandit.K()):
+        means[t] += bandit.pull(t)
+    total_pulls = [1] * n
+
+    # plays the arm with the highest mean
+    for t in range(bandit.K(), n):
+        # randomly select one of the arms that has the highest mean
+        ix_pull = np.random.choice(np.argwhere(means == np.max(means)).flatten())
+        means[ix_pull] = (
+            (means[ix_pull] * total_pulls[ix_pull]) + bandit.pull(ix_pull)
+        ) / (total_pulls[ix_pull] + 1)
+        total_pulls[ix_pull] += 1
+```
+
+Running 1000 simulations of the follow-the-leader policy on the Bernoulli bandit with two arms and means <img src="https://render.githubusercontent.com/render/math?math=\mu_1=0.5"> and <img src="https://render.githubusercontent.com/render/math?math=\mu_2=0.6"> with the horizon of <img src="https://render.githubusercontent.com/render/math?math=n=100"> steps and plotting the pseudo regret of each simulation yields the figure below (Exercise 4.11). The figure shows that follow-the-leader policy works very well in many cases as the regret is nearly zero but in other cases it does not as the regret is close to the maximum possible pseudo regret of 10 = (0.6-0.5) * 100. Such a volatility in the performance is typical for this policy. The volatility is caused by the limited exploration that often results in a commitment to pull the suboptimal arm.  
+
+<img src="./assets/4_regret.png"> 
 
 # References
 This text *my* summary from the 4. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary contains copy&pasted text from the book as well as some additional text. 
