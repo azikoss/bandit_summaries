@@ -92,7 +92,7 @@ We will prove that the regret defined by summing over time steps <img src="https
 We defined regret as an expectation. If it is desired to measure the variance of the regret caused by randomness, regret can be defined as a **random regret** <img src="https://render.githubusercontent.com/render/math?math=\widetilde{R_n} = n\mu^{*} - \sum_{t=1}^{n}X_t"> or as a **pseudo regret** <img src="https://render.githubusercontent.com/render/math?math=\bar{R_n} = n\mu^{*} - \sum_{t=1}^{n}u_{A_t}">. Since  <img src="https://render.githubusercontent.com/render/math?math=\widetilde{R_n}"> is influenced by the noise <img src="https://render.githubusercontent.com/render/math?math=X_t - u_{A_t}">, **pseudo-regret appears to be a better** performance measure of a bandit policy.
  
 ## Follow the Leader 
-**Follow-the-leader** (or so called greedy algorithm) is an simple policy that **chooses each action once** and then **chooses the action with the largest observed average reward** so far. The goal of the exercise 4.8 from the book is to implement this algorithm. The implementation goes as follows ([github link](https://github.com/azikoss/bandit_summaries/blob/main/policy/follow_the_leader.py)):   
+**Follow-the-leader** (or so called greedy algorithm) is an simple policy that chooses **each action once** and then chooses the action with the **largest observed average reward** so far. The goal of the exercise 4.8 from the book is to implement this algorithm. The implementation goes as follows ([github link](https://github.com/azikoss/bandit_summaries/blob/main/policy/follow_the_leader.py)):   
 
 ```python
 def FollowTheLeader(bandit, n):
