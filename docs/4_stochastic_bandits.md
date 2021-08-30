@@ -31,7 +31,7 @@ class BernoulliBandit:
     def pull(self, a):
         """Accepts a parameter 0 <= a <= K -1 and returns the
         realisation of random variable X with P(X = 1) being
-        the mean of the (a + 1) th arm ."""
+        the mean of the (a + 1) th arm"""
         reward = np.random.binomial(1, self._means[a])
         self._acc_pseudo_regret += self._max_mean - self._means[a]
         return reward
