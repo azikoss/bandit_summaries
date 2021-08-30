@@ -25,7 +25,7 @@ class BernoulliBandit:
         self._acc_pseudo_regret = 0
 
     def K(self):
-        """Function should return the number of arms"""
+        """Returns the number of arms"""
         return len(self._means)
 
     def pull(self, a):
