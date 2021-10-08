@@ -25,13 +25,13 @@ class BernoulliBandit:
         self._acc_pseudo_regret = 0
 
     def K(self):
-        """Function should return the number of arms"""
+        """Returns the number of arms"""
         return len(self._means)
 
     def pull(self, a):
-        """Accepts a parameter 0 <= a <= K -1 and returns the
+        """Accepts a parameter 0 <= a <= K - 1 and returns the
         realisation of random variable X with P(X = 1) being
-        the mean of the (a + 1) th arm ."""
+        the mean of the (a + 1)th arm"""
         reward = np.random.binomial(1, self._means[a])
         self._acc_pseudo_regret += self._max_mean - self._means[a]
         return reward
@@ -63,7 +63,7 @@ In stochastic bandit environment
 An alternative how to define regret is to decompose <img src="https://render.githubusercontent.com/render/math?math=R_n"> into a function of the bandit instance <img src="https://render.githubusercontent.com/render/math?math=C: \varepsilon \to [0, \infinity]"> and a function of the horizon <img src="https://render.githubusercontent.com/render/math?math=f: \mathbb{N} \to [0, \infinity)"> such that for all <img src="https://render.githubusercontent.com/render/math?math=n \in \mathbb{N}, v \in \varepsilon">, <img src="https://render.githubusercontent.com/render/math?math=R_n(\pi, v) \leq C(v)f(n)">. 
 
 ### Decomposing the Regret
-This section presents a lemma about regret decomposition that forms a basis for majority of proofs for stochastic bandits.  
+This section presents a lemma about regret decomposition that forms a basis for the majority of proofs for stochastic bandits.  
 
 Let <img src="https://render.githubusercontent.com/render/math?math=v = (P_a: a \in A)"> be a stochastic bandit and define **suboptimality gap** or **action gap** or **immediate regret** of action <img src="https://render.githubusercontent.com/render/math?math=a">  as <img src="https://render.githubusercontent.com/render/math?math=\Delta_a(v) = u^*(v) - u_a(v)">. Further, let <img src="https://render.githubusercontent.com/render/math?math=T_a(t) = \sum_{s=1}^{\t} \mathbb{1} \{A_s = a\}"> be the number of times action <img src="https://render.githubusercontent.com/render/math?math=a"> was chosen by the learner after the end of the round <img src="https://render.githubusercontent.com/render/math?math=t">. <img src="https://render.githubusercontent.com/render/math?math=T_a(t)"> is random even with a deterministic policy that chooses the same action for a given history. This is because <img src="https://render.githubusercontent.com/render/math?math=A_s">  depends on the rewards observed in the previous rounds, which are random, so <img src="https://render.githubusercontent.com/render/math?math=A_s"> and consequently <img src="https://render.githubusercontent.com/render/math?math=T_a(t)"> inherit the randomness.
 
@@ -92,7 +92,7 @@ We will prove that the regret defined by summing over time steps <img src="https
 We defined regret as an expectation. If it is desired to measure the variance of the regret caused by randomness, regret can be defined as a **random regret** <img src="https://render.githubusercontent.com/render/math?math=\widetilde{R_n} = n\mu^{*} - \sum_{t=1}^{n}X_t"> or as a **pseudo regret** <img src="https://render.githubusercontent.com/render/math?math=\bar{R_n} = n\mu^{*} - \sum_{t=1}^{n}u_{A_t}">. Since  <img src="https://render.githubusercontent.com/render/math?math=\widetilde{R_n}"> is influenced by the noise <img src="https://render.githubusercontent.com/render/math?math=X_t - u_{A_t}">, **pseudo-regret appears to be a better** performance measure of a bandit policy.
  
 ## Follow the Leader 
-**Follow-the-leader** (or so called greedy algorithm) is an simple policy that chooses **each action once** and then chooses the action with the **largest observed average reward** so far. The goal of the exercise 4.8 from the book is to implement this algorithm. The implementation goes as follows ([github link](https://github.com/azikoss/bandit_summaries/blob/main/policy/follow_the_leader.py)):   
+**Follow-the-leader** (or so called greedy algorithm) is a simple policy that chooses **each action once** and then chooses the action with the **largest observed average reward** so far. The goal of the exercise 4.8 from the book is to implement this algorithm. The implementation goes as follows ([github link](https://github.com/azikoss/bandit_summaries/blob/main/policy/follow_the_leader.py)):   
 
 ```python
 def FollowTheLeader(bandit, n):
@@ -119,6 +119,8 @@ Running 1000 simulations ([github link](https://github.com/azikoss/bandit_summar
   <img src="./assets/4_regret.png" alt="Regret of the follow-the-leader policy">
   <figcaption>Figure 1: Regret of the follow-the-leader policy</figcaption>
 </figure> 
+
+If you have any questions or comments, please write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/4-stochastic-bandits) section. 
 
 # References
 This text *my* summary from the 4. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary contains copy&pasted text from the book as well as some additional text. 
