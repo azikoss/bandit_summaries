@@ -1,124 +1,68 @@
-# 4. Stochastic Bandits
-<img width="" src="./assets/4_dices_small.jpg">
-
-This chapter revisits the introduced definitions about regret, learning objectives, environment class in the context of stochastic bandits. The introduced theory is a basis for the next chapters about stochastic bandits.  
-
-A **stochastic bandit** <img src="https://render.githubusercontent.com/render/math?math=v"> is a collection of distributions <img src="https://render.githubusercontent.com/render/math?math=(P_a: a \in A)"> where <img src="https://render.githubusercontent.com/render/math?math=A"> is the set of available actions. The learner and the environment interact sequentially over <img src="https://render.githubusercontent.com/render/math?math=n"> rounds. In each round <img src="https://render.githubusercontent.com/render/math?math=t \in \{1,2,...,n\}">, the learner chooses an action <img src="https://render.githubusercontent.com/render/math?math=A_t \in \A">. The environment then samples reward <img src="https://render.githubusercontent.com/render/math?math=X_t \in \mathbb{R}"> from the distribution <img src="https://render.githubusercontent.com/render/math?math=P_{A_t}">. The learner cannot see the future observations when making current decisions. 
-
-As mentioned in the [Introduction chapter](1_introduction.md), the learner's objective is to choose actions that lead to the largest possible cumulative reward over all <img src="https://render.githubusercontent.com/render/math?math=n"> rounds. This task is **not an optimization problem** mainly because the learner does not know the distribution for each arm, in other words the bandit instance <img src="https://render.githubusercontent.com/render/math?math=v = (P_a: a \in A)"> is unknown to the learner. Other reason why a bandit problem is not an optimization problem is that the value of <img src="https://render.githubusercontent.com/render/math?math=n"> is not known. This could be however overcome by designing a policy with a fixed horizon and then adapting it for the unknown horizon while proving that the performance loss of this operation is minimal.  
+# 5. Concentration of Measure
+ Let's recall that the optimal action is the action with the largest mean. Since pay-offs are initially unknown, we must learn them from data. This chapter introduces essential theory that explains how long it takes to learn the reward means, and how to estimate the upper bound of the mean rewards. The introduced concepts are essential to design and understand many bandit algorithms. 
  
-## Types of Environment Classes
-The book distinguishes between **structured** and **unstructured** environment classes or in other words structured and unstructured bandits.  
-
-### Unstructured Bandits
-An environment class <img src="https://render.githubusercontent.com/render/math?math=\varepsilon"> is unstructured if the **set of arms <img src="https://render.githubusercontent.com/render/math?math=A"> is finite and there exists sets of distributions <img src="https://render.githubusercontent.com/render/math?math=M_a"> for each <img src="https://render.githubusercontent.com/render/math?math=a \in A"> such that** <img src="https://render.githubusercontent.com/render/math?math=\varepsilon = \{v = (P_a: a \in A): P_a \in M_a"> for all <img src="https://render.githubusercontent.com/render/math?math=\a \in \A\}">. You can read the above formula such that each arm <img src="https://render.githubusercontent.com/render/math?math=a"> has its own function <img src="https://render.githubusercontent.com/render/math?math=P_a"> for distribution of reward. By playing action <img src="https://render.githubusercontent.com/render/math?math=a">, the learner thus cannot learn anything about other actions <img src="https://render.githubusercontent.com/render/math?math=b \neq a">.
-
-Typical unstructured stochastic bandit is a Bernoulli bandit <img src="https://render.githubusercontent.com/render/math?math=\varepsilon_{B}^k = \{(B(\mu_i))_i : \mu \in [0,1]^k \}">. The implementation of the Bernoulli bandit (Exercise 4.7 from the book) is in the code block below ([github link](https://github.com/azikoss/bandit_summaries/blob/main/bandit/bernoulli.py)). Another classic example is a Gaussian bandit (with unknown variance) <img src="https://render.githubusercontent.com/render/math?math=\varepsilon_{N}^k = \{(N(\mu_i, \sigma_{i}^2))_i : \mu \in \mathbb{R}^k "> and <img src="https://render.githubusercontent.com/render/math?math=\sigma^2 \in [0,\inf)^k \}">. These two examples are **parametric** environment classes because the number of degrees of freedom that defines them is finite, otherwise they would be **non-parametric**.
-
-
-```python
-class BernoulliBandit:
-    def __init__(self, means):
-        """Accepts a list of K >= 2 floats , each lying in [0 ,1]"""
-        self._means = means
-        self._max_mean = np.max(self._means)
-        self._acc_pseudo_regret = 0
-
-    def K(self):
-        """Function should return the number of arms"""
-        return len(self._means)
-
-    def pull(self, a):
-        """Accepts a parameter 0 <= a <= K -1 and returns the
-        realisation of random variable X with P(X = 1) being
-        the mean of the (a + 1) th arm ."""
-        reward = np.random.binomial(1, self._means[a])
-        self._acc_pseudo_regret += self._max_mean - self._means[a]
-        return reward
-
-    def regret(self):
-        """Returns the (pseudo) regret incurred so far"""
-        return self._acc_pseudo_regret
-```
-
-The knowledge (or the assumption that a learner makes) about an environment class influences the performance. With a larger environmental class, it is more difficult to achieve good performance.
-
-### Structured Bandits
-**Environment classes that are not unstructured are structured**. In a structured environment class, a learner can obtain information about some actions while never playing them. 
-
-A simple example of an unstructured environment class with <img src="https://render.githubusercontent.com/render/math?math=A = \{1,2\}"> is <img src="https://render.githubusercontent.com/render/math?math=\varepsilon = \{(\mathrm{B}(\theta)), \mathrm{B}(1-\theta): \theta \in [0,1] \}">. In this environment class whose prescription for <img src="https://render.githubusercontent.com/render/math?math=\varepsilon"> is known to the learner (but not the parameter of <img src="https://render.githubusercontent.com/render/math?math=\theta">), the learner can  learn the mean of both arms by playing just one arm. Another common unstructured bandits are stochastic linear bandits. 
-
-## The Regret
-In the [Introduction chapter](1_introduction.md), the regret was informally defined as the deficit suffered by the learner relative to the optimal policy. Let's revisit this definition. Let <img src="https://render.githubusercontent.com/render/math?math=v = (P_a: a \in A)"> be a stochastic bandit and let define the mean reward of arm <img src="https://render.githubusercontent.com/render/math?math=a"> as <img src="https://render.githubusercontent.com/render/math?math=\mu_{a}(v) = \int_{\infinity}^{-\infinity} x \mathrm{d} P_a(x)">. Then, let <img src="https://render.githubusercontent.com/render/math?math=\mu^*(v) = \displaystyle\max_{a \in A} \mu_a(v)"> be the largest mean of all the arms. Note that <img src="https://render.githubusercontent.com/render/math?math=\mu_a(v)"> is formally defined as a function of the bandit instance <img src="https://render.githubusercontent.com/render/math?math=v">. When the context is clear, <img src="https://render.githubusercontent.com/render/math?math=v"> is omitted from the definition. 
-
-**The regret of policy <img src="https://render.githubusercontent.com/render/math?math=\pi"> on bandit instance <img src="https://render.githubusercontent.com/render/math?math=v"> is <img src="https://render.githubusercontent.com/render/math?math=R_n(\pi, v) = n\mu^*(v) - \mathbf{E}[\sum_{t=1}^{\n} X_t]">**, where the expectation is taken with respect to the probability outcomes induced by the interaction of <img src="https://render.githubusercontent.com/render/math?math=\pi"> and <img src="https://render.githubusercontent.com/render/math?math=v">.
-
-In stochastic bandit environment
- - the regret is always **non-negative**
- - **exists** a policy that has **zero regret** (optimal policy)
- - achieving **zero regret** is possible if an only if the learner **knows the optimal arm** upfront 
+# Tail Probabilities
+Tail probability is a function of a random variable <img src="https://render.githubusercontent.com/render/math?math=X"> and a certain threshold <img src="https://render.githubusercontent.com/render/math?math=\epsilon > 0"> that expresses the probability of <img src="https://render.githubusercontent.com/render/math?math=X"> being greater or smaller than <img src="https://render.githubusercontent.com/render/math?math=\epsilon">.  
  
- Regarding the last point, a relatively weak objective is to find a policy <img src="https://render.githubusercontent.com/render/math?math=\pi"> with sublinear regret on all <img src="https://render.githubusercontent.com/render/math?math=v \in \varepsilon">. Formally, this objective is to find a policy <img src="https://render.githubusercontent.com/render/math?math=\pi"> for which <img src="https://render.githubusercontent.com/render/math?math=$\lim_{n \to \infinity} \dfrac{R_n(\pi, v)}{n} = n"> for all <img src="https://render.githubusercontent.com/render/math?math=v \in \varepsilon">. In such case, the learner is choosing the optimal action almost all of the time as the horizon goes to infinity. 
+ We can apply this concept to express how much the sampling reward mean <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}"> over/under-estimates the true reward mean <img src="https://render.githubusercontent.com/render/math?math=\mu">.  This is formally called a tail probability of <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu} - \mu"> and can be expressed as <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\hat{\mu} \geq \mu \%2B \epsilon)"> and <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\hat{\mu} \leq \mu - \epsilon)">. The first expression is called upper tail probability and the second lower tail probability. 
+               
+For instance, let <img src="https://render.githubusercontent.com/render/math?math=X ~ \N(\mu,\sigma)"> and <img src="https://render.githubusercontent.com/render/math?math=\epsilon = 2\sigma">, given the z-table, the upper tail probability of <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\hat{\mu} \geq \mu %2B 2\sigma)=2.3\%25">. 
 
-An alternative how to define regret is to decompose <img src="https://render.githubusercontent.com/render/math?math=R_n"> into a function of the bandit instance <img src="https://render.githubusercontent.com/render/math?math=C: \varepsilon \to [0, \infinity]"> and a function of the horizon <img src="https://render.githubusercontent.com/render/math?math=f: \mathbb{N} \to [0, \infinity)"> such that for all <img src="https://render.githubusercontent.com/render/math?math=n \in \mathbb{N}, v \in \varepsilon">, <img src="https://render.githubusercontent.com/render/math?math=R_n(\pi, v) \leq C(v)f(n)">. 
-
-### Decomposing the Regret
-This section presents a lemma about regret decomposition that forms a basis for majority of proofs for stochastic bandits.  
-
-Let <img src="https://render.githubusercontent.com/render/math?math=v = (P_a: a \in A)"> be a stochastic bandit and define **suboptimality gap** or **action gap** or **immediate regret** of action <img src="https://render.githubusercontent.com/render/math?math=a">  as <img src="https://render.githubusercontent.com/render/math?math=\Delta_a(v) = u^*(v) - u_a(v)">. Further, let <img src="https://render.githubusercontent.com/render/math?math=T_a(t) = \sum_{s=1}^{\t} \mathbb{1} \{A_s = a\}"> be the number of times action <img src="https://render.githubusercontent.com/render/math?math=a"> was chosen by the learner after the end of the round <img src="https://render.githubusercontent.com/render/math?math=t">. <img src="https://render.githubusercontent.com/render/math?math=T_a(t)"> is random even with a deterministic policy that chooses the same action for a given history. This is because <img src="https://render.githubusercontent.com/render/math?math=A_s">  depends on the rewards observed in the previous rounds, which are random, so <img src="https://render.githubusercontent.com/render/math?math=A_s"> and consequently <img src="https://render.githubusercontent.com/render/math?math=T_a(t)"> inherit the randomness.
-
->The regret decomposition lemma states that for any policy <img src="https://render.githubusercontent.com/render/math?math=\pi"> and stochastic bandit <img src="https://render.githubusercontent.com/render/math?math=v"> with finite <img src="https://render.githubusercontent.com/render/math?math=A"> and horizon <img src="https://render.githubusercontent.com/render/math?math=n \in \mathbb{N}">, the regret <img src="https://render.githubusercontent.com/render/math?math=R_n"> of policy <img src="https://render.githubusercontent.com/render/math?math=\pi"> in <img src="https://render.githubusercontent.com/render/math?math=v"> satisfies 
-<img src="https://render.githubusercontent.com/render/math?math=R_n = \sum_{a \in A} \Delta_a \mathbb{E}[T_a(n)]">.
-
-The lemma decomposes the regret with respect to the losses of each arm. This tells us that to keep the regret small, the learner should try to use an arm with a large suboptimally gap proportionally fewer times.
-
-#### Proof
-We will prove that the regret defined by summing over time steps <img src="https://render.githubusercontent.com/render/math?math=R_n = n\mu^* - \mathbb{E}[\sum_{t=1}^{\n} X_t]"> is equivalent to the definition <img src="https://render.githubusercontent.com/render/math?math=\sum_{a \in A} \Delta_a \mathbb{E}[T_a(n)]"> from the lemma. The proof goes as follows
-
-1. <img src="https://render.githubusercontent.com/render/math?math=R_n = n\mu^* - \mathbb{E}[\sum_{t=1}^{\n} X_t]"> 
-1. <img src="https://render.githubusercontent.com/render/math?math== \color{green}\sum_{t=1}^{n}\mathbb{E}[(u^* - X_t)]"> // the summation was moved outside of the expected value and <img src="https://render.githubusercontent.com/render/math?math=\mu^*"> was moved inside the expected value 
-1. <img src="https://render.githubusercontent.com/render/math?math== \color{green}\sum_{a \in A} \color{black}\sum_{t=1}^{n}\mathbb{E}[(u^* - X_t)\color{green}\mathbb{I}\{A_t = a\}\color{black}]"> // an indicator function <img src="https://render.githubusercontent.com/render/math?math=\mathbb{I}"> was added to the formula without changing its value since  <img src="https://render.githubusercontent.com/render/math?math=\sum_{a \in A}\mathbb{I}\{A_t = a\} = 1"> at time <img src="https://render.githubusercontent.com/render/math?math=t"> 
-1. <img src="https://render.githubusercontent.com/render/math?math== \sum_{a \in A} \sum_{t=1}^{n}\mathbb{E}[(u^* - X_t)\mathbb{I}\{A_t = a\}|\color{green}A_t)\color{black}] \color{green} P(A_t=a)"> // the expectation was conditioned by <img src="https://render.githubusercontent.com/render/math?math=A_t">
-1. <img src="https://render.githubusercontent.com/render/math?math== \sum_{a \in A} \sum_{t=1}^{n}\color{green}\mathbb{I}\{A_t = a\}\color{black}\mathbb{E}[(u^* - X_t)|A_t] P(A_t=a)"> // the indicator function was taken out of the expectation since action <img src="https://render.githubusercontent.com/render/math?math=A_t"> is given
-1. <img src="https://render.githubusercontent.com/render/math?math== \sum_{a \in A} \sum_{t=1}^{n}\mathbb{I}\{A_t = a\}\color{green}(u^* - u_{A_t})\color{black} P(A_t=a)"> // the expectation was removed since <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[X_t|A_t] = u_{A_t}">
-1. <img src="https://render.githubusercontent.com/render/math?math== \sum_{a \in A} \sum_{t=1}^{n}\mathbb{I}\{A_t = a\}(u^* - \color{green}u_{A_a}\color{black}) P(A_t=a)"> // <img src="https://render.githubusercontent.com/render/math?math=u_{A_t}"> was written as <img src="https://render.githubusercontent.com/render/math?math=u_{a}"> since the indication function zeros out all actions apart from action <img src="https://render.githubusercontent.com/render/math?math=a">
-1. <img src="https://render.githubusercontent.com/render/math?math== \sum_{a \in A} \sum_{t=1}^{n}\mathbb{I}\{A_t = a\}\color{green}\Delta_a\color{black} P(A_t=a)"> // the definition of the action gap was used
-1. <img src="https://render.githubusercontent.com/render/math?math== \sum_{a \in A} \color{green}\Delta_a\color{black} \sum_{t=1}^{n}\mathbb{I}\{A_t = a\} P(A_t=a)"> // <img src="https://render.githubusercontent.com/render/math?math=\Delta_a"> was moved outside of the summation over time since it does not depends on time
-1. <img src="https://render.githubusercontent.com/render/math?math== \sum_{a \in A} \Delta_a \color{green}T_a(n)\color{black} P(A_t=a)"> // the formula for <img src="https://render.githubusercontent.com/render/math?math=T_a(n)"> was used
-1. <img src="https://render.githubusercontent.com/render/math?math== \sum_{a \in A} \Delta_a \color{green}\mathbb{E}[T_a(n)]"> // the formula for expected value was used 
+*TODO: an illustration??*
+ 
+One could think why not to use variance to express the spread of the sample mean <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}">. Variance of <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}"> is defined as <img src="https://render.githubusercontent.com/render/math?math=\mathbb{V}[\hat{\mu}] = \mathbb{E}[(\hat{\mu} - \mu)^2] =\dfrac{\sigma^2}{n}"> ([proof](https://youtu.be/7mYDHbrLEQo)). The problem is that variance only quantifies that the squared distance between <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}"> and <img src="https://render.githubusercontent.com/render/math?math=\mu"> and does not tell much about the distribution of the error between the sample and the true mean. If we would continue with the above example and say that we would pull an arm <img src="https://render.githubusercontent.com/render/math?math=n=100"> times, then <img src="https://render.githubusercontent.com/render/math?math=\mathbb{V}[\hat{\mu}] = \dfrac{\sigma^2}{100}">. This expression does not tell anything about the distribution of the distance between <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}"> and <img src="https://render.githubusercontent.com/render/math?math=\mu"> (we cannot say that the distance is with certain probability less than <img src="https://render.githubusercontent.com/render/math?math=\epsilon"> just like the tail probability function does).
  
 
-### Alternative Definitions
-We defined regret as an expectation. If it is desired to measure the variance of the regret caused by randomness, regret can be defined as a **random regret** <img src="https://render.githubusercontent.com/render/math?math=\widetilde{R_n} = n\mu^{*} - \sum_{t=1}^{n}X_t"> or as a **pseudo regret** <img src="https://render.githubusercontent.com/render/math?math=\bar{R_n} = n\mu^{*} - \sum_{t=1}^{n}u_{A_t}">. Since  <img src="https://render.githubusercontent.com/render/math?math=\widetilde{R_n}"> is influenced by the noise <img src="https://render.githubusercontent.com/render/math?math=X_t - u_{A_t}">, **pseudo-regret appears to be a better** performance measure of a bandit policy.
+# The Inequalities of Markov and Chebyshev
+In the above example, we calculated the tail-probability by using z-table. In practice, we will not have such a comfort to work with normal distribution only. Thus, we introduce two most common inequalities that will help us to bound *any* random variable <img src="https://render.githubusercontent.com/render/math?math=X">  
+1. Markov: <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(X \geq \epsilon) \leq \dfrac{\mathbb{E}[X]}{\epsilon}">     
+1. Chebyshev: <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(|X - \mathbb{E}[X]| \geq \epsilon) \leq \dfrac{\mathbb{V}[X]}{\epsilon^2}">
+
+Let's illustrate how both inequalities work in practice. We can make an example from any context, since <img src="https://render.githubusercontent.com/render/math?math=X"> can be *any* random variable. Let <img src="https://render.githubusercontent.com/render/math?math=X"> represent an outcome of a dice. The dice does not have to be fair, but for sake of this exercise let's say it is so <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[X]=3.5">. Let's find out what is the probability that <img src="https://render.githubusercontent.com/render/math?math=X"> is at least <img src="https://render.githubusercontent.com/render/math?math=\epsilon=6">. Using the Markov inequality, <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(X \geq 6) \leq \dfrac{3.5}{6} = 58.3\%25">. Thus, the probability of throwing 6 (and more) is at most 58.3%. As illustrated on this example, the Markov's inequality is quite loose since the chance of throwing 6 on a fair dice is only 16.6%. To be exact, we bounded the probability of throwing *at least* six. Since the [proof](https://www.quora.com/What-is-an-intuitive-explanation-of-Markovs-inequality) of the Markos inequality stem's solely from the behavior of <img src="https://render.githubusercontent.com/render/math?math=X"> around its mean, it does not matter how many faces would the dice have and the estimate of 58.3% would still hold.  
  
-## Follow the Leader 
-**Follow-the-leader** (or so called greedy algorithm) is an simple policy that chooses **each action once** and then chooses the action with the **largest observed average reward** so far. The goal of the exercise 4.8 from the book is to implement this algorithm. The implementation goes as follows ([github link](https://github.com/azikoss/bandit_summaries/blob/main/policy/follow_the_leader.py)):   
+To illustrate the Chebyshev inequality, we have to know the variance of <img src="https://render.githubusercontent.com/render/math?math=X">. The variance of a fair dice is 105/36~2.91. Let's bound the same event as above and express what is the  maximum probability of throwing at least 6. Given that the Chebyshev inequality bounds the distance in between <img src="https://render.githubusercontent.com/render/math?math=X"> and its expected value, we need to set <img src="https://render.githubusercontent.com/render/math?math=\epsilon=6-3.5=2.5"> to bound the probability of throwing (at least) 2.5 units from the expected value of 3.5; so essentially throwing 3.5+-2.5 which is equivalent to throwing 1 or 6. Using the Chebyshev inequality, <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(|X - 3.5| \geq 2.5) \leq \dfrac{2.91}{2.5^2} = 46.6\%25">. Thus, the probability that the distance of <img src="https://render.githubusercontent.com/render/math?math=X"> from its mean is larger than 2.5 (outcomes 1 and 6 on a dice) is at most 46.6%. The bound is again quite loose as the probability of throwing 1 or 6 is 16.6%+16.6% = 33.2%.
 
-```python
-def FollowTheLeader(bandit, n):
-    means = [0] * bandit.K()
+ 
+We can use Chebyshev inequality and bound the sample reward mean <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}"> (with variance <img src="https://render.githubusercontent.com/render/math?math=\mathbb{V}[\hat{\mu}] =\dfrac{\sigma^2}{n}">) as <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(|\hat{\mu} - \mu| \geq \epsilon) \leq \dfrac{\sigma^2}{n\epsilon^2}">. This result is great because it does not rely no any assumption and can be used in any context. On the other hand, as we saw above, the Chebyshev inequality can be quite loose. For that reason, we introduce subgaussian random variables and given their properties present tighter bounds.  
 
-    # pulls each arm once
-    for t in range(bandit.K()):
-        means[t] += bandit.pull(t)
-    total_pulls = [1] * n
 
-    # plays the arm with the highest mean
-    for t in range(bandit.K(), n):
-        # randomly select one of the arms that has the highest mean
-        arm = np.random.choice(np.argwhere(means == np.max(means)).flatten())
-        means[arm] = ((means[arm] * total_pulls[arm]) + bandit.pull(arm)) / (
-            total_pulls[arm] + 1
-        )
-        total_pulls[arm] += 1
-```
+# Subgaussian Random Variables
+ A random variable <img src="https://render.githubusercontent.com/render/math?math=X"> is <img src="https://render.githubusercontent.com/render/math?math=\sigma">-subgaussian if it holds that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[e^{\lambda X}] \leq e^{\lambda^2 \sigma^2 / 2}"> for all <img src="https://render.githubusercontent.com/render/math?math=\lambda \in \mathbb{R}">. This says that <img src="https://render.githubusercontent.com/render/math?math=X"> is a <img src="https://render.githubusercontent.com/render/math?math=\sigma">-subgaussian if the Laplace transform of <img src="https://render.githubusercontent.com/render/math?math=X"> is dominated by the Laplace transform of a Gaussian random variable with mean zero and variance <img src="https://render.githubusercontent.com/render/math?math=\sigma^2"> [[ref](http://www.stat.cmu.edu/~arinaldo/36788/subgaussians.pdf)]. The consequence of this is that subgaussian random variables are centered (<img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[X]=0">) and their variance is given by the subgaussian parameter. We say that the random variables that are not centered are <img src="https://render.githubusercontent.com/render/math?math=\sigma">-subgaussian if the noise <img src="https://render.githubusercontent.com/render/math?math=X-\mathbb{E}[X]"> is <img src="https://render.githubusercontent.com/render/math?math=\sigma">-subgaussian. Subgaussians have much lighter tails than Guassians (they decay at least as fast as the Gaussians) [[ref](https://statisfaction.wordpress.com/2017/05/02/sub-gaussian-property-for-the-beta-distribution-part-1/)] and they are more uniformly distributed around the mean than the Gaussians [[ref](https://www.researchgate.net/figure/Examples-of-Gaussian-supergaussian-and-subgaussian-distributions-All-distributions_fig3_228661138)]. 
 
-Running 1000 simulations ([github link](https://github.com/azikoss/bandit_summaries/blob/main/run/4_follow_the_leader_with_bernoulli_bandit.py)) of the follow-the-leader policy on the Bernoulli bandit with two arms and means <img src="https://render.githubusercontent.com/render/math?math=\mu_1=0.5"> and <img src="https://render.githubusercontent.com/render/math?math=\mu_2=0.6"> with the horizon of <img src="https://render.githubusercontent.com/render/math?math=n=100"> steps and plotting the pseudo regret of each simulation yields Figure 1 below (Exercise 4.11). The figure shows that follow-the-leader policy works very well in many cases as the regret is nearly zero but in other cases it does not as the regret is close to the maximum possible pseudo regret of 10 = (0.6-0.5) * 100. Such a volatility in the performance is typical for this policy. The volatility is caused by the limited exploration that often results in the commitment to play a suboptimal arm.  
+A natural example of a subgaussian random variable is a centered Gaussian. If <img src="https://render.githubusercontent.com/render/math?math=N(0, \sigma^2)">, then <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[e^{\lambda X}] = e^{\sigma^2 \lambda^2 / 2}"> ([calculation](https://ocw.mit.edu/courses/mathematics/18-s997-high-dimensional-statistics-spring-2015/lecture-notes/MIT18_S997S15_Chapter1.pdf)) which is equal to the right-hand side of the definition of subgaussianity above and thus center Gaussian is a subgaussian random variable for all <img src="https://render.githubusercontent.com/render/math?math=\sigma">. 
 
-<figure class="image" align="center">
-  <img src="./assets/4_regret.png" alt="Regret of the follow-the-leader policy">
-  <figcaption>Figure 1: Regret of the follow-the-leader policy</figcaption>
-</figure> 
+
+Furthermore, 
+ * if <img src="https://render.githubusercontent.com/render/math?math=|X| \leq B"> almost surely for <img src="https://render.githubusercontent.com/render/math?math=B \geq 0">, then <img src="https://render.githubusercontent.com/render/math?math=X"> is <img src="https://render.githubusercontent.com/render/math?math=B">-subgaussian
+ * If <img src="https://render.githubusercontent.com/render/math?math=X \in [a,b]"> almost surely, then <img src="https://render.githubusercontent.com/render/math?math=X"> is <img src="https://render.githubusercontent.com/render/math?math=(b-a)/2">-subgaussian (so Bernoulli distribution is 1/2-subgaussian).    
+ 
+# The Cramér-Chernoff Method
+Now, we present a theorem based on which we can bound the reward. If <img src="https://render.githubusercontent.com/render/math?math=x"> is <img src="https://render.githubusercontent.com/render/math?math=\sigma">-subgaussian, the, for any <img src="https://render.githubusercontent.com/render/math?math=\epsilon \geq 0">, <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(X \geq \epsilon) \leq \exp(-\frac{\epsilon ^ 2}{2\sigma^2})">. The proof, which follows the  **Cremér-Chernoff method** goes as follow. Let <img src="https://render.githubusercontent.com/render/math?math=\lambda > 0"> be a constant to be tuned later. Then,
+1. <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(X \geq \epsilon) = \mathbb{P}(\exp(\lambda X) \geq \exp(\lambda \epsilon))"> // the whole formula was exponentiated to the power of <img src="https://render.githubusercontent.com/render/math?math=\exp(\lambda)">
+1. <img src="https://render.githubusercontent.com/render/math?math=\leq \mathbb{E}[\exp(\lambda X)] \exp(-\lambda \epsilon)"> // Markov's inequality was used
+1. <img src="https://render.githubusercontent.com/render/math?math=\leq \exp(\frac{\lambda^2 \sigma^2)}{2} \exp(-\lambda\epsilon)"> // The definition of subgaussianity was used
+1. <img src="https://render.githubusercontent.com/render/math?math=\= \exp(\frac{\lambda^2 \sigma^2)}{2}-\lambda\epsilon)">
+1. <img src="https://render.githubusercontent.com/render/math?math=\= \exp(-\frac{\epsilon^2}{2 \sigma^2})"> // by choosing <img src="https://render.githubusercontent.com/render/math?math=\lambda"> to be <img src="https://render.githubusercontent.com/render/math?math=\frac{\epsilon}{\sigma^2}">
+
+By setting the right hand side of the equation <img src="https://render.githubusercontent.com/render/math?math=\exp(-\frac{\epsilon^2}{2\sigma^2})"> to <img src="https://render.githubusercontent.com/render/math?math=\delta"> and solving this equaition for <img src="https://render.githubusercontent.com/render/math?math=\epsilon"> and making the corresponding substitutions, we get an equivalent form of the above formula is <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(X \geq \sqrt{2\sigma^2\log(1/\delta)}) \leq \delta">. This is a more convenient because we can easily set the probability <img src="https://render.githubusercontent.com/render/math?math=\delta"> that <img src="https://render.githubusercontent.com/render/math?math=\X"> will be higher than <img src="https://render.githubusercontent.com/render/math?math=\sqrt{2\sigma^2\log(1/\delta)})">. A similar inequality holds for the left tail.
+
+ 
+Let's focus on bounding the tail behavior of <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu} - \mu">. For that, two more properties of the subgaussians random variables need to be introduced. Let <img src="https://render.githubusercontent.com/render/math?math=X"> be <img src="https://render.githubusercontent.com/render/math?math=\sigma">-subgaussian and <img src="https://render.githubusercontent.com/render/math?math=X_1"> and <img src="https://render.githubusercontent.com/render/math?math=X_2"> be independent and <img src="https://render.githubusercontent.com/render/math?math=\sigma_1"> and <img src="https://render.githubusercontent.com/render/math?math=\sigma_2">-subgaussian, respectively, then
+1. <img src="https://render.githubusercontent.com/render/math?math=cX"> is <img src="https://render.githubusercontent.com/render/math?math=|c|\sigma">-subgaussian for all <img src="https://render.githubusercontent.com/render/math?math=c \in \mathbb{R}"> 
+1. <img src="https://render.githubusercontent.com/render/math?math=X_1 \%2B X_2"> is <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\sigma_1^2 \%2B \sigma_2^2}">-subgaussian 
+
+
+Presuming that <img src="https://render.githubusercontent.com/render/math?math=X_i - \mu"> are independent, <img src="https://render.githubusercontent.com/render/math?math=\sigma">-subgaussian random variable, then for any <img src="https://render.githubusercontent.com/render/math?math=\epsilon \geq 0">, <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\hat{\mu} - \mu \geq \epsilon) \leq \exp(-\frac{n\epsilon^2}{2\sigma^2})">, where <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu} = \frac{1}{n}\sum_{t=1}^{n} X_t">. 
+
+To proof this. By the properties introduced in the previous paragraph, it holds that <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu} - \mu = \sum_{t=1}^{n} (X_i - \mu)/n"> is <img src="https://render.githubusercontent.com/render/math?math=\sigma/\sqrt{n}">-subgaussian as each element in the sum is <img src="https://render.githubusercontent.com/render/math?math=\sigma^2/n^2">-subgaussian, and the sum of <img src="https://render.githubusercontent.com/render/math?math=n"> such subgaussian is <img src="https://render.githubusercontent.com/render/math?math=\sqrt{n \frac{\sigma^2}{n^2}} = \sigma/\sqrt{n}">-subgaussian. Given this and using the theorem on bounding the subgaussian random variable (choosing <img src="https://render.githubusercontent.com/render/math?math=\lambda=\frac{\epsilon n}{\sigma^2}">) finilizes the proof. 
+
+The above inequality present a stronger bound that the one obtained from Chebyshev's inequality expect when <img src="https://render.githubusercontent.com/render/math?math=\epsilon"> is very small.
+
+Similarly, the inequality can be rewritten as <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\hat{\mu} \geq \mu \%2B \sqrt{\frac{2\sigma^2\log(1/\delta)}{n}}) \leq \delta">.
+
+
+
+
 
 # References
-This text *my* summary from the 4. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary contains copy&pasted text from the book as well as some additional text. 
+This text *my* summary from the 5. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary contains copy&pasted text from the book as well as some additional text. 
