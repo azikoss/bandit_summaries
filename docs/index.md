@@ -4,4 +4,7 @@ I started to read [Bandit Algorithm](https://tor-lattimore.com/downloads/book/bo
 
 The digests that I've written so far are
 * [1. Chapter - Introduction](1_introduction.md)
+* 2\. Chapter - Foundations of Probability
+* 3\. Chapter - Stochastic Processes and Markov Chains
 * [4. Chapter - Stochastic Bandits](4_stochastic_bandits.md)
+* [5. Chapter - Concentration of Measure](5_concentration_of_measure.md)
