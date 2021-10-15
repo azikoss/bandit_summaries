@@ -1,5 +1,7 @@
 # 5. Concentration of Measure
-<img width="" src="./assets/5_normal_distribution.png">
+<center>
+<img width="480" src="./assets/5_normal_distribution.png">
+</center>
 
 Let's recall that in the Multi-Armed Bandit setting the pay-offs are initially unknown and we must learn them from data. This chapter introduces theory that explains **how to estimate the upper bound of mean rewards** by using tail probabilities. The introduced concepts are essential to design and understand many bandit algorithms. 
  
