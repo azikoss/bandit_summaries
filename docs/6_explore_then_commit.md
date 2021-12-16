@@ -1,4 +1,8 @@
 # 6. Explore-Then-Commit Algorithm
+<center>
+<img width="480" src="./assets/6_explore_then_commit.png">
+</center>
+
 Explore-then-commit (ETC) is a simple algorithm that explores each arm a fixed number of times and then commits to playing the arm that performed the best during exploration. ETC is determined by the number of times <img src="https://render.githubusercontent.com/render/math?math=m"> that each arm is explored. Since there are <img src="https://render.githubusercontent.com/render/math?math=k"> arms and each arm is explored <img src="https://render.githubusercontent.com/render/math?math=m"> times, the algorithm explores <img src="https://render.githubusercontent.com/render/math?math=mk"> times in total. 
 
 Let <img src="https://render.githubusercontent.com/render/math?math=\hat{u}_i(t)"> be the average reward received from arm <img src="https://render.githubusercontent.com/render/math?math=i"> after round <img src="https://render.githubusercontent.com/render/math?math=t">. <img src="https://render.githubusercontent.com/render/math?math=\hat{u}_i(t)"> is formally defined as 
