@@ -40,9 +40,11 @@ The book includes exercises covering topics that I would like to understand, par
 * Ex. 6.5. of choosing the exploration length <img src="https://render.githubusercontent.com/render/math?math=m"> only based on the knowledge of the horizon length
 * Ex. 6.6. of converting an algorithm whose upper bound is dependent on the knowledge of the horizon into an algorithm that is horizon free
 
-I plan to come back to the above exercises. I would be happy If you would share the solutions in the mean time.
+I plan  to come back to the above exercises. I would be happy If you would share the solutions in the mean time.
 
 If you have any questions or comments, I would be happy if you write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/6-explore-then-commit) section. 
+
+
 
 
 # References
