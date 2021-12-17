@@ -8,3 +8,4 @@ The digests that I've written so far are
 * 3\. Chapter - Stochastic Processes and Markov Chains
 * [4. Chapter - Stochastic Bandits](4_stochastic_bandits.md)
 * [5. Chapter - Concentration of Measure](5_concentration_of_measure.md)
+* [6. Chapter - Explore Then Commit](6_explore_then_commit.md)
