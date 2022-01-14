@@ -8,6 +8,7 @@ Explore-then-commit (ETC) is a simple algorithm that **explores each arm a fixed
 Let <img src="https://render.githubusercontent.com/render/math?math=\hat{u}_i(t)"> be the average reward received from arm <img src="https://render.githubusercontent.com/render/math?math=i"> after round <img src="https://render.githubusercontent.com/render/math?math=t">. <img src="https://render.githubusercontent.com/render/math?math=\hat{u}_i(t)"> is formally defined as 
 <img src="https://render.githubusercontent.com/render/math?math=\hat{u}_i(t) = \frac{1}{T_i(t)}\sum_{s=1}^{t}\mathbb{I}\{A_s = i \}X_s">, where <img src="https://render.githubusercontent.com/render/math?math=T_i(t) = \sum_{s=1}^{t}\mathbb{I}\{A_s=i\}"> expresses the number of times arm <img src="https://render.githubusercontent.com/render/math?math=i"> has been played after round <img src="https://render.githubusercontent.com/render/math?math=t">. The ETC policy goes as follows
 1. Input: <img src="https://render.githubusercontent.com/render/math?math=m">
+
 2. In round <img src="https://render.githubusercontent.com/render/math?math=t"> choose arm <img src="https://render.githubusercontent.com/render/math?math=A_t"> as <img src="https://render.githubusercontent.com/render/math?math=(t \mod k) \%2B 1"> if <img src="https://render.githubusercontent.com/render/math?math=t \leq mk"> otherwise as <img src="https://render.githubusercontent.com/render/math?math=\argmax_i\hat{\mu_i}(mk)">.
 
 ## Regret
@@ -45,4 +46,4 @@ I plan to come back to the above exercises. Please share your solutions if resol
 
  
 # References
-This text is *my* summary from the 6. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary may contain copy&pasted text from the book. 
+This text is *my* summary from the 6. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary contains copy&pasted text from the book as well as some additional text. 

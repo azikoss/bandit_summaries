@@ -46,4 +46,4 @@ One of the core questions in the study of bandits is to understand the growth ra
 If you have any questions or comments, please write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/1-introduction) section. 
 
 # References
-This text is *my* summary from the 1. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary contains copy&pasted text from the book as well as some additional text. 
+This text is *my* summary from the 1. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary may contain copy&pasted text from the book. 

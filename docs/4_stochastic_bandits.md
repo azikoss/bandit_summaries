@@ -123,4 +123,4 @@ Running 1000 simulations ([github link](https://github.com/azikoss/bandit_summar
 If you have any questions or comments, please write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/4-stochastic-bandits) section. 
 
 # References
-This text is *my* summary from the 4. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary contains copy&pasted text from the book as well as some additional text. 
+This text is *my* summary from the 4. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary may contain copy&pasted text from the book. 

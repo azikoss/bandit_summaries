@@ -67,4 +67,4 @@ Similarly as for the general case, the inequality can be rewritten as <img src="
 If you have any questions or comments, I would be happy if you write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/5-concentration-of-measure) section. 
 
 ## References
-This text is *my* summary from the 5. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary contains copy&pasted text from the book as well as some additional text. 
+This text is *my* summary from the 5. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary may contain copy&pasted text from the book. 
