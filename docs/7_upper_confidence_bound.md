@@ -61,11 +61,6 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
 
 
  <div class="div-table">
-     <div class="div-table-row">
-        <div class="div-table-col" align="center">Customer ID</div>
-        <div  class="div-table-col">Customer Name</div>
-        <div  class="div-table-col">Customer Address</div>
-     </div>
     <div class="div-table-row">
           <div class="div-table-col">001</div>
         <div class="div-table-col">002</div>

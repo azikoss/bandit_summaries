@@ -18,9 +18,7 @@ blockquote{
 .div-table {
   display: table;
   width: auto;
-  background-color: #eee;
-  border: 1px solid #666666;
-  border-spacing: 5px; /* cellspacing:poor IE support for  this */
+  border-spacing: 5px;
 }
 .div-table-row {
   display: table-row;
@@ -28,8 +26,7 @@ blockquote{
   clear: both;
 }
 .div-table-col {
-  float: left; /* fix for  buggy browsers */
+  float: left;
   display: table-column;
   width: 200px;
-  background-color: #ccc;
 }
