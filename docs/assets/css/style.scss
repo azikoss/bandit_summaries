@@ -25,8 +25,16 @@ blockquote{
   width: auto;
   clear: both;
 }
-.div-table-col {
+.div-table-col_eq {
+  float: left;
+  margin-right: 5%;
+  display: table-column;
+  width: 47.5%;
+  text-align: left;
+}
+.div-table-col_expl {
+  text-align: right;
   float: left;
   display: table-column;
-  width: 200px;
+  width: 47.5%;
 }
