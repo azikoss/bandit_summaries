@@ -1,49 +1,79 @@
-# 6. Explore-Then-Commit Algorithm
-<center>
-<img width="480" src="./assets/6_explore_then_commit.png">
-</center>
+# 7. The Upper Confidence Bound Algorithm
+This chapter introduces a simple yet very well functioning algorithm called the upper confidence bound (UCB) algorithm. 
+*The algorithm has several advantages over the [explore-then-commit (ETC) algorithm](6_explore_then_commit.md) as it  does not rely on the advance knowledge of the suboptimality gaps and works works well when there are more than two arms. The introduced UCB algorithm depends on the horizon *n* but the version presented in the next chapter does not. 
 
-Explore-then-commit (ETC) is a simple algorithm that **explores each arm a fixed number of times and then commits to playing the arm that performed the best during exploration**. ETC is determined by the number of times <img src="https://render.githubusercontent.com/render/math?math=m"> that each arm is explored. Since there are <img src="https://render.githubusercontent.com/render/math?math=k"> arms and each arm is explored <img src="https://render.githubusercontent.com/render/math?math=m"> times, the algorithm explores <img src="https://render.githubusercontent.com/render/math?math=mk"> times in total. 
-
-Let <img src="https://render.githubusercontent.com/render/math?math=\hat{u}_i(t)"> be the average reward received from arm <img src="https://render.githubusercontent.com/render/math?math=i"> after round <img src="https://render.githubusercontent.com/render/math?math=t">. <img src="https://render.githubusercontent.com/render/math?math=\hat{u}_i(t)"> is formally defined as 
-<img src="https://render.githubusercontent.com/render/math?math=\hat{u}_i(t) = \frac{1}{T_i(t)}\sum_{s=1}^{t}\mathbb{I}\{A_s = i \}X_s">, where <img src="https://render.githubusercontent.com/render/math?math=T_i(t) = \sum_{s=1}^{t}\mathbb{I}\{A_s=i\}"> expresses the number of times arm <img src="https://render.githubusercontent.com/render/math?math=i"> has been played after round <img src="https://render.githubusercontent.com/render/math?math=t">. The ETC policy goes as follows
-1. Input: <img src="https://render.githubusercontent.com/render/math?math=m">
-
-2. In round <img src="https://render.githubusercontent.com/render/math?math=t"> choose arm <img src="https://render.githubusercontent.com/render/math?math=A_t"> as <img src="https://render.githubusercontent.com/render/math?math=(t \mod k) \%2B 1"> if <img src="https://render.githubusercontent.com/render/math?math=t \leq mk"> otherwise as <img src="https://render.githubusercontent.com/render/math?math=\argmax_i\hat{\mu_i}(mk)">.
-
-## Regret
-Recall that <img src="https://render.githubusercontent.com/render/math?math=u_i"> is the true mean reward of action <img src="https://render.githubusercontent.com/render/math?math=i"> and <img src="https://render.githubusercontent.com/render/math?math=\Delta_i = \mu* - \mu_i"> is the suboptimality gap between the optimal arm and arm <img src="https://render.githubusercontent.com/render/math?math=i">.
-
->When ETC is interacting with any 1-subgaussion bandit and <img src="https://render.githubusercontent.com/render/math?math=1 \leq m \leq n/k">, <img src="https://render.githubusercontent.com/render/math?math=R_n \leq m \sum_{i=1}^{k}\Delta_i \%2B (n - mk)\sum_{i=1}^{k}\Delta_i \exp(-\frac{m\Delta_i^2}{4})"> 
+## The Optimism Principle
+The UCB algorithm follows the principle of **optimism in the face of uncertainty**. This principle states that one should act as if the environment is as nice as **plausibly possible**. To give an example, imagine visiting a new country and making a choice whether to try a local restaurant or a well-known multinational chain. You are uncertain about the food of the local restaurant. It could be equally great as equally bad - you do not know because you have never been there. Following the above principle would mean taking a optimistic opinion about the food in the local restaurant and trying it out. Afterwards, you could update your current knowledge about it and make more informed decision next time. 
 
 
-The proof of the above theorem goes as follows
-1. By the regret [decomposition lemma](4_stochastic_bandits.md#decomposing-the-regret), regret of any bandit algorithm can be written as <img src="https://render.githubusercontent.com/render/math?math=\sum_{i=1}^{k} \Delta_i \mathbb{E}[T_i(n)]">.
-1. For ETC, <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)] = m \%2B (n-mk)\mathbb{P}(A_{mk %2B 1} = i)"> which reflects that each arm is played <img src="https://render.githubusercontent.com/render/math?math=m"> times during the exploration and in the remaining <img src="https://render.githubusercontent.com/render/math?math=n - mk"> exploitation rounds each arm is played with a certain probability
-1. <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(A_{mk %2B 1} = i) \leq \mathbb{P}(\hat{\mu}_i(mk) \geq \max_{j \neq i} \hat{\mu_j}(mk))"> // the probability of playing arm <img src="https://render.githubusercontent.com/render/math?math=i"> during exploitation can be bounded by the probability that arm <img src="https://render.githubusercontent.com/render/math?math=i"> after the last exploration round has the same (or higher) sample reward mean than the arm with the maximum sample reward. The probability on the right hand side is the same or higher than the probability on the left hand side because multiple arms at time <img src="https://render.githubusercontent.com/render/math?math=mk"> can have the highest sample reward mean.  
-1. <img src="https://render.githubusercontent.com/render/math?math=\leq \mathbb{P}(\hat{\mu}_i(mk) \geq \hat{\mu_1}(mk))"> // arm 1 was assumed to be the optimal so that <img src="https://render.githubusercontent.com/render/math?math=\mu_1=\mu*=\max_i\mu_i">
-1. <img src="https://render.githubusercontent.com/render/math?math== \mathbb{P}(\hat{\mu}_i(mk) - \mu_i - (\hat{\mu_1}(mk) - \mu_1) \geq \Delta_i)"> // suboptimality gap <img src="https://render.githubusercontent.com/render/math?math=\Delta_i"> was added to the right hand side within the probability and <img src="https://render.githubusercontent.com/render/math?math=\mu_1 - \mu_i">, which equals to <img src="https://render.githubusercontent.com/render/math?math=\Delta_i">, to the left hand side.
-1. <img src="https://render.githubusercontent.com/render/math?math=\leq \exp(-\frac{m\Delta_{i}^2}{4})"> // the theorem <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[e^{\lambda X}] \leq e^{\lambda^2 \sigma^2 / 2}"> that bounds subgaussions was used given that <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_i(mk) - \mu_i - (\hat{\mu_1}(mk) - \mu_1)"> is <img src="https://render.githubusercontent.com/render/math?math=\sqrt{2/m}">-subgaussian because (following this [proof](5_concentration_of_measure.md#bounding-the-sample-reward-mean)) <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_i(mk) - \mu_i"> and <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu_1}(mk) - \mu_1"> are both <img src="https://render.githubusercontent.com/render/math?math=1/\sqrt{m}">-subgaussians and their sum is <img src="https://render.githubusercontent.com/render/math?math=\sqrt{2/m}">-subgaussian  
-
-Substituting row 6. into row 2. and then the result to row 1. finalizes the proof.  
-
-Let's note that the above inequality can be adjusted  when the reward distribution of all arms is not 1-subgaussion. 1-subgaussion is used for the sake of not writing the subgaussion constant <img src="https://render.githubusercontent.com/render/math?math=\sigma"> over. The subgaussion parameter <img src="https://render.githubusercontent.com/render/math?math=\sigma"> however has to be known by the learner for the above regret bound to hold.
+Following the optimism principle in the context of bandits means estimating the mean reward higher than its true value with high probability. This over-estimate is called upper confidence bound. The intuition why this leas to sublinear regret goes as follows. A suboptimal arm is played only when its upper confidence bound is larger than the upper confidence bound of the optimal arm. But this cannot happen too often because playing a suboptimal arm decrease its upper confidence bound that would eventually fall the one of the optimal arm. 
 
 
-## Exploration length
-The bound of the ETC algorithm derived above illustrates the trade-off between exploration and exploitation. If  <img src="https://render.githubusercontent.com/render/math?math=m"> is large, the algorithm would explore for too long, and the first term would be too large. If <img src="https://render.githubusercontent.com/render/math?math=m"> is too small, then the probability that the algorithm commits to exploiting the wrong arm is high, and the second term becomes large. So how to choose <img src="https://render.githubusercontent.com/render/math?math=m">?
+Let's formalize the above intuition and define the upper confidence bound. Let <img src="https://render.githubusercontent.com/render/math?math=(X_t)_{t=1}^{n}"> be a sequence of independent 1-subgaussion random variables with mean <img src="https://render.githubusercontent.com/render/math?math=\mu"> and <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}=\frac{1}{n} \Sigma_{t=1}^{n}X_t">. By what we learnt in [Chapter 5](5_concentration_of_measure.md#bounding-the-sample-reward-mean), <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\mu \geq \hat{\mu} %2B \sqrt{\frac{2\log(1/\delta)}{n}}) \leq \delta"> for all <img src="https://render.githubusercontent.com/render/math?math=\delta \in (0,1)">. 
 
-Let's illustrate it on an example where <img src="https://render.githubusercontent.com/render/math?math=k=2"> and where the first arm is optimal so <img src="https://render.githubusercontent.com/render/math?math=\Delta_1 = 0"> and <img src="https://render.githubusercontent.com/render/math?math=\Delta = \Delta_2">. Then, the bound of the ETC  simplifies to <img src="https://render.githubusercontent.com/render/math?math=R_n \leq m\Delta_i \%2B (n - 2m)\Delta \exp(-\frac{m\Delta_i^2}{4}) \leq m\Delta_i \%2B n\Delta \exp(-\frac{m\Delta_i^2}{4})">. The right hand side expression was obtained by removing <img src="https://render.githubusercontent.com/render/math?math=-2m\Delta \exp(-\frac{m\Delta_i^2}{4})"> from the left hand side expression. For large <img src="https://render.githubusercontent.com/render/math?math=n"> the right hand side expression can be minimized by <img src="https://render.githubusercontent.com/render/math?math=m=\max\{1, \frac{4}{\Delta^2}\log(\frac{n\Delta^2}{4})\}">. This would lead to the upper regret bound of  <img src="https://render.githubusercontent.com/render/math?math=O(\sqrt{n})">. I did not fully understand the intermediate calculations. They are included in the book and also at this [blog post](https://banditalgs.com/2016/09/14/first-steps-explore-then-commit/#mjx-eqn-eqregret_g). In any case, the above derived regret bound of  <img src="https://render.githubusercontent.com/render/math?math=O(\sqrt{n})"> relies on the knowledge of the suboptimality gap <img src="https://render.githubusercontent.com/render/math?math=\Delta"> and horizon <img src="https://render.githubusercontent.com/render/math?math=n">. While the horizon can be known beforehand (and if not the doubling trick can be applied), suboptimally gaps are not. The regret bound of the ETC is <img src="https://render.githubusercontent.com/render/math?math=O(n^{2/3})"> when not relying on the knowledge of the suboptimality gaps. Such a bound is **gap/problem/distribution/instance dependent** since it only depends on the knowledge of the horizon and bandit class, and not on the specific instance within the bandit class.
+Since the learner makes a decision at time <img src="https://render.githubusercontent.com/render/math?math=t">, defining an upper confidence bound based on the above inequality requires making the terms <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}"> and <img src="https://render.githubusercontent.com/render/math?math=\n"> to be dependent on <img src="https://render.githubusercontent.com/render/math?math=t">. When making a decision at time step <img src="https://render.githubusercontent.com/render/math?math=t">, the learner has observed <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)"> samples from arm <img src="https://render.githubusercontent.com/render/math?math=i"> and received rewards from that arm with an empirical mean of <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu_i}(t-1)">. Then a reasonable candidate for "as large as plausibly possible" for the unknown mean of the *i*th arm is <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)"> = <img src="https://render.githubusercontent.com/render/math?math=\infinity"> if <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1) = 0"> or otherwise <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}(t-1) + %2B \sqrt{\frac{2\log(1/\delta)}{T_i(t-1)}}">. The expression <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{2\log(1/\delta)}{T_i(t-1)}}"> is called  **confidence width** or **exploration bonus**. 
 
-## Future topics
-The book includes exercises covering topics that I would like to understand, particularly 
-* Ex. 6.5.: choosing the exploration length <img src="https://render.githubusercontent.com/render/math?math=m"> only based on the knowledge of the horizon length
-* Ex. 6.6.: converting an algorithm whose upper bound is dependent on the knowledge of the horizon into an algorithm that is horizon free
+Now, we can state a version of the UCB algorithm as follows
+1. **Input** <img src="https://render.githubusercontent.com/render/math?math=k"> and <img src="https://render.githubusercontent.com/render/math?math=\delta">
+1. **for** <img src="https://render.githubusercontent.com/render/math?math=t"> and <img src="https://render.githubusercontent.com/render/math?math=t \in 1, ..., n"> **do**
+1. &emsp; Choose action <img src="https://render.githubusercontent.com/render/math?math=A_t = argmax_i UCB_i(t-1, \delta)">
+1. &emsp; Observe reward <img src="https://render.githubusercontent.com/render/math?math=X_t"> and update upper confdience bounds
+1. **end for**
 
-I plan to come back to the above exercises. Please share your solutions if resolve them before me. If you have any questions or comments, I would be happy if you write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/6-explore-then-commit) section. 
+The above algorithm is an **index algorithm**. An index algorithm chooses the arm in each round that maximizes some value, called the **index**. For the UCB algorithm, the index of arm <img src="https://render.githubusercontent.com/render/math?math=i"> is <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)">. 
 
+<img src="https://render.githubusercontent.com/render/math?math=\delta"> is a called the **confidence level** and it quantifies the degree of certainty. <img src="https://render.githubusercontent.com/render/math?math=\delta"> should be small enough to ensure optimism with high probab1ility but not so large that the suboptimal arms are explored too frequently. Choosing the confidence level will be done in future chapters. For now, the choice of this parameter is done based on the following considerations. If the confidence interval fails and the index of an optimal arm drops belows its true mean, then it could happen that the algorithm stops playing the optimal arm and suffers linear regret. This suggest choosing <img src="https://render.githubusercontent.com/render/math?math=\delta \approx 1/n"> so that playing during a larger horizon would mean less chance of suffer from this failure since the smaller value of <img src="https://render.githubusercontent.com/render/math?math=\delta"> leads to more exploration and thus less chance to estimate the reward mean incorrectly. Things are unfortunately not that simple. The number of samples <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)"> in the  <img src="https://render.githubusercontent.com/render/math?math=UCB_i"> index is a random variable, so choosing the confidence level, at least naievely, should be done a bit smaller than <img src="https://render.githubusercontent.com/render/math?math=1/n">.
+
+Page 86 might be ok to include into the motivation???
+
+## Regret Analysis
+> Theorem 7.1. The regret of the UCB algorithm shown above on any stochastic k-armed 1-subgaussian bandit problem, fro any horizon n, and  <img src="https://render.githubusercontent.com/render/math?math=\delta = 1/n^2"> is <img src="https://render.githubusercontent.com/render/math?math=R_n \leq 3\sum_{i=1}^{k}\Delta_i + \sum_{i:\Delta_i > 0} \frac{16\log(n)}{\Delta_i}">.
+
+TODO: compare the regret with the explore-then-commit
+
+The proof of the above theorem relies on the regret decomposition identify from [decomposition lemma](4_stochastic_bandits.md#decomposing-the-regret), <img src="https://render.githubusercontent.com/render/math?math=\sum_{i=1}^{k} \Delta_i \mathbb{E}[T_i(n)]"> 
+
+
+
+Let's decouple the randomness from the behavior of the UCB algorithm and define <img src="https://render.githubusercontent.com/render/math?math=G_i"> as a "good" event by <img src="https://render.githubusercontent.com/render/math?math=G_i = \{u_1 < min_{t\in[n]}UCB_1(t, \delta)\} \cap \{\hat{u_i}_{u_i} + \sqrt{\frac{2}{u_i} \log (\frac{1}{\delta})} < \mu_1\}"> where <img src="https://render.githubusercontent.com/render/math?math=u_i \in [n]"> is a constant to be chosen later. <img src="https://render.githubusercontent.com/render/math?math=G_i"> is the event when the reward mean of the optimal arm <img src="https://render.githubusercontent.com/render/math?math=u_1"> is never underestimated by its upper confidence bound while at the same time the upper confidence bound for the mean of arm <img src="https://render.githubusercontent.com/render/math?math=i"> after <img src="https://render.githubusercontent.com/render/math?math=u_i"> pulls is below the mean reward of the optimal arm. 
+
+TODO: definnovat mu_is
+
+The theorem will be proven by bounding <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)] = \mathbb{E}[\mathbb{I}\{G_i\}T_i(n)] %2B \mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)]"> for each suboptimal arm <img src="https://render.githubusercontent.com/render/math?math=i">.The proof is split into two parts.
+
+**1. If <img src="https://render.githubusercontent.com/render/math?math=G_i"> occur, then <img src="https://render.githubusercontent.com/render/math?math=i"> will be played at most <img src="https://render.githubusercontent.com/render/math?math=u_i"> times, so that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\mathbb{I}\{G_i\}T_i(n)] \leq u_i">**
+
+Let's show by contradiction that <img src="https://render.githubusercontent.com/render/math?math=T_i(n) \leq u_i"> when <img src="https://render.githubusercontent.com/render/math?math=G_i"> holds. Suppose that <img src="https://render.githubusercontent.com/render/math?math=T_i(n) > u_i">. Then arm <img src="https://render.githubusercontent.com/render/math?math=i"> was played more than <img src="https://render.githubusercontent.com/render/math?math=u_i"> times over the <img src="https://render.githubusercontent.com/render/math?math=n"> rounds, so there must exist a round <img src="https://render.githubusercontent.com/render/math?math=t \in [n]"> where <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)=u_i"> and <img src="https://render.githubusercontent.com/render/math?math=A_t=i">. The proof goes as follows
+1. <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta) = \hat{\mu_i}(t-1) + \sqrt{\frac{2\log(1/\delta)}{T_i(t-1)}}"> // given the definition of the  <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)">
+1. <img src="https://render.githubusercontent.com/render/math?math== \hat{\mu_i}_{u_i} + \sqrt{\frac{2\log(1/\delta)}{u_i}}"> // since <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)=u_i"> as we stated above
+1. <img src="https://render.githubusercontent.com/render/math?math=<\mu_1"> // given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i">
+1. <img src="https://render.githubusercontent.com/render/math?math=<\UCB_1(t-1, \delta)"> // given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i">
+
+
+asdf asd f
+| &nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp; |
+| :---         |     :---:      |          ---: |
+| <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta) = \hat{\mu_i}(t-1) + \sqrt{\frac{2\log(1/\delta)}{T_i(t-1)}}">   |     | definition of the  <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)">    |
+| <img src="https://render.githubusercontent.com/render/math?math== \hat{\mu_i}_{u_i} + \sqrt{\frac{2\log(1/\delta)}{u_i}}">     |        | since <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)=u_i"> as we stated above     |
+| <img src="https://render.githubusercontent.com/render/math?math=<\mu_1">     |        | given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i">    |
+| <img src="https://render.githubusercontent.com/render/math?math=<\UCB_1(t-1, \delta)">     |        | given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i">    |
+
+
+
+
+**2. The complement event <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}}"> occurs with low probability, so that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)] = \mathbb{P}(G_i^{\mathsf{c}})n"> with <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}})"> being small**
 
 
  
+     
+
+
+
+
+
+
+
+If you have any questions or comments, I would be happy if you write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/6-explore-then-commit) section. 
+ 
 # References
-This text is *my* summary from the 6. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary contains copy&pasted text from the book as well as some additional text. 
+This text is *my* summary from the 7. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary may contain copy&pasted text from the book. 
