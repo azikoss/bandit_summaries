@@ -49,45 +49,31 @@ Let's show by contradiction that <img src="https://render.githubusercontent.com/
 1. <img src="https://render.githubusercontent.com/render/math?math=<\mu_1"> // given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i">
 1. <img src="https://render.githubusercontent.com/render/math?math=<\UCB_1(t-1, \delta)"> // given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i">
 
-
-| <!-- --> | <!-- --> | <!-- --> |
-| :---         |     :---:      |          ---: |
-| <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta) = \hat{\mu_i}(t-1) + \sqrt{\frac{2\log(1/\delta)}{T_i(t-1)}}">   |     | definition of the  <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)">    |
-| <img src="https://render.githubusercontent.com/render/math?math== \hat{\mu_i}_{u_i} + \sqrt{\frac{2\log(1/\delta)}{u_i}}">     |        | since <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)=u_i"> as we stated above     |
-| <img src="https://render.githubusercontent.com/render/math?math=<\mu_1">     |        | given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i">    |
-| <img src="https://render.githubusercontent.com/render/math?math=<\UCB_1(t-1, \delta)">     |        | given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i">    |
-
-Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)"> is smaller than <img src="https://render.githubusercontent.com/render/math?math=UCB_1(t-1, \delta)">, <img src="https://render.githubusercontent.com/render/math?math=A_t = argmax_j UCB_j(t-1, \delta) \neq i">, which is a contradiction. This means that if <img src="https://render.githubusercontent.com/render/math?math=G_i"> occurs, then <img src="https://render.githubusercontent.com/render/math?math=T_i(n) \leq u_i">.  
-
-
  <div class="div-table">
     <div class="div-table-row">
-    <div class="div-table-col_n">1.</div>
           <div class="div-table-col_eq"><img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta) = \hat{\mu_i}(t-1) + \sqrt{\frac{2\log(1/\delta)}{T_i(t-1)}}"> </div>
         <div class="div-table-col_expl">definition of the  <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)"></div>
     </div>
     <div class="div-table-row">
-    <div class="div-table-col_n">2.</div>
         <div class="div-table-col_eq"><img src="https://render.githubusercontent.com/render/math?math== \hat{\mu_i}_{u_i} + \sqrt{\frac{2\log(1/\delta)}{u_i}}"></div>
         <div class="div-table-col_expl">since <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)=u_i"> as we stated above</div>
    </div>
     <div class="div-table-row">
-    <div class="div-table-col_n">3.</div>
         <div class="div-table-col_eq"><img src="https://render.githubusercontent.com/render/math?math=<\mu_1"></div>        
         <div class="div-table-col_expl">given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i"></div>
    </div>
    <div class="div-table-row">
-   <div class="div-table-col_n">4.</div>
         <div class="div-table-col_eq"><img src="https://render.githubusercontent.com/render/math?math=<\UCB_1(t-1, \delta)"></div>        
         <div class="div-table-col_expl">given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i"></div>
    </div>
 </div>
+Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)"> is smaller than <img src="https://render.githubusercontent.com/render/math?math=UCB_1(t-1, \delta)">, <img src="https://render.githubusercontent.com/render/math?math=A_t = argmax_j UCB_j(t-1, \delta) \neq i">, which is a contradiction. This means that if <img src="https://render.githubusercontent.com/render/math?math=G_i"> occurs, then <img src="https://render.githubusercontent.com/render/math?math=T_i(n) \leq u_i">.  
 
 
 **2. The complement event <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}}"> occurs with low probability, so that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)] = \mathbb{P}(G_i^{\mathsf{c}})n"> with <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}})"> being small**
 
 
- 
+ CONT --> here.
      
 
 
