@@ -62,15 +62,19 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
 
  <div class="div-table">
     <div class="div-table-row">
-          <div class="div-table-col_eq"><img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta) = \hat{\mu_i}(t-1) + \sqrt{\frac{2\log(1/\delta)}{T_i(t-1)}}"> </div>
+          <div class="div-table-col_eq">1. <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta) = \hat{\mu_i}(t-1) + \sqrt{\frac{2\log(1/\delta)}{T_i(t-1)}}"> </div>
         <div class="div-table-col_expl">definition of the  <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)"></div>
     </div>
     <div class="div-table-row">
-        <div class="div-table-col_eq"><img src="https://render.githubusercontent.com/render/math?math== \hat{\mu_i}_{u_i} + \sqrt{\frac{2\log(1/\delta)}{u_i}}"></div>
+        <div class="div-table-col_eq">2. <img src="https://render.githubusercontent.com/render/math?math== \hat{\mu_i}_{u_i} + \sqrt{\frac{2\log(1/\delta)}{u_i}}"></div>
         <div class="div-table-col_expl">since <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)=u_i"> as we stated above</div>
    </div>
     <div class="div-table-row">
-        <div class="div-table-col_eq"><img src="https://render.githubusercontent.com/render/math?math=<\mu_1"></div>        
+        <div class="div-table-col_eq">3. <img src="https://render.githubusercontent.com/render/math?math=<\mu_1"></div>        
+        <div class="div-table-col_expl">given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i"></div>
+   </div>
+   <div class="div-table-row">
+        <div class="div-table-col_eq">4. <img src="https://render.githubusercontent.com/render/math?math=<\UCB_1(t-1, \delta)"></div>        
         <div class="div-table-col_expl">given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i"></div>
    </div>
 </div>
