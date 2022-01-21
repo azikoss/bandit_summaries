@@ -57,8 +57,31 @@ Let's show by contradiction that <img src="https://render.githubusercontent.com/
 | <img src="https://render.githubusercontent.com/render/math?math=<\mu_1">     |        | given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i">    |
 | <img src="https://render.githubusercontent.com/render/math?math=<\UCB_1(t-1, \delta)">     |        | given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i">    |
 
-Thus <img src="https://render.githubusercontent.com/render/math?math=A_t = argmax_j UCB_j(t-1, \delta) \neq = i">
+Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)"> is smaller than <img src="https://render.githubusercontent.com/render/math?math=UCB_1(t-1, \delta)">, <img src="https://render.githubusercontent.com/render/math?math=A_t = argmax_j UCB_j(t-1, \delta) \neq i">, which is a contradiction. This means that if <img src="https://render.githubusercontent.com/render/math?math=G_i"> occurs, then <img src="https://render.githubusercontent.com/render/math?math=T_i(n) \leq u_i">.  
 
+
+ <div class="div-table">
+     <div class="div-table-row">
+        <div class="div-table-col" align="center">Customer ID</div>
+        <div  class="div-table-col">Customer Name</div>
+        <div  class="div-table-col">Customer Address</div>
+     </div>
+    <div class="div-table-row">
+          <div class="div-table-col">001</div>
+        <div class="div-table-col">002</div>
+        <div class="div-table-col">003</div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col">xxx</div>
+        <div class="div-table-col">yyy</div>
+        <div class="div-table-col">www</div>
+   </div>
+    <div class="div-table-row">
+        <div class="div-table-col">ttt</div>
+        <div class="div-table-col">uuu</div>
+        <div class="div-table-col">Mkkk</div>
+   </div>
+</div>
 
 
 **2. The complement event <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}}"> occurs with low probability, so that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)] = \mathbb{P}(G_i^{\mathsf{c}})n"> with <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}})"> being small**
