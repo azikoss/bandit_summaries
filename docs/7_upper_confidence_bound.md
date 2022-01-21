@@ -50,8 +50,7 @@ Let's show by contradiction that <img src="https://render.githubusercontent.com/
 1. <img src="https://render.githubusercontent.com/render/math?math=<\UCB_1(t-1, \delta)"> // given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i">
 
 
-asdf asd f
-| &nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp; |
+| Left-aligned | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Right-aligned |
 | :---         |     :---:      |          ---: |
 | <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta) = \hat{\mu_i}(t-1) + \sqrt{\frac{2\log(1/\delta)}{T_i(t-1)}}">   |     | definition of the  <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)">    |
 | <img src="https://render.githubusercontent.com/render/math?math== \hat{\mu_i}_{u_i} + \sqrt{\frac{2\log(1/\delta)}{u_i}}">     |        | since <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)=u_i"> as we stated above     |
