@@ -118,8 +118,7 @@ Then, we can bound the <img src="https://render.githubusercontent.com/render/mat
        <img src="https://render.githubusercontent.com/render/math?math=\sum_{s=1}^{n}\mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}) \leq n \delta">
     </div>
     <div class="div-table-col_expl"></div>
-    </div>
-    
+    </div>    
     <div class="div-table-row">
     <div class="div-table-col_eq">
        <img src="https://render.githubusercontent.com/render/math?math=\leq n \delta">
@@ -130,6 +129,141 @@ Then, we can bound the <img src="https://render.githubusercontent.com/render/mat
     </div>    
 </div>
 
+Let's bound the probability of the second set in (7.6). Let's assume that
+ 
+ <div class="div-table">
+    <div class="div-table-row">
+    <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math=\delta_i - \sqrt{\frac{2\log(1/\delta)}{\u_i}} \geq c\delta_i">
+    </div>
+    <div class="div-table-col_expl">(7.8)
+    </div>
+   </div>
+ </div>
+
+where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)"> is a constant to be chosen later. Then,
+
+
+ <div class="div-table">
+    <div class="div-table-row">
+    <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\hat{\mu}_{iu_i} %2B  \sqrt{\frac{2\log(1/\delta)}{u_i}} \geq \mu_1\)) = \mathbb{P}(\hat{\mu}_{iu_{i}} - \mu_i \geq \delta_i - \sqrt{\frac{2\log(1/\delta)}{\u_i}})">
+    </div>
+    <div class="div-table-col_expl">
+    since  <img src="https://render.githubusercontent.com/render/math?math=\mu_1 = \mu_i %2B \delta_i">
+    </div>
+   </div>
+   
+   <div class="div-table-row">
+    <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math=\leq \mathbb{P}(\hat{\mu}_{iu_{i}} - \mu_i \geq c\Delta_i)">
+    </div>
+    <div class="div-table-col_expl">
+    by (7.8)
+    </div>
+   </div>
+   
+   <div class="div-table-row">
+    <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math=\leq \exp(-\frac{u_ic^2\Delta_i^2}{2})">
+    </div>
+    <div class="div-table-col_expl">
+    by this [proof](5_concentration_of_measure.md#bounding-the-sample-reward-mean)
+    </div>
+   </div>   
+ </div>
+ 
+ Putting everything together yields the following bound <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}}) \leq n\delta %2B \exp(-\frac{u_ic^2\Delta_i^2}{2})">.
+ 
+ Thus, the upper bound of <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)] \leq u_i %2B n(n\delta %2B \exp(-\frac{u_ic^2\Delta_i^2}{2}))"> TODO: 7.9
+ 
+ Now, we have to choose <img src="https://render.githubusercontent.com/render/math?math=\u_i \in [n]"> such that (7.8) is satisfied. A natural choice is to the smallest integer (we want to pull the suboptimal arm the least times possible) for which (7.8) holds. By expressing <img src="https://render.githubusercontent.com/render/math?math=\u_i"> from (7.8) and ceiling it to the nearest integer, we get <img src="https://render.githubusercontent.com/render/math?math=u_i = \lceil\frac{2\log(1/\delta)}{(1-c)^2\Delta_i^{2}}\rceil">. Using this choice of <img src="https://render.githubusercontent.com/render/math?math=\u_i"> and the assumption that <img src="https://render.githubusercontent.com/render/math?math=\delta=1/n^2"> leads via (7.9) to 
+ 
+ <div class="div-table">
+    <div class="div-table-row">
+    <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)] \leq u_i %2B 1 %2B n^{1-2c^2/(1-c)^2}">
+    </div>
+    <div class="div-table-col_expl">by using <img src="https://render.githubusercontent.com/render/math?math=\delta=1/n^2">
+    </div>
+   </div>   
+   <div class="div-table-row">
+    <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math==\lceil\frac{2\log(1/\delta)}{(1-c)^2\Delta_i^{2}}\rceil + 1 + n^{1-2c^2/(1-c)^2}">
+    </div>
+    <div class="div-table-col_expl">(7.10)
+    </div>
+   </div>   
+ </div>
+ 
+ It remains to choose <img src="https://render.githubusercontent.com/render/math?math=c \in (0,1)">. The term <img src="https://render.githubusercontent.com/render/math?math=n^{1-2c^2/(1-c)^2}"> term from (7.10) will polynomially dependent on <img src="https://render.githubusercontent.com/render/math?math=n"> unless <img src="https://render.githubusercontent.com/render/math?math=2c^2/(1-c)^2 \geq 1">. Choosing <img src="https://render.githubusercontent.com/render/math?math=c"> too close to 1 would blow up the first term of (7.10). Taking the above into consideration, <img src="https://render.githubusercontent.com/render/math?math=c"> was chosen somewhat arbitrarily to <img src="https://render.githubusercontent.com/render/math?math=c=1/2">, which leads to 
+
+<img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)] \leq 3 %2B \frac{16\log{n}}{\delta_i^{2}}">. The proof is completed by substituing the above into (7.4).
+
+The Theorem 7.1 depends on the knowledge of the suboptimality gaps that are not known in practice. This is addressed by the following theorem. 
+
+> Theorem 7.2. The regret of UCB (defined by the algorithm above) on any stochastic k-armed 1-subgaussion bandit and and when <img src="https://render.githubusercontent.com/render/math?math=\delta = 1/n^2">, is bounded by 
+><img src="https://render.githubusercontent.com/render/math?math=R_n \leq 8\sqrt{nk\log{(n)}} %2B 3 \sum_{i=1}^{k}\Delta_i">.
+
+The proof goes as follows
+
+ <div class="div-table">
+   <div class="div-table-row">
+        <div class="div-table-col_eq">
+        <img src="https://render.githubusercontent.com/render/math?math=R_n = \sum{i=1}_{k}\delta_i\mathbb{E}[T_i(n)] ">              
+        </div>
+        <div class="div-table-col_expl">
+        by the regret decomposition lemma        
+        </div>
+   </div>
+   
+   <div class="div-table-row">
+        <div class="div-table-col_eq">
+        <img src="https://render.githubusercontent.com/render/math?math==\sum_{i: \Delta_i < \Delta}\Delta_i\mathbb{E}[T_i(n)] %2B \sum_{i: \Delta_i \geq \Delta}\Delta_i\mathbb{E}[T_i(n)]">                        
+        </div>
+        <div class="div-table-col_expl">  
+        by splitting the sum into the sum where the suboptimality gaps are lower than some constant <img src="https://render.githubusercontent.com/render/math?math=\delta > 0"> to be tuned later and to the sum where the optimality gaps are larger than <img src="https://render.githubusercontent.com/render/math?math=\delta">       
+        </div>
+   </div>
+   
+   <div class="div-table-row">
+        <div class="div-table-col_eq">      
+        <img src="https://render.githubusercontent.com/render/math?math=\leq n\Delta %2B \sum_{i: \Delta_i \geq \Delta}\Delta_i\mathbb{E}[T_i(n)]">               
+        </div>
+        <div class="div-table-col_expl">        
+        since <img src="https://render.githubusercontent.com/render/math?math=\sum_{i: \Delta_i < \Delta}T_i(n) \leq n"> or in words, the sum of the pulls can never be larger that the horizon <img src="https://render.githubusercontent.com/render/math?math=n"> and since <img src="https://render.githubusercontent.com/render/math?math=\Delta_i < \Delta">           
+        </div>
+   </div>
+   
+   <div class="div-table-row">
+        <div class="div-table-col_eq">   
+        <img src="https://render.githubusercontent.com/render/math?math=\leq n\Delta %2B \sum_{i: \Delta_i \geq \Delta}3\Delta_i %2B \frac{16\log{(n)}}{\Delta_i}">                     
+        </div>
+        <div class="div-table-col_expl">        
+        given that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)] \leq 3 %2B \frac{16\log{n}}{\delta_i^{2}}"> 
+        </div>
+   </div>
+   
+   <div class="div-table-row">
+        <div class="div-table-col_eq">  
+         <img src="https://render.githubusercontent.com/render/math?math=\leq n\Delta %2B \frac{16k\log(n)}{\Delta} + 3 \sum_{i=1}^{k}\Delta_i">                    
+        </div>
+        <div class="div-table-col_expl">
+        given that there is at most <img src="https://render.githubusercontent.com/render/math?math=k"> arms with
+          <img src="https://render.githubusercontent.com/render/math?math=\Delta_i \geq \Delta"> and given <img src="https://render.githubusercontent.com/render/math?math=\Delta_i \geq \Delta">              
+        </div>
+   </div>   
+    <div class="div-table-row">
+        <div class="div-table-col_eq">
+        <img src="https://render.githubusercontent.com/render/math?math== 8 \sqrt{nk\log(n)} %2B \frac{16k\log(n)}{\Delta} + 3 \sum_{i=1}^{k}\Delta_i ">              
+        </div>
+        <div class="div-table-col_expl">   
+        by choosing <img src="https://render.githubusercontent.com/render/math?math=\Delta = \sqrt{16k\log(n)/n}">     
+        </div>
+   </div>
+ </div>
+
+CONT.
 
 
 
@@ -137,5 +271,14 @@ Then, we can bound the <img src="https://render.githubusercontent.com/render/mat
 
 If you have any questions or comments, I would be happy if you write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/6-explore-then-commit) section. 
  
+ 
+ <div class="div-table">
+   <div class="div-table-row">
+        <div class="div-table-col_eq">              
+        </div>
+        <div class="div-table-col_expl">        
+        </div>
+   </div>            
+ </div>
 # References
 This text is *my* summary from the 7. Chapter of [Bandit Algorithm](https://tor-lattimore.com/downloads/book/book.pdf) book. The summary may contain copy&pasted text from the book. 
