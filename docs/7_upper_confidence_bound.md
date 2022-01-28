@@ -9,8 +9,16 @@ The UCB algorithm follows the principle of **optimism in the face of uncertainty
 Following the optimism principle in the context of bandits means estimating the mean reward higher than its true value with high probability. This over-estimate is called upper confidence bound. The intuition why this leas to sublinear regret goes as follows. A suboptimal arm is played only when its upper confidence bound is larger than the upper confidence bound of the optimal arm. But this cannot happen too often because playing a suboptimal arm decrease its upper confidence bound that would eventually fall the one of the optimal arm. 
 
 
-Let's formalize the above intuition and define the upper confidence bound. Let <img src="https://render.githubusercontent.com/render/math?math=(X_t)_{t=1}^{n}"> be a sequence of independent 1-subgaussion random variables with mean <img src="https://render.githubusercontent.com/render/math?math=\mu"> and <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}=\frac{1}{n} \Sigma_{t=1}^{n}X_t">. By what we learnt in [Chapter 5](5_concentration_of_measure.md#bounding-the-sample-reward-mean), <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\mu \geq \hat{\mu} %2B \sqrt{\frac{2\log(1/\delta)}{n}}) \leq \delta"> for all <img src="https://render.githubusercontent.com/render/math?math=\delta \in (0,1)">. 
-
+Let's formalize the above intuition and define the upper confidence bound. Let <img src="https://render.githubusercontent.com/render/math?math=(X_t)_{t=1}^{n}"> be a sequence of independent 1-subgaussion random variables with mean <img src="https://render.githubusercontent.com/render/math?math=\mu"> and <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}=\frac{1}{n} \Sigma_{t=1}^{n}X_t">. By what we learnt in [Chapter 5](5_concentration_of_measure.md#bounding-the-sample-reward-mean),
+ 
+ 
+ <div class="div-table">
+    <div class="div-table-row">
+          <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\mu \geq \hat{\mu} %2B \sqrt{\frac{2\log(1/\delta)}{n}}) \leq \delta"> for all <img src="https://render.githubusercontent.com/render/math?math=\delta \in (0,1)">
+     </div>
+     <div class="div-table-col_expl">(7.1)</div>
+    </div> 
+    
 Since the learner makes a decision at time <img src="https://render.githubusercontent.com/render/math?math=t">, defining an upper confidence bound based on the above inequality requires making the terms <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}"> and <img src="https://render.githubusercontent.com/render/math?math=\n"> to be dependent on <img src="https://render.githubusercontent.com/render/math?math=t">. When making a decision at time step <img src="https://render.githubusercontent.com/render/math?math=t">, the learner has observed <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)"> samples from arm <img src="https://render.githubusercontent.com/render/math?math=i"> and received rewards from that arm with an empirical mean of <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu_i}(t-1)">. Then a reasonable candidate for "as large as plausibly possible" for the unknown mean of the *i*th arm is <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)"> = <img src="https://render.githubusercontent.com/render/math?math=\infinity"> if <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1) = 0"> or otherwise <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}(t-1) + %2B \sqrt{\frac{2\log(1/\delta)}{T_i(t-1)}}">. The expression <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{2\log(1/\delta)}{T_i(t-1)}}"> is called  **confidence width** or **exploration bonus**. 
 
 Now, we can state a version of the UCB algorithm as follows
@@ -39,7 +47,7 @@ Let's decouple the randomness from the behavior of the UCB algorithm and define 
 
 TODO: definnovat mu_is
 
-The theorem will be proven by bounding <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)] = \mathbb{E}[\mathbb{I}\{G_i\}T_i(n)] %2B \mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)]"> for each suboptimal arm <img src="https://render.githubusercontent.com/render/math?math=i">.The proof is split into two parts.
+The theorem will be proven by bounding <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)] = \mathbb{E}[\mathbb{I}\{G_i\}T_i(n)] %2B \mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)] \leq  u_i + \mathbb{P}(G_i^{\mathsf{c}})n"> for each suboptimal arm <img src="https://render.githubusercontent.com/render/math?math=i">.The proof is split into two parts.
 
 **1. If <img src="https://render.githubusercontent.com/render/math?math=G_i"> occur, then <img src="https://render.githubusercontent.com/render/math?math=i"> will be played at most <img src="https://render.githubusercontent.com/render/math?math=u_i"> times, so that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\mathbb{I}\{G_i\}T_i(n)] \leq u_i">**
 
@@ -70,9 +78,45 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
 **2. The complement event <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}}"> occurs with low probability, so that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)] = \mathbb{P}(G_i^{\mathsf{c}})n"> with <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}})"> being small**
 
 
- CONT --> here.
+ By its definition <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}} = \{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\} \cup \{\hat{\mu}_{iu_i} + \sqrt{\frac{2\log(1/\delta)}{u_i}} \geq \mu_1\}">
      
 
+Let's decompose the first of these sets
+
+ <div class="div-table">
+    <div class="div-table-row">
+          <img src="https://render.githubusercontent.com/render/math?math=\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\} \subset \{ \mu_1 \geq min_{s\in[n]}\hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">  
+    </div>
+    <div class="div-table-col_expl">using the definition of <img src="https://render.githubusercontent.com/render/math?math=UCB_1(t, \delta)">; I am not sure why the both sets are not equals though.
+    </div>
+    <div class="div-table-row">
+          <img src="https://render.githubusercontent.com/render/math?math=%3D\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">  
+    </div>
+    <div class="div-table-col_expl">
+    </div>
+</div>
+
+Then, we can bound the <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\}) \leq \mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\})">
+
+ <div class="div-table">
+    <div class="div-table-row">
+          <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\}) \leq \mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\})">  
+    </div>
+    <div class="div-table-col_expl">given the decomposition above
+    </div>
+    <div class="div-table-row">
+       <img src="https://render.githubusercontent.com/render/math?math=\sum_{s=1}^{n}\mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}) \leq n \delta">
+    </div>
+    <div class="div-table-col_expl">
+    a
+    </div>
+    <div class="div-table-row">
+       <img src="https://render.githubusercontent.com/render/math?math=\leq n \delta">
+    </div>
+    <div class="div-table-col_expl">
+    given the 
+    </div>
+</div>
 
 
 
