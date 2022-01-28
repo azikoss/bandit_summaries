@@ -97,9 +97,9 @@ Let's decompose the first of these sets
     <div class="div-table-row">
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=%3D\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">
-     </div>  
-    </div>
+     </div>
     <div class="div-table-col_expl">
+     </div>      
     </div>
 </div>
 
@@ -117,18 +117,17 @@ Then, we can bound the <img src="https://render.githubusercontent.com/render/mat
     <div class="div-table-col_eq">
        <img src="https://render.githubusercontent.com/render/math?math=\sum_{s=1}^{n}\mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}) \leq n \delta">
     </div>
+    <div class="div-table-col_expl"></div>
     </div>
-    <div class="div-table-col_expl">
-    a
-    </div>
+    
     <div class="div-table-row">
     <div class="div-table-col_eq">
        <img src="https://render.githubusercontent.com/render/math?math=\leq n \delta">
     </div>
-    </div>
     <div class="div-table-col_expl">
-    given the 
+    given (7.1) 
     </div>
+    </div>    
 </div>
 
 
