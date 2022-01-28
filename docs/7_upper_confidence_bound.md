@@ -14,7 +14,9 @@ Let's formalize the above intuition and define the upper confidence bound. Let <
  
  <div class="div-table">
     <div class="div-table-row">
+    <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\mu \geq \hat{\mu} %2B \sqrt{\frac{2\log(1/\delta)}{n}}) \leq \delta"> for all <img src="https://render.githubusercontent.com/render/math?math=\delta \in (0,1)">
+     </div>
      <div class="div-table-col_expl">(7.1)</div>
     </div>
      
@@ -86,12 +88,16 @@ Let's decompose the first of these sets
 
  <div class="div-table">
     <div class="div-table-row">
+    <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\} \subset \{ \mu_1 \geq min_{s\in[n]}\hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">  
     </div>
     <div class="div-table-col_expl">using the definition of <img src="https://render.githubusercontent.com/render/math?math=UCB_1(t, \delta)">; I am not sure why the both sets are not equals though.
     </div>
+    </div>
     <div class="div-table-row">
-          <img src="https://render.githubusercontent.com/render/math?math=%3D\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">  
+    <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math=%3D\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">
+     </div>  
     </div>
     <div class="div-table-col_expl">
     </div>
@@ -101,18 +107,24 @@ Then, we can bound the <img src="https://render.githubusercontent.com/render/mat
 
  <div class="div-table">
     <div class="div-table-row">
+    <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\}) \leq \mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\})">  
     </div>
     <div class="div-table-col_expl">given the decomposition above
     </div>
+    </div>
     <div class="div-table-row">
+    <div class="div-table-col_eq">
        <img src="https://render.githubusercontent.com/render/math?math=\sum_{s=1}^{n}\mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}) \leq n \delta">
+    </div>
     </div>
     <div class="div-table-col_expl">
     a
     </div>
     <div class="div-table-row">
+    <div class="div-table-col_eq">
        <img src="https://render.githubusercontent.com/render/math?math=\leq n \delta">
+    </div>
     </div>
     <div class="div-table-col_expl">
     given the 
