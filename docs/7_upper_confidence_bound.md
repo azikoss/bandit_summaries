@@ -120,14 +120,14 @@ Then, we can bound the <img src="https://render.githubusercontent.com/render/mat
     <div class="div-table-col_eq">
        <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{s=1}^{n}\mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\})">
     </div>
-    <div class="div-table-col_expl"></div>
+    <div class="div-table-col_expl">given by summing independent subgaussian random variables</div>
     </div>    
     <div class="div-table-row">
     <div class="div-table-col_eq">
        <img src="https://render.githubusercontent.com/render/math?math=\leq n \delta">
     </div>
     <div class="div-table-col_expl">
-    given (7.1) 
+    given by (7.1) 
     </div>
     </div>    
 </div>
