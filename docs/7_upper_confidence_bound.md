@@ -118,7 +118,7 @@ Then, we can bound the <img src="https://render.githubusercontent.com/render/mat
     </div>
     <div class="div-table-row">
     <div class="div-table-col_eq">
-       <img src="https://render.githubusercontent.com/render/math?math=\sum_{s=1}^{n}\mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}) \leq n \delta">
+       <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{s=1}^{n}\mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\})">
     </div>
     <div class="div-table-col_expl"></div>
     </div>    
