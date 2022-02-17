@@ -81,7 +81,7 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
  then <img src="https://render.githubusercontent.com/render/math?math=A_t \neq i">, which is a contradiction.This means that if <img src="https://render.githubusercontent.com/render/math?math=G_i"> occurs, <img src="https://render.githubusercontent.com/render/math?math=T_i(n) \leq u_i">.  
 
 
-**2. The complement event <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}}"> occurs with low probability, so that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)] = \mathbb{P}(G_i^{\mathsf{c}})n"> with <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}})"> being small**
+**2. The complement event <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}}"> occurs with low probability, so that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)] = \mathbb{P}(G_i^{\mathsf{c}})n"> with <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}})"> being small.**
 
 
  By its definition <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}} = \{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\} \cup \{\hat{\mu}_{iu_i} %2B \sqrt{\frac{2\log(1/\delta)}{u_i}} \geq \mu_1\}">
