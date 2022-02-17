@@ -255,7 +255,7 @@ The proof goes as follows
    </div>   
     <div class="div-table-row">
         <div class="div-table-col_eq">
-        <img src="https://render.githubusercontent.com/render/math?math== 8 \sqrt{nk\log(n)} %2B \frac{16k\log(n)}{\Delta} + 3 \sum_{i=1}^{k}\Delta_i ">              
+        <img src="https://render.githubusercontent.com/render/math?math== 8 \sqrt{nk\log(n)} %2B + 3 \sum_{i=1}^{k}\Delta_i ">              
         </div>
         <div class="div-table-col_expl">   
         by choosing <img src="https://render.githubusercontent.com/render/math?math=\Delta = \sqrt{16k\log(n)/n}">     
@@ -263,7 +263,10 @@ The proof goes as follows
    </div>
  </div>
 
-CONT.
+The above bound still includes the suboptimality gaps <img src="https://render.githubusercontent.com/render/math?math=\Delta_i">. This is however unavoidable because any reasonable algorithm must play each arm at least once. In any case, the term <img src="https://render.githubusercontent.com/render/math?math=3 \sum_{i=1}^{k}\Delta_i "> does not grow with the horizon and is thus negligible. 
+
+CONT --> implementation. 
+      
 
 
 
