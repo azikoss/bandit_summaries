@@ -16,7 +16,7 @@ Let's formalize the above intuition and define the upper confidence bound. Let <
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\mu \geq \hat{\mu} %2B \sqrt{\frac{2\log(1/\delta)}{n}}) \leq \delta"> for all <img src="https://render.githubusercontent.com/render/math?math=\delta \in (0,1)">
      </div>
-     <div class="div-table-col_expl">(7.1)</div>
+     <div class="div-table-col_expl"><b>(7.1)</b></div>
     </div>
      
  </div> 
@@ -143,7 +143,7 @@ Let's bound the probability of the second set in <img src="https://render.github
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\delta_i - \sqrt{\frac{2\log(1/\delta)}{u_i}} \geq c\delta_i">
     </div>
-    <div class="div-table-col_expl">(7.8)
+    <div class="div-table-col_expl"><b>(7.8)</b>
     </div>
    </div>
  </div>
@@ -189,7 +189,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
           <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)] \leq u_i %2B n(n\delta %2B \exp(-\frac{u_ic^2\Delta_i^2}{2}))">
     </div>
     <div class="div-table-col_expl">
-    (7.9)
+    <b>(7.9)</b>
     </div>
    </div>
  </div>
@@ -209,7 +209,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math==\lceil\frac{2\log(1/\delta)}{(1-c)^2\Delta_i^{2}}\rceil %2B 1 %2B n^{1-2c^2/(1-c)^2}">
     </div>
-    <div class="div-table-col_expl">(7.10)
+    <div class="div-table-col_expl"><b>(7.10)</b>
     </div>
    </div>   
  </div>
