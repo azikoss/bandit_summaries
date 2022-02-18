@@ -108,7 +108,7 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
     </div>
     <div class="div-table-row">
     <div class="div-table-col_eq">
-          <img src="https://render.githubusercontent.com/render/math?math=%3D\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">
+          <img src="https://render.githubusercontent.com/render/math?math=%3D\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">
      </div>
     <div class="div-table-col_expl">
      </div>      
@@ -120,14 +120,14 @@ Then, we can bound the <img src="https://render.githubusercontent.com/render/mat
  <div class="div-table">
     <div class="div-table-row">
     <div class="div-table-col_eq">
-          <img src="https://render.githubusercontent.com/render/math?math=\leq \mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\})">  
+          <img src="https://render.githubusercontent.com/render/math?math=\leq \mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\})">  
     </div>
     <div class="div-table-col_expl">given the decomposition above
     </div>
     </div>
     <div class="div-table-row">
     <div class="div-table-col_eq">
-       <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{s=1}^{n}\mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\})">
+       <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{s=1}^{n}\mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\})">
     </div>
     <div class="div-table-col_expl">given by summing independent subgaussian random variables</div>
     </div>    
