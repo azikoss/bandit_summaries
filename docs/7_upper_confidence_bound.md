@@ -63,7 +63,7 @@ Let's show by contradiction that <img src="https://render.githubusercontent.com/
     </div>
     <div class="div-table-row">
         <div class="div-table-col_eq"><img src="https://render.githubusercontent.com/render/math?math== \hat{\mu_i}_{u_i} %2B \sqrt{\frac{2\log(1/\delta)}{u_i}}"></div>
-        <div class="div-table-col_expl">since <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)=u_i"> as we stated above</div>
+        <div class="div-table-col_expl">since <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)=u_i"> </div>
    </div>
     <div class="div-table-row">
         <div class="div-table-col_eq"><img src="https://render.githubusercontent.com/render/math?math=<\mu_1"></div>        
