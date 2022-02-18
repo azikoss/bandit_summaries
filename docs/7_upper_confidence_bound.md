@@ -115,9 +115,20 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
     </div>
 </div>
 
-Then, we can bound the <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\})">
+Then, we can bound the probability of the occuracance of the first set
+
+
 
  <div class="div-table">
+     <div class="div-table-row">
+    <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\})">  
+    </div>
+    <div class="div-table-col_expl">&nbsp
+    </div>
+    </div>
+
+
     <div class="div-table-row">
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\leq \mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\})">  
