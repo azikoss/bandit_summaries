@@ -231,7 +231,7 @@ The proof goes as follows
         <img src="https://render.githubusercontent.com/render/math?math==\sum_{i: \Delta_i < \Delta}\Delta_i\mathbb{E}[T_i(n)] %2B \sum_{i: \Delta_i \geq \Delta}\Delta_i\mathbb{E}[T_i(n)]">                        
         </div>
         <div class="div-table-col_expl">  
-        by splitting the sum into the sum where the suboptimality gaps are lower than some constant <img src="https://render.githubusercontent.com/render/math?math=\Delta > 0"> to be tuned later and to the sum where the optimality gaps are larger than <img src="https://render.githubusercontent.com/render/math?math=\Delta">       
+        by splitting the sum into the sums where the suboptimality gaps are lower/higher than some constant <img src="https://render.githubusercontent.com/render/math?math=\Delta > 0"> to be tuned later
         </div>
    </div>
    
@@ -240,7 +240,7 @@ The proof goes as follows
         <img src="https://render.githubusercontent.com/render/math?math=\leq n\Delta %2B \sum_{i: \Delta_i \geq \Delta}\Delta_i\mathbb{E}[T_i(n)]">               
         </div>
         <div class="div-table-col_expl">        
-        since <img src="https://render.githubusercontent.com/render/math?math=\sum_{i: \Delta_i < \Delta}T_i(n) \leq n"> or in words, the sum of the pulls can never be larger that the horizon <img src="https://render.githubusercontent.com/render/math?math=n"> and since <img src="https://render.githubusercontent.com/render/math?math=\Delta_i < \Delta">           
+        since <img src="https://render.githubusercontent.com/render/math?math=\Delta_i < \Delta"> and since <img src="https://render.githubusercontent.com/render/math?math=\sum_{i: \Delta_i < \Delta}T_i(n) \leq n"> or in words, the number of the pulls cannot be larger that the horizon <img src="https://render.githubusercontent.com/render/math?math=n">            
         </div>
    </div>
    
