@@ -137,7 +137,7 @@ Let's bound the probability of the second set in <img src="https://render.github
  <div class="div-table">
     <div class="div-table-row">
     <div class="div-table-col_eq">
-          <img src="https://render.githubusercontent.com/render/math?math=\delta_i - \sqrt{\frac{2\log(1/\delta)}{\u_i}} \geq c\delta_i">
+          <img src="https://render.githubusercontent.com/render/math?math=\delta_i - \sqrt{\frac{2\log(1/\delta)}{u_i}} \geq c\delta_i">
     </div>
     <div class="div-table-col_expl">(7.8)
     </div>
@@ -150,7 +150,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
  <div class="div-table">
     <div class="div-table-row">
     <div class="div-table-col_eq">
-          <img src="https://render.githubusercontent.com/render/math?math== \mathbb{P}(\hat{\mu}_{iu_{i}} - \mu_i \geq \delta_i - \sqrt{\frac{2\log(1/\delta)}{\u_i}})">
+          <img src="https://render.githubusercontent.com/render/math?math== \mathbb{P}(\hat{\mu}_{iu_{i}} - \mu_i \geq \delta_i - \sqrt{\frac{2\log(1/\delta)}{u_i}})">
     </div>
     <div class="div-table-col_expl">
     since  <img src="https://render.githubusercontent.com/render/math?math=\mu_1 = \mu_i %2B \delta_i">
@@ -191,7 +191,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
  </div>
  
  
- Now, we have to choose <img src="https://render.githubusercontent.com/render/math?math=\u_i \in [n]"> such that (7.8) is satisfied. A natural choice is to the smallest integer (we want to pull the suboptimal arm the least times possible) for which (7.8) holds. By expressing <img src="https://render.githubusercontent.com/render/math?math=\u_i"> from (7.8) and ceiling it to the nearest integer, we get <img src="https://render.githubusercontent.com/render/math?math=u_i = \lceil\frac{2\log(1/\delta)}{(1-c)^2\Delta_i^{2}}\rceil">. Using this choice of <img src="https://render.githubusercontent.com/render/math?math=\u_i"> and the assumption that <img src="https://render.githubusercontent.com/render/math?math=\delta=1/n^2"> leads via (7.9) to 
+ Now, we have to choose <img src="https://render.githubusercontent.com/render/math?math=u_i \in [n]"> such that (7.8) is satisfied. A natural choice is to the smallest integer (we want to pull the suboptimal arm the least times possible) for which (7.8) holds. By expressing <img src="https://render.githubusercontent.com/render/math?math=u_i"> from (7.8) and ceiling it to the nearest integer, we get <img src="https://render.githubusercontent.com/render/math?math=u_i = \lceil\frac{2\log(1/\delta)}{(1-c)^2\Delta_i^{2}}\rceil">. Using this choice of <img src="https://render.githubusercontent.com/render/math?math=u_i"> and the assumption that <img src="https://render.githubusercontent.com/render/math?math=\delta=1/n^2"> leads via (7.9) to 
  
  <div class="div-table">
     <div class="div-table-row">
