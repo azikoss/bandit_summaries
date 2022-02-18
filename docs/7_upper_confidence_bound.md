@@ -177,7 +177,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
  </div>
  
  
- Putting everything together yields the following bound <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}}) \leq n\delta %2B \exp(-\frac{u_ic^2\Delta_i^2}{2})">. Thus, the upper bound of  TODO: 7.9
+ Putting everything together yields the following bound <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}}) \leq n\delta %2B \exp(-\frac{u_ic^2\Delta_i^2}{2})">. Thus, the upper bound of 
  
  <div class="div-table">
     <div class="div-table-row">
@@ -188,6 +188,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
     (7.9)
     </div>
    </div>
+ </div>
  
  
  Now, we have to choose <img src="https://render.githubusercontent.com/render/math?math=\u_i \in [n]"> such that (7.8) is satisfied. A natural choice is to the smallest integer (we want to pull the suboptimal arm the least times possible) for which (7.8) holds. By expressing <img src="https://render.githubusercontent.com/render/math?math=\u_i"> from (7.8) and ceiling it to the nearest integer, we get <img src="https://render.githubusercontent.com/render/math?math=u_i = \lceil\frac{2\log(1/\delta)}{(1-c)^2\Delta_i^{2}}\rceil">. Using this choice of <img src="https://render.githubusercontent.com/render/math?math=\u_i"> and the assumption that <img src="https://render.githubusercontent.com/render/math?math=\delta=1/n^2"> leads via (7.9) to 
