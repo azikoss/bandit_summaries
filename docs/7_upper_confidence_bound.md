@@ -172,7 +172,6 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
     </div>
     <div class="div-table-col_expl">   
     by this <a href="5_concentration_of_measure.html#bounding-the-sample-reward-mean">proof</a>
-     aa [proof](5_concentration_of_measure.md#bounding-the-sample-reward-mean)
     </div>
    </div>   
  </div>
