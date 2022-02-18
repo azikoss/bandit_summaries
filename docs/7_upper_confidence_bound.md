@@ -132,7 +132,7 @@ Then, we can bound the <img src="https://render.githubusercontent.com/render/mat
     </div>    
 </div>
 
-Let's bound the probability of the second set in (7.6). Let's assume that
+Let's bound the probability of the second set in <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}}. Let's assume that
  
  <div class="div-table">
     <div class="div-table-row">
