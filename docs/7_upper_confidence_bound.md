@@ -87,16 +87,9 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
  By its definition <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}} = \{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\} \cup \{\hat{\mu}_{iu_i} %2B \sqrt{\frac{2\log(1/\delta)}{u_i}} \geq \mu_1\}">
      
 
-Let's decompose the first of these sets
+Let's decompose the first of these sets <img src="https://render.githubusercontent.com/render/math?math=\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\}">
 
- <div class="div-table">
-    <div class="div-table-row">
-    <div class="div-table-col_eq">
-          <img src="https://render.githubusercontent.com/render/math?math=\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\}">  
-    </div>
-    <div class="div-table-col_expl">
-    </div>
-    </div>
+ <div class="div-table">    
     <div class="div-table-row">
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\subset \{ \mu_1 \geq min_{s\in[n]}\hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">  
@@ -177,11 +170,13 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\leq \exp(-\frac{u_ic^2\Delta_i^2}{2})">
     </div>
-    <div class="div-table-col_expl">
+    <div class="div-table-col_expl">   
     by this [proof](5_concentration_of_measure.md#bounding-the-sample-reward-mean)
     </div>
    </div>   
  </div>
+ 
+ [proof](5_concentration_of_measure.md#bounding-the-sample-reward-mean)
  
  Putting everything together yields the following bound <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}}) \leq n\delta %2B \exp(-\frac{u_ic^2\Delta_i^2}{2})">.
  
