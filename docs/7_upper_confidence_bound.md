@@ -231,7 +231,7 @@ The proof goes as follows
         <img src="https://render.githubusercontent.com/render/math?math==\sum_{i: \Delta_i < \Delta}\Delta_i\mathbb{E}[T_i(n)] %2B \sum_{i: \Delta_i \geq \Delta}\Delta_i\mathbb{E}[T_i(n)]">                        
         </div>
         <div class="div-table-col_expl">  
-        by splitting the sum into the sum where the suboptimality gaps are lower than some constant <img src="https://render.githubusercontent.com/render/math?math=\delta > 0"> to be tuned later and to the sum where the optimality gaps are larger than <img src="https://render.githubusercontent.com/render/math?math=\delta">       
+        by splitting the sum into the sum where the suboptimality gaps are lower than some constant <img src="https://render.githubusercontent.com/render/math?math=\Delta > 0"> to be tuned later and to the sum where the optimality gaps are larger than <img src="https://render.githubusercontent.com/render/math?math=\Delta">       
         </div>
    </div>
    
@@ -264,7 +264,7 @@ The proof goes as follows
    </div>   
     <div class="div-table-row">
         <div class="div-table-col_eq">
-        <img src="https://render.githubusercontent.com/render/math?math== 8 \sqrt{nk\log(n)} %2B %2B 3 \sum_{i=1}^{k}\Delta_i ">              
+        <img src="https://render.githubusercontent.com/render/math?math== 8 \sqrt{nk\log(n)} %2B 3 \sum_{i=1}^{k}\Delta_i ">              
         </div>
         <div class="div-table-col_expl">   
         by choosing <img src="https://render.githubusercontent.com/render/math?math=\Delta = \sqrt{16k\log(n)/n}">     
