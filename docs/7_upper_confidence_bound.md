@@ -102,6 +102,7 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
           <img src="https://render.githubusercontent.com/render/math?math=%3D\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">
      </div>
     <div class="div-table-col_expl">
+    TODO: check the book.
      </div>      
     </div>
 </div>
@@ -174,7 +175,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
           <img src="https://render.githubusercontent.com/render/math?math=\leq \exp(-\frac{u_ic^2\Delta_i^2}{2})">
     </div>
     <div class="div-table-col_expl">   
-    by this <a href="5_concentration_of_measure.html#bounding-the-sample-reward-mean">proof</a>
+    by <a href="5_concentration_of_measure.html#bounding-the-sample-reward-mean">proof</a> of bounding the tail behavior of the subgaussian 
     </div>
    </div>   
  </div>
