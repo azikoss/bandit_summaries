@@ -92,7 +92,14 @@ Let's decompose the first of these sets
  <div class="div-table">
     <div class="div-table-row">
     <div class="div-table-col_eq">
-          <img src="https://render.githubusercontent.com/render/math?math=\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\} \subset \{ \mu_1 \geq min_{s\in[n]}\hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">  
+          <img src="https://render.githubusercontent.com/render/math?math=\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\}">  
+    </div>
+    <div class="div-table-col_expl">
+    </div>
+    </div>
+    <div class="div-table-row">
+    <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math=\subset \{ \mu_1 \geq min_{s\in[n]}\hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">  
     </div>
     <div class="div-table-col_expl">using the definition of <img src="https://render.githubusercontent.com/render/math?math=UCB_1(t, \delta)">; I am not sure why the both sets are not equals though.
     </div>
@@ -132,7 +139,7 @@ Then, we can bound the <img src="https://render.githubusercontent.com/render/mat
     </div>    
 </div>
 
-Let's bound the probability of the second set in <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}}. Let's assume that
+Let's bound the probability of the second set in <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}}">. Let's assume that
  
  <div class="div-table">
     <div class="div-table-row">
