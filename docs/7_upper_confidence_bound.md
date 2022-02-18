@@ -85,20 +85,11 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
 **2) The complement event <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}}"> occurs with low probability, so that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)] = \mathbb{P}(G_i^{\mathsf{c}})n"> where <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}})"> is small.**
 
 
- By its definition <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}} = \{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\} \cup \{\hat{\mu}_{iu_i} %2B \sqrt{\frac{2\log(1/\delta)}{u_i}} \geq \mu_1\}">. Let's decompose the first of these sets.
-  
+ By its definition <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}} = \{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\} \cup \{\hat{\mu}_{iu_i} %2B \sqrt{\frac{2\log(1/\delta)}{u_i}} \geq \mu_1\}">. Let's decompose the first of these sets <img src="https://render.githubusercontent.com/render/math?math=\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\}"> to
   
   
 
- <div class="div-table">    
- 
-  <div class="div-table-row">
-    <div class="div-table-col_eq">
-          <img src="https://render.githubusercontent.com/render/math?math=\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\}">
-    </div>
-    <div class="div-table-col_expl">&nbsp;
-    </div>
-    </div>        
+ <div class="div-table">             
     <div class="div-table-row">
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\subset \{ \mu_1 \geq min_{s\in[n]}\hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">  
@@ -115,18 +106,11 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
     </div>
 </div>
 
-Then, we can bound the probability of the occuracance of the first set
+Then, we can bound the probability of the occurrence of the first set <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\})"> by
 
 
 
- <div class="div-table">
-     <div class="div-table-row">
-    <div class="div-table-col_eq">
-          <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\})">  
-    </div>
-    <div class="div-table-col_expl">&nbsp;
-    </div>
-    </div>
+ <div class="div-table">     
     <div class="div-table-row">
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\leq \mathbb{P}(\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\})">  
