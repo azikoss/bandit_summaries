@@ -62,7 +62,7 @@ Let's show by contradiction that <img src="https://render.githubusercontent.com/
  <div class="div-table">
     <div class="div-table-row">
           <div class="div-table-col_eq"><img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta) = \hat{\mu_i}(t-1) %2B \sqrt{\frac{2\log(1/\delta)}{T_i(t-1)}}"> </div>
-        <div class="div-table-col_expl">definition of the  <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)"></div>
+        <div class="div-table-col_expl">by definition of the  <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)"></div>
     </div>
     <div class="div-table-row">
         <div class="div-table-col_eq"><img src="https://render.githubusercontent.com/render/math?math== \hat{\mu_i}_{u_i} %2B \sqrt{\frac{2\log(1/\delta)}{u_i}}"></div>
@@ -70,11 +70,11 @@ Let's show by contradiction that <img src="https://render.githubusercontent.com/
    </div>
     <div class="div-table-row">
         <div class="div-table-col_eq"><img src="https://render.githubusercontent.com/render/math?math=<\mu_1"></div>        
-        <div class="div-table-col_expl">given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i"></div>
+        <div class="div-table-col_expl">by the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i"></div>
    </div>
    <div class="div-table-row">
         <div class="div-table-col_eq"><img src="https://render.githubusercontent.com/render/math?math=<\UCB_1(t-1, \delta)"></div>        
-        <div class="div-table-col_expl">given the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i"></div>
+        <div class="div-table-col_expl">by the definition of <img src="https://render.githubusercontent.com/render/math?math=G_i"></div>
    </div>
 </div>
 Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)"> is smaller than <img src="https://render.githubusercontent.com/render/math?math=UCB_1(t-1, \delta)">,
@@ -82,7 +82,7 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
 
 <p>&nbsp;</p>
 
-**2) The complement event <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}}"> occurs with low probability, so that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)] = \mathbb{P}(G_i^{\mathsf{c}})n"> with <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}})"> being small.**
+**2) The complement event <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}}"> occurs with low probability, so that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)] = \mathbb{P}(G_i^{\mathsf{c}})n"> where <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}})"> is small.**
 
 
  By its definition <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}} = \{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\} \cup \{\hat{\mu}_{iu_i} %2B \sqrt{\frac{2\log(1/\delta)}{u_i}} \geq \mu_1\}">. Let's decompose the first of these sets <img src="https://render.githubusercontent.com/render/math?math=\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\}">
