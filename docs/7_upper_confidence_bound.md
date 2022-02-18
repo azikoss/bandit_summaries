@@ -95,11 +95,10 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
   <div class="div-table-row">
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\}">
+    </div>
     <div class="div-table-col_expl">&nbsp;
     </div>
-    </div>
-    
-    
+    </div>        
     <div class="div-table-row">
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\subset \{ \mu_1 \geq min_{s\in[n]}\hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">  
