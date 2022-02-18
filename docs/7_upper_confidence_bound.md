@@ -85,9 +85,21 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
 **2) The complement event <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}}"> occurs with low probability, so that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)] = \mathbb{P}(G_i^{\mathsf{c}})n"> where <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}})"> is small.**
 
 
- By its definition <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}} = \{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\} \cup \{\hat{\mu}_{iu_i} %2B \sqrt{\frac{2\log(1/\delta)}{u_i}} \geq \mu_1\}">. Let's decompose the first of these sets <img src="https://render.githubusercontent.com/render/math?math=\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\}">
+ By its definition <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}} = \{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\} \cup \{\hat{\mu}_{iu_i} %2B \sqrt{\frac{2\log(1/\delta)}{u_i}} \geq \mu_1\}">. Let's decompose the first of these sets.
+  
+  
+  
 
  <div class="div-table">    
+ 
+  <div class="div-table-row">
+    <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math=\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\}">
+    <div class="div-table-col_expl">&nbsp;
+    </div>
+    </div>
+    
+    
     <div class="div-table-row">
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\subset \{ \mu_1 \geq min_{s\in[n]}\hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">  
@@ -211,6 +223,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
  It remains to choose <img src="https://render.githubusercontent.com/render/math?math=c \in (0,1)">. The term <img src="https://render.githubusercontent.com/render/math?math=n^{1-2c^2/(1-c)^2}"> term from (7.10) will polynomially dependent on <img src="https://render.githubusercontent.com/render/math?math=n"> unless <img src="https://render.githubusercontent.com/render/math?math=2c^2/(1-c)^2 \geq 1">. Choosing <img src="https://render.githubusercontent.com/render/math?math=c"> too close to 1 would blow up the first term of (7.10). Taking the above into consideration, <img src="https://render.githubusercontent.com/render/math?math=c"> was chosen somewhat arbitrarily to <img src="https://render.githubusercontent.com/render/math?math=c=1/2">, which leads to <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)] \leq 3 %2B \frac{16\log{n}}{\delta_i^{2}}">. The proof is completed by substituting the above into (7.4).
 
 The Theorem 7.1 depends on the knowledge of the suboptimality gaps that are not known in practice. This is addressed by the following theorem. 
+    
 ## Regret analysis independent of suboptimality gaps
 <p>&nbsp;</p>
 > Theorem 7.2. The regret of UCB (defined by the algorithm above) on any stochastic k-armed 1-subgaussion bandit and and when <img src="https://render.githubusercontent.com/render/math?math=\delta = 1/n^2">, is bounded by 
