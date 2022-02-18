@@ -211,7 +211,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
 
 The Theorem 7.1 depends on the knowledge of the suboptimality gaps that are not known in practice. This is addressed by the following theorem. 
 
-## Regret bound without of suboptimality gaps
+## Regret bound without suboptimality gaps
 
 > Theorem 7.2. The regret of UCB (defined by the algorithm above) on any stochastic k-armed 1-subgaussion bandit and and when <img src="https://render.githubusercontent.com/render/math?math=\delta = 1/n^2">, is bounded by 
 ><img src="https://render.githubusercontent.com/render/math?math=R_n \leq 8\sqrt{nk\log{(n)}} %2B 3 \sum_{i=1}^{k}\Delta_i">
@@ -242,7 +242,7 @@ The proof goes as follows
         <img src="https://render.githubusercontent.com/render/math?math=\leq n\Delta %2B \sum_{i: \Delta_i \geq \Delta}\Delta_i\mathbb{E}[T_i(n)]">               
         </div>
         <div class="div-table-col_expl">        
-        since <img src="https://render.githubusercontent.com/render/math?math=\Delta_i < \Delta"> and since <img src="https://render.githubusercontent.com/render/math?math=\sum_{i: \Delta_i < \Delta}T_i(n) \leq n"> or in words, the number of the pulls cannot be larger that the horizon <img src="https://render.githubusercontent.com/render/math?math=n">            
+        since <img src="https://render.githubusercontent.com/render/math?math=\Delta_i < \Delta"> and since <img src="https://render.githubusercontent.com/render/math?math=\sum_{i: \Delta_i < \Delta}T_i(n) \leq n"> as the number of the pulls cannot be larger that the horizon <img src="https://render.githubusercontent.com/render/math?math=n">            
         </div>
    </div>
    
@@ -260,8 +260,7 @@ The proof goes as follows
          <img src="https://render.githubusercontent.com/render/math?math=\leq n\Delta %2B \frac{16k\log(n)}{\Delta} %2B 3 \sum_{i=1}^{k}\Delta_i">                    
         </div>
         <div class="div-table-col_expl">
-        given that there is at most <img src="https://render.githubusercontent.com/render/math?math=k"> arms with
-          <img src="https://render.githubusercontent.com/render/math?math=\Delta_i \geq \Delta"> and given <img src="https://render.githubusercontent.com/render/math?math=\Delta_i \geq \Delta">              
+        given that <img src="https://render.githubusercontent.com/render/math?math=\Delta_i \geq \Delta"> and also that there is at most <img src="https://render.githubusercontent.com/render/math?math=k"> such arms
         </div>
    </div>   
     <div class="div-table-row">
