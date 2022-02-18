@@ -212,14 +212,14 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
 The Theorem 7.1 depends on the knowledge of the suboptimality gaps that are not known in practice. This is addressed by the following theorem. 
 
 > Theorem 7.2. The regret of UCB (defined by the algorithm above) on any stochastic k-armed 1-subgaussion bandit and and when <img src="https://render.githubusercontent.com/render/math?math=\delta = 1/n^2">, is bounded by 
-><img src="https://render.githubusercontent.com/render/math?math=R_n \leq 8\sqrt{nk\log{(n)}} %2B 3 \sum_{i=1}^{k}\Delta_i">.
+><img src="https://render.githubusercontent.com/render/math?math=R_n \leq 8\sqrt{nk\log{(n)}} %2B 3 \sum_{i=1}^{k}\Delta_i">
 
 The proof goes as follows
 
  <div class="div-table">
    <div class="div-table-row">
         <div class="div-table-col_eq">
-        <img src="https://render.githubusercontent.com/render/math?math=R_n = \sum{i=1}_{k}\delta_i\mathbb{E}[T_i(n)] ">              
+        <img src="https://render.githubusercontent.com/render/math?math=R_n = \sum_{i=1}^{k}\Delta_i\mathbb{E}[T_i(n)] ">              
         </div>
         <div class="div-table-col_expl">
         by the regret decomposition lemma        
