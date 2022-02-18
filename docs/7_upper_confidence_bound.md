@@ -124,7 +124,7 @@ Then, we can bound the probability of the occuracance of the first set
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\{\mu_1 \geq min_{t\in[n]}UCB_1(t, \delta)\})">  
     </div>
-    <div class="div-table-col_expl">&nbsp
+    <div class="div-table-col_expl">&nbsp;
     </div>
     </div>
     <div class="div-table-row">
