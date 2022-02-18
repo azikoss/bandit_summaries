@@ -101,7 +101,7 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
     </div>        
     <div class="div-table-row">
     <div class="div-table-col_eq">
-          <img src="https://render.githubusercontent.com/render/math?math=\subset \{ \mu_1 \geq min_{s\in[n]}\hat{\mu_{1s}} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">  
+          <img src="https://render.githubusercontent.com/render/math?math=\subset \{ \mu_1 \geq min_{s\in[n]}\hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">  
     </div>
     <div class="div-table-col_expl">using the definition of <img src="https://render.githubusercontent.com/render/math?math=UCB_1(t, \delta)">; I am not sure why the both sets are not equals though.
     </div>
