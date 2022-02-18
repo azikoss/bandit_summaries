@@ -176,11 +176,19 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
    </div>   
  </div>
  
- [proof](5_concentration_of_measure.md#bounding-the-sample-reward-mean)
  
- Putting everything together yields the following bound <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}}) \leq n\delta %2B \exp(-\frac{u_ic^2\Delta_i^2}{2})">.
+ Putting everything together yields the following bound <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}}) \leq n\delta %2B \exp(-\frac{u_ic^2\Delta_i^2}{2})">. Thus, the upper bound of  TODO: 7.9
  
- Thus, the upper bound of <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)] \leq u_i %2B n(n\delta %2B \exp(-\frac{u_ic^2\Delta_i^2}{2}))"> TODO: 7.9
+ <div class="div-table">
+    <div class="div-table-row">
+    <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)] \leq u_i %2B n(n\delta %2B \exp(-\frac{u_ic^2\Delta_i^2}{2}))">
+    </div>
+    <div class="div-table-col_expl">
+    (7.9)
+    </div>
+   </div>
+ 
  
  Now, we have to choose <img src="https://render.githubusercontent.com/render/math?math=\u_i \in [n]"> such that (7.8) is satisfied. A natural choice is to the smallest integer (we want to pull the suboptimal arm the least times possible) for which (7.8) holds. By expressing <img src="https://render.githubusercontent.com/render/math?math=\u_i"> from (7.8) and ceiling it to the nearest integer, we get <img src="https://render.githubusercontent.com/render/math?math=u_i = \lceil\frac{2\log(1/\delta)}{(1-c)^2\Delta_i^{2}}\rceil">. Using this choice of <img src="https://render.githubusercontent.com/render/math?math=\u_i"> and the assumption that <img src="https://render.githubusercontent.com/render/math?math=\delta=1/n^2"> leads via (7.9) to 
  
