@@ -144,13 +144,13 @@ Let's bound the probability of the second set in <img src="https://render.github
    </div>
  </div>
 
-where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)"> is a constant to be chosen later. Then,
+where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)"> is a constant to be chosen later. Then, <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\hat{\mu}_{iu_i} %2B  \sqrt{\frac{2\log(1/\delta)}{u_i}} \geq \mu_1\))">
 
 
  <div class="div-table">
     <div class="div-table-row">
     <div class="div-table-col_eq">
-          <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(\hat{\mu}_{iu_i} %2B  \sqrt{\frac{2\log(1/\delta)}{u_i}} \geq \mu_1\)) = \mathbb{P}(\hat{\mu}_{iu_{i}} - \mu_i \geq \delta_i - \sqrt{\frac{2\log(1/\delta)}{\u_i}})">
+          <img src="https://render.githubusercontent.com/render/math?math== \mathbb{P}(\hat{\mu}_{iu_{i}} - \mu_i \geq \delta_i - \sqrt{\frac{2\log(1/\delta)}{\u_i}})">
     </div>
     <div class="div-table-col_expl">
     since  <img src="https://render.githubusercontent.com/render/math?math=\mu_1 = \mu_i %2B \delta_i">
