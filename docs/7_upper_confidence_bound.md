@@ -224,7 +224,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
 
 The Theorem 7.1 depends on the knowledge of the suboptimality gaps that are not known in practice. This is addressed by the following theorem. 
     
-## Regret analysis independent of suboptimality gaps
+## Regret bound without of suboptimality gaps
 > Theorem 7.2. The regret of UCB (defined by the algorithm above) on any stochastic k-armed 1-subgaussion bandit and and when <img src="https://render.githubusercontent.com/render/math?math=\delta = 1/n^2">, is bounded by 
 ><img src="https://render.githubusercontent.com/render/math?math=R_n \leq 8\sqrt{nk\log{(n)}} %2B 3 \sum_{i=1}^{k}\Delta_i">
 
