@@ -10,6 +10,23 @@ Let <img src="https://render.githubusercontent.com/render/math?math=\hat{u}_i(t)
 1. Input: <img src="https://render.githubusercontent.com/render/math?math=m">
 2. In round <img src="https://render.githubusercontent.com/render/math?math=t"> choose arm <img src="https://render.githubusercontent.com/render/math?math=A_t"> as <img src="https://render.githubusercontent.com/render/math?math=(t \mod k) \%2B 1"> if <img src="https://render.githubusercontent.com/render/math?math=t \leq mk"> otherwise as <img src="https://render.githubusercontent.com/render/math?math=\argmax_i\hat{\mu_i}(mk)">.
 
+We implemented the ETC algorithm in the similar format as the [Follow-The-Leader implementation](4_stochastic_bandits.html#unstructured-bandits).
+
+```python
+def ExploreThenCommit(bandit, n, m):
+    means = np.array([0] * bandit.K())
+
+    # explore
+    for t in range(bandit.K() * m):
+        arm = t % bandit.K()
+        means[arm] += bandit.pull(arm)
+    means = means / m
+    
+    # commit 
+    for t in range(bandit.K() * m, n):        
+        bandit.pull(np.random.choice(np.argwhere(means == np.max(means)).flatten()))
+``` 
+
 ## Regret
 Recall that <img src="https://render.githubusercontent.com/render/math?math=u_i"> is the true mean reward of action <img src="https://render.githubusercontent.com/render/math?math=i"> and <img src="https://render.githubusercontent.com/render/math?math=\Delta_i = \mu* - \mu_i"> is the suboptimality gap between the optimal arm and arm <img src="https://render.githubusercontent.com/render/math?math=i">.
 
@@ -33,6 +50,16 @@ Let's note that the above inequality can be adjusted  when the reward distributi
 The bound of the ETC algorithm derived above illustrates the trade-off between exploration and exploitation. If  <img src="https://render.githubusercontent.com/render/math?math=m"> is large, the algorithm would explore for too long, and the first term would be too large. If <img src="https://render.githubusercontent.com/render/math?math=m"> is too small, then the probability that the algorithm commits to exploiting the wrong arm is high, and the second term becomes large. So how to choose <img src="https://render.githubusercontent.com/render/math?math=m">?
 
 Let's illustrate it on an example where <img src="https://render.githubusercontent.com/render/math?math=k=2"> and where the first arm is optimal so <img src="https://render.githubusercontent.com/render/math?math=\Delta_1 = 0"> and <img src="https://render.githubusercontent.com/render/math?math=\Delta = \Delta_2">. Then, the bound of the ETC  simplifies to <img src="https://render.githubusercontent.com/render/math?math=R_n \leq m\Delta_i \%2B (n - 2m)\Delta \exp(-\frac{m\Delta_i^2}{4}) \leq m\Delta_i \%2B n\Delta \exp(-\frac{m\Delta_i^2}{4})">. The right hand side expression was obtained by removing <img src="https://render.githubusercontent.com/render/math?math=-2m\Delta \exp(-\frac{m\Delta_i^2}{4})"> from the left hand side expression. For large <img src="https://render.githubusercontent.com/render/math?math=n"> the right hand side expression can be minimized by <img src="https://render.githubusercontent.com/render/math?math=m=\max\{1, \frac{4}{\Delta^2}\log(\frac{n\Delta^2}{4})\}">. This would lead to the upper regret bound of  <img src="https://render.githubusercontent.com/render/math?math=O(\sqrt{n})">. I did not fully understand the intermediate calculations. They are included in the book and also at this [blog post](https://banditalgs.com/2016/09/14/first-steps-explore-then-commit/#mjx-eqn-eqregret_g). In any case, the above derived regret bound of  <img src="https://render.githubusercontent.com/render/math?math=O(\sqrt{n})"> relies on the knowledge of the suboptimality gap <img src="https://render.githubusercontent.com/render/math?math=\Delta"> and horizon <img src="https://render.githubusercontent.com/render/math?math=n">. While the horizon can be known beforehand (and if not the doubling trick can be applied), suboptimally gaps are not. The regret bound of the ETC is <img src="https://render.githubusercontent.com/render/math?math=O(n^{2/3})"> when not relying on the knowledge of the suboptimality gaps. Such a bound is **gap/problem/distribution/instance dependent** since it only depends on the knowledge of the horizon and bandit class, and not on the specific instance within the bandit class.
+
+We run the ETC algorithm when playing a Bernoulli bandit with <img src="https://render.githubusercontent.com/render/math?math=k=2"> arms and reward means <img src="https://render.githubusercontent.com/render/math?math=\mu_1=0.5"> and <img src="https://render.githubusercontent.com/render/math?math=\mu_2=\mu-\Delta"> where <img src="https://render.githubusercontent.com/render/math?math=\Delta"> is sampled from the interval of (0, 0.5). The horizon was <img src="https://render.githubusercontent.com/render/math?math=n=5000">. The figure below shows the expected reward. Each point in the figure is a mean of 250 simulations. 
+
+<figure class="image" align="center">
+  <img src="./assets/6_etc_regrets.png.png" alt="Regret of the follow-the-leader policy">
+  <figcaption>Figure 1: Regret of the ETC given different exploration length</figcaption>
+</figure>  
+
+with the exploration length <img src="https://render.githubusercontent.com/render/math?math=m"> set according to the formula in the above paragraph as well as with several arbitrarily chosen exploration length 
+arbitrarily setting of the exploration length <img src="https://render.githubusercontent.com/render/math?math=m"> and with 
 
 ## Future topics
 The book includes exercises covering topics that I would like to understand, particularly 
