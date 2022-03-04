@@ -54,7 +54,7 @@ Let's illustrate it on an example where <img src="https://render.githubuserconte
 We run the ETC algorithm when playing a Bernoulli bandit with <img src="https://render.githubusercontent.com/render/math?math=k=2"> arms and reward means <img src="https://render.githubusercontent.com/render/math?math=\mu_1=0.5"> and <img src="https://render.githubusercontent.com/render/math?math=\mu_2=\mu-\Delta"> where <img src="https://render.githubusercontent.com/render/math?math=\Delta"> is sampled from the interval of (0, 0.5). The horizon was <img src="https://render.githubusercontent.com/render/math?math=n=5000">. The figure below shows the expected reward. Each point in the figure is a mean of 250 simulations. 
 
 <figure class="image" align="center">
-  <img src="./assets/6_etc_regrets.png.png" alt="Regret of the follow-the-leader policy">
+  <img src="./assets/6_etc_regrets.png" alt="Regret of the follow-the-leader policy">
   <figcaption>Figure 1: Regret of the ETC given different exploration length</figcaption>
 </figure>  
 
