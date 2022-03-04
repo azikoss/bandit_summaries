@@ -34,13 +34,13 @@ Now, we can state a version of the UCB algorithm as follows
 
 The above algorithm is an **index algorithm**. An index algorithm chooses the arm in each round that maximizes some value, called the **index**. For the UCB algorithm, the index of arm <img src="https://render.githubusercontent.com/render/math?math=i"> is <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)">. 
 
-<img src="https://render.githubusercontent.com/render/math?math=\delta"> is a called the **confidence level** and it quantifies the degree of certainty. <img src="https://render.githubusercontent.com/render/math?math=\delta"> should be small enough to ensure optimism with high probability but not so large that the suboptimal arms would be explored too frequently. Choosing the confidence level will be done in future chapters. For now, the choice of this parameter is done based on the following considerations. If the confidence interval fails and the index of an optimal arm drops belows its true mean, then it could happen that the algorithm stops playing the optimal arm and suffers linear regret. This suggest choosing <img src="https://render.githubusercontent.com/render/math?math=\delta \approx 1/n"> so that playing during a larger horizon would mean less chance to suffer from this failure since the smaller value of <img src="https://render.githubusercontent.com/render/math?math=\delta"> leads to more exploration and thus less chance to estimate the reward mean incorrectly. Things are unfortunately not that simple. The number of samples <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)"> in the  <img src="https://render.githubusercontent.com/render/math?math=UCB_i"> index is a random variable, so choosing the confidence level, at least naievely, should be done a bit smaller than <img src="https://render.githubusercontent.com/render/math?math=1/n">.
+<img src="https://render.githubusercontent.com/render/math?math=\delta"> is a called the **confidence level** and it quantifies the degree of certainty. <img src="https://render.githubusercontent.com/render/math?math=\delta"> should be small enough to ensure optimism with high probability but not so large that the suboptimal arms would be explored too frequently. Choosing the confidence level will be done in future chapters. For now, the choice of this parameter is done based on the following considerations. If the confidence interval fails and the index of an optimal arm drops belows its true mean, then it could happen that the algorithm stops playing the optimal arm and suffers linear regret. This suggest choosing <img src="https://render.githubusercontent.com/render/math?math=\delta \approx 1/n"> so that playing during a larger horizon would mean less chance to suffer from this failure since the smaller value of <img src="https://render.githubusercontent.com/render/math?math=\delta"> leads to more exploration and thus less chance to estimate the reward mean incorrectly. Things are unfortunately not that simple. The number of samples <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)"> in the  <img src="https://render.githubusercontent.com/render/math?math=UCB_i"> index is a random variable, so choosing the confidence level, at least naively, should be done a bit smaller than <img src="https://render.githubusercontent.com/render/math?math=1/n">.
 
 ## Regret Analysis
 > Theorem 7.1. The regret of the UCB algorithm shown above on any stochastic k-armed 1-subgaussian bandit problem, for any horizon <img src="https://render.githubusercontent.com/render/math?math=n">, and <img src="https://render.githubusercontent.com/render/math?math=\delta = 1/n^2"> is <img src="https://render.githubusercontent.com/render/math?math=R_n \leq 3\sum_{i=1}^{k}\Delta_i + \sum_{i:\Delta_i > 0} \frac{16\log(n)}{\Delta_i}">
 
 
-Let's define some notation before first. Let <img src="https://render.githubusercontent.com/render/math?math=(X_{ti})_{t\in[n], i\in[k]}"> be a collection of random variables with the law of <img src="https://render.githubusercontent.com/render/math?math=X_{ti}"> equal to reward distribution <img src="https://render.githubusercontent.com/render/math?math=P_i">. Then, reward at time <img src="https://render.githubusercontent.com/render/math?math=t"> is <img src="https://render.githubusercontent.com/render/math?math=X_{t}=X_{T_{A_t}(t)A_t}">. This is a just technicality. You can think about it such that the rewards of arm <img src="https://render.githubusercontent.com/render/math?math=i"> are sampled from <img src="https://render.githubusercontent.com/render/math?math=P_i"> beforehand and stacked one by another. Then, when an arm is pulled at time <img src="https://render.githubusercontent.com/render/math?math=t">, the reward placed on the position <img src="https://render.githubusercontent.com/render/math?math=T_{A_t}(t)"> is returned. Futher, let <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_{is}=\frac{1}{s}\sum_{u=1}^{s}X_{ui}"> be the empirical mean based on the first <img src="https://render.githubusercontent.com/render/math?math=s"> samples. With that, we define <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}(t) = \hat{\mu}_{iT_i(t)}">.
+Let's define some notation before first. Let <img src="https://render.githubusercontent.com/render/math?math=(X_{ti})_{t\in[n], i\in[k]}"> be a collection of random variables with the law of <img src="https://render.githubusercontent.com/render/math?math=X_{ti}"> equal to reward distribution <img src="https://render.githubusercontent.com/render/math?math=P_i">. Then, reward at time <img src="https://render.githubusercontent.com/render/math?math=t"> is <img src="https://render.githubusercontent.com/render/math?math=X_{t}=X_{T_{A_t}(t)A_t}">. This is a just technicality. You can think about it such that the rewards of arm <img src="https://render.githubusercontent.com/render/math?math=i"> are sampled from <img src="https://render.githubusercontent.com/render/math?math=P_i"> beforehand and stacked one by another. Then, when an arm is pulled at time <img src="https://render.githubusercontent.com/render/math?math=t">, the reward placed on the position <img src="https://render.githubusercontent.com/render/math?math=T_{A_t}(t)"> is returned. Futher, let <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_{is}=\frac{1}{s}\sum_{u=1}^{s}X_{ui}"> be the empirical mean based on the first <img src="https://render.githubusercontent.com/render/math?math=s"> samples. With that, we define <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_i(t) = \hat{\mu}_{iT_i(t)}">.
 
 Without loss of generality we assume that the first arm is optimal so <img src="https://render.githubusercontent.com/render/math?math=\mu_1 = \mu^*">. 
 
@@ -90,7 +90,7 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\subset \{ \mu_1 \geq min_{s\in[n]}\hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">  
     </div>
-    <div class="div-table-col_expl">using the definition of <img src="https://render.githubusercontent.com/render/math?math=UCB_1(t, \delta)">; I am not sure why the both sets are not equals though.
+    <div class="div-table-col_expl">using the definition of <img src="https://render.githubusercontent.com/render/math?math=UCB_1(t, \delta)"> and generalizing from time <img src="https://render.githubusercontent.com/render/math?math=t \in [n]"> to any time <img src="https://render.githubusercontent.com/render/math?math=s \in [n]">
     </div>
     </div>
     <div class="div-table-row">
@@ -98,7 +98,7 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
           <img src="https://render.githubusercontent.com/render/math?math=%3D\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">
      </div>
     <div class="div-table-col_expl">
-    TODO: check the book.
+    if one condition in the union of sets is true, then minimum of <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}"> must be true as well  
      </div>      
     </div>
 </div>
@@ -119,7 +119,7 @@ Then, we can bound the probability of the occurrence of the first set <img src="
     <div class="div-table-col_eq">
        <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{s=1}^{n}\mathbb{P}( \mu_1 \geq \hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}})">
     </div>
-    <div class="div-table-col_expl">because the subgaussian random variables are indepedent TODO: check by the book.    
+    <div class="div-table-col_expl">because the subgaussian random variables are indepedent    
     </div>
     </div>    
     <div class="div-table-row">
@@ -171,13 +171,13 @@ where <img src="https://render.githubusercontent.com/render/math?math=c\in (0,1)
           <img src="https://render.githubusercontent.com/render/math?math=\leq \exp(-\frac{u_ic^2\Delta_i^2}{2})">
     </div>
     <div class="div-table-col_expl">   
-    by <a href="5_concentration_of_measure.html#bounding-the-sample-reward-mean">proof</a> of bounding the tail behavior of the subgaussian 
+    by <a href="5_concentration_of_measure.html#bounding-the-sample-reward-mean">bounding the tail behavior of the subgaussians</a>  
     </div>
    </div>   
  </div>
  
  
- Putting everything together yields the following bound <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}}) \leq n\delta %2B \exp(-\frac{u_ic^2\Delta_i^2}{2})">. Thus, the upper bound of 
+ Putting everything together yields the following bound <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}}) \leq n\delta %2B \exp(-\frac{u_ic^2\Delta_i^2}{2})">. Thus, the upper bound of is <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)]"> is
  
  <div class="div-table">
     <div class="div-table-row">
