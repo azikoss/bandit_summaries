@@ -32,6 +32,30 @@ Now, we can state a version of the UCB algorithm as follows
 1. &emsp; Observe reward <img src="https://render.githubusercontent.com/render/math?math=X_t"> and update upper confidence bounds
 1. **end for**
 
+The implementation of the UCB is provided below. 
+
+```python
+def UpperConfidenceBound(bandit, n, delta):
+    means = np.array([0] * bandit.K(), dtype=float)
+
+    # pulls each arm once
+    for t in range(bandit.K()):
+        means[t] += bandit.pull(t)
+    total_pulls = np.array([1] * bandit.K(), dtype=float)
+
+    for t in range(bandit.K(), n):
+        ucbs = means + calculate_ucb(total_pulls, delta)
+        arm = np.random.choice(np.argwhere(ucbs == np.max(ucbs)).flatten())
+        means[arm] = ((means[arm] * total_pulls[arm]) + bandit.pull(arm)) / (
+            total_pulls[arm] + 1
+        )
+        total_pulls[arm] += 1
+
+
+def calculate_ucb(total_pulls, delta):
+    return np.sqrt(2 * np.log(1 / delta) / total_pulls)
+```
+
 The above algorithm is an **index algorithm**. An index algorithm chooses the arm in each round that maximizes some value, called the **index**. For the UCB algorithm, the index of arm <img src="https://render.githubusercontent.com/render/math?math=i"> is <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)">. 
 
 <img src="https://render.githubusercontent.com/render/math?math=\delta"> is a called the **confidence level** and it quantifies the degree of certainty. <img src="https://render.githubusercontent.com/render/math?math=\delta"> should be small enough to ensure optimism with high probability but not so large that the suboptimal arms would be explored too frequently. Choosing the confidence level will be done in future chapters. For now, the choice of this parameter is done based on the following considerations. If the confidence interval fails and the index of an optimal arm drops belows its true mean, then it could happen that the algorithm stops playing the optimal arm and suffers linear regret. This suggest choosing <img src="https://render.githubusercontent.com/render/math?math=\delta \approx 1/n"> so that playing during a larger horizon would mean less chance to suffer from this failure since the smaller value of <img src="https://render.githubusercontent.com/render/math?math=\delta"> leads to more exploration and thus less chance to estimate the reward mean incorrectly. Things are unfortunately not that simple. The number of samples <img src="https://render.githubusercontent.com/render/math?math=T_i(t-1)"> in the  <img src="https://render.githubusercontent.com/render/math?math=UCB_i"> index is a random variable, so choosing the confidence level, at least naively, should be done a bit smaller than <img src="https://render.githubusercontent.com/render/math?math=1/n">.
@@ -271,9 +295,11 @@ The proof goes as follows
 
 The above bound still includes the suboptimality gaps <img src="https://render.githubusercontent.com/render/math?math=\Delta_i">. This is however unavoidable because any reasonable algorithm must play each arm at least once. In any case, the term <img src="https://render.githubusercontent.com/render/math?math=3 \sum_{i=1}^{k}\Delta_i "> does not grow with the horizon and is thus negligible. 
 
+We let the ETC algorithm with optimal exploration length and the UCB algorithm to play a Bernoulli bandit with <img src="https://render.githubusercontent.com/render/math?math=k=2"> arms and reward means <img src="https://render.githubusercontent.com/render/math?math=\mu_1=0.5"> and <img src="https://render.githubusercontent.com/render/math?math=\mu_2=\mu_1-\Delta"> where <img src="https://render.githubusercontent.com/render/math?math=\Delta"> is sampled from the interval of <img src="https://render.githubusercontent.com/render/math?math=[0, 0.5]">. The horizon was <img src="https://render.githubusercontent.com/render/math?math=n=5000">. The figure below shows the expected reward. Each point in the figure is a mean of 250 simulations. Although, the ETC uses a knowledge of the suboptimally gaps that are not known in practice, its regret is similar to the UCB algorithm.  
 
-TODO: compare the regret with the explore-then-commit
-CONT --> implementation. 
+<figure class="image" align="center">
+  <img src="./assets/7_ucb_regret.png" alt="Regret of the follow-the-leader policy">
+</figure>  
       
 
 
