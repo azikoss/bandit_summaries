@@ -6,8 +6,9 @@ def FollowTheLeader(bandit, n):
 
     # pulls each arm once
     for t in range(bandit.K()):
-        means[t] += bandit.pull(t)
-    total_pulls = [1] * n
+        arm = t % bandit.K()
+        means[arm] += bandit.pull(arm)
+    total_pulls = [1] * bandit.K()
 
     # plays the arm with the highest mean
     for t in range(bandit.K(), n):

@@ -303,7 +303,7 @@ We let the ETC algorithm with optimal exploration length and the UCB algorithm t
       
 
 
-
+CONT --> check the implementaion + add the .py files.
 
 
 If you have any questions or comments, I would be happy if you write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/6-explore-then-commit) section. 
