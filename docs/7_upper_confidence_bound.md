@@ -70,10 +70,7 @@ Without loss of generality we assume that the first arm is optimal so <img src="
 
 The proof starts by decoupling the randomness from the behavior of the UCB algorithm and defining <img src="https://render.githubusercontent.com/render/math?math=G_i"> as a "good" event by <img src="https://render.githubusercontent.com/render/math?math=G_i = \{u_1 < min_{t\in[n]}UCB_1(t, \delta)\} \cap \{\hat{u_i}_{u_i} %2B \sqrt{\frac{2}{u_i} \log (\frac{1}{\delta})} < \mu_1\}"> where <img src="https://render.githubusercontent.com/render/math?math=u_i \in [n]"> is a constant to be chosen later. <img src="https://render.githubusercontent.com/render/math?math=G_i"> is the event when the reward mean of the optimal arm <img src="https://render.githubusercontent.com/render/math?math=u_1"> is never underestimated by its upper confidence bound while at the same time the upper confidence bound for the reward mean of arm <img src="https://render.githubusercontent.com/render/math?math=i"> after <img src="https://render.githubusercontent.com/render/math?math=u_i"> pulls is below the mean reward of the optimal arm. 
 
-The theorem will be proven by bounding <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)]"> from the regret [decomposition lemma](4_stochastic_bandits.md#decomposing-the-regret) <img src="https://render.githubusercontent.com/render/math?math=\sum_{i=1}^{k} \Delta_i \mathbb{E}[T_i(n)]"> such that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)] = \mathbb{E}[\mathbb{I}\{G_i\}T_i(n)] %2B \mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)] \leq  u_i %2B \mathbb{P}(G_i^{\mathsf{c}})n"> for each suboptimal arm <img src="https://render.githubusercontent.com/render/math?math=i">.The proof is split into two parts.
-
-
-<p>&nbsp;</p>
+The theorem will be proven by bounding <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)]"> from the regret [decomposition lemma](4_stochastic_bandits.md#decomposing-the-regret) <img src="https://render.githubusercontent.com/render/math?math=\sum_{i=1}^{k} \Delta_i \mathbb{E}[T_i(n)]"> such that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)] = \mathbb{E}[\mathbb{I}\{G_i\}T_i(n)] %2B \mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)] \leq  u_i %2B \mathbb{P}(G_i^{\mathsf{c}})n"> for each suboptimal arm <img src="https://render.githubusercontent.com/render/math?math=i">. The proof is split into two parts.
 
 **1) If <img src="https://render.githubusercontent.com/render/math?math=G_i"> occur, then <img src="https://render.githubusercontent.com/render/math?math=i"> will be played at most <img src="https://render.githubusercontent.com/render/math?math=u_i"> times, so that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\mathbb{I}\{G_i\}T_i(n)] \leq u_i">**
 
@@ -100,8 +97,6 @@ Let's show by contradiction that <img src="https://render.githubusercontent.com/
 Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1, \delta)"> is smaller than <img src="https://render.githubusercontent.com/render/math?math=UCB_1(t-1, \delta)">,
  then <img src="https://render.githubusercontent.com/render/math?math=A_t \neq i">, which is a contradiction.This means that if <img src="https://render.githubusercontent.com/render/math?math=G_i"> occurs, <img src="https://render.githubusercontent.com/render/math?math=T_i(n) \leq u_i">.  
 
-<p>&nbsp;</p>
-
 **2) The complement event <img src="https://render.githubusercontent.com/render/math?math=G_i^{\mathsf{c}}"> occurs with low probability, so that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\mathbb{I} \{G_i^{\mathsf{c}}\}T_i(n)] = \mathbb{P}(G_i^{\mathsf{c}})n"> where <img src="https://render.githubusercontent.com/render/math?math=\mathbb{P}(G_i^{\mathsf{c}})"> is small.**
 
 
@@ -114,7 +109,7 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
     <div class="div-table-col_eq">
           <img src="https://render.githubusercontent.com/render/math?math=\subset \{ \mu_1 \geq min_{s\in[n]}\hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">  
     </div>
-    <div class="div-table-col_expl">using the definition of <img src="https://render.githubusercontent.com/render/math?math=UCB_1(t, \delta)"> and generalizing from time <img src="https://render.githubusercontent.com/render/math?math=t \in [n]"> to any time <img src="https://render.githubusercontent.com/render/math?math=s \in [n]">
+    <div class="div-table-col_expl">using the definition of <img src="https://render.githubusercontent.com/render/math?math=UCB_1(t, \delta)"> and generalizing from time of pull <img src="https://render.githubusercontent.com/render/math?math=t \in [n]"> to any time <img src="https://render.githubusercontent.com/render/math?math=s \in [n]">
     </div>
     </div>
     <div class="div-table-row">
@@ -122,7 +117,7 @@ Since <img src="https://render.githubusercontent.com/render/math?math=UCB_i(t-1,
           <img src="https://render.githubusercontent.com/render/math?math=%3D\cup_{s\in[n]} \{ \mu_1 \geq \hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}\}">
      </div>
     <div class="div-table-col_expl">
-    if one condition in the union of sets is true, then minimum of <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}"> must be true as well  
+    if one condition in the union is true, then minimum of <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_{1s} %2B \sqrt{\frac{2\log(1/\delta)}{s}}"> is true as well  
      </div>      
     </div>
 </div>
