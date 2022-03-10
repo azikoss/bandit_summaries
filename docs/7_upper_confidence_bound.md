@@ -300,10 +300,6 @@ We let the ETC algorithm with optimal exploration length and the UCB algorithm t
 <figure class="image" align="center">
   <img src="./assets/7_ucb_regret.png" alt="Regret of the follow-the-leader policy">
 </figure>  
-      
-
-
-CONT --> check the implementaion + add the .py files.
 
 
 If you have any questions or comments, I would be happy if you write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/6-explore-then-commit) section. 
