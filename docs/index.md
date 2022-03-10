@@ -9,4 +9,4 @@ The digests that I've written so far are
 * [4. Chapter - Stochastic Bandits](4_stochastic_bandits.md)
 * [5. Chapter - Concentration of Measure](5_concentration_of_measure.md)
 * [6. Chapter - Explore Then Commit](6_explore_then_commit.md)
-* [WIP - 7. Chapter - Upper Confidence Bound](7_upper_confidence_bound.md)
+* [7. Chapter - Upper Confidence Bound](7_upper_confidence_bound.md)
