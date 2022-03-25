@@ -75,7 +75,72 @@ The proof goes as follows.
     </div>
 </div>
 
-N
+Let's introduce and proof the theorem that bound the introduced algorithm above.
+
+> Theorem 8.1. For any 1-subgaussian bandit, the regret of the algorithm above satisfies <img src="https://render.githubusercontent.com/render/math?math=R_n \leq \sum_{i:\Delta_i > 0} \inf_{\epsilon \in (0, \Delta_i)} \Delta_i (1 %2B \frac{5}{\epsilon^2} %2B \frac{2(\log{f(n)} %2B \sqrt{\pi \log{f(n)}} %2B 1)}{(\Delta_i - \epsilon)^2})">.
+
+The proof is build up on the [regret decomposition lemma](4_stochastic_bandits.md#decomposing-the-regret) <img src="https://render.githubusercontent.com/render/math?math=\sum_{i=1}^{k} \Delta_i \mathbb{E}[T_i(n)]"> and bounding <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)]"> such that <img src="https://render.githubusercontent.com/render/math?math=T_i"> of a suboptimal arm suboptimal arm <img src="https://render.githubusercontent.com/render/math?math=i"> is decomposed into two terms. The first measures the number of times the index of the optimal arm is less than <img src="https://render.githubusercontent.com/render/math?math=\mu_1 - \epsilon">. The second measures the number of times that <img src="https://render.githubusercontent.com/render/math?math=A_t=i"> and its index is larger than <img src="https://render.githubusercontent.com/render/math?math=\mu_1 - \epsilon">.
+
+TODO: Why? we are not comparing the indexes???
+
+<div class="div-table">
+    <div class="div-table-row">
+        <div class="div-table-col_eq">
+            <img src="https://render.githubusercontent.com/render/math?math=T_i(n) = \sum_{t=1}^{n} \mathbb{I}\{A_t = i\}">
+        </div>
+        <div class="div-table-col_expl">
+        &nbsp;     
+        </div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col_eq">
+            <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_1(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_1(t-1)}} \leq \mu_1 - \epsilon\} %2B \sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_i(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_i(t-1)}} \geq \mu_1 - \epsilon"> and <img src="https://render.githubusercontent.com/render/math?math=A_t = i\}">  
+        </div>
+        <div class="div-table-col_expl">
+        (8.4)     
+        </div>
+    </div>
+</div>
+
+Next we bound the expectation of each of the above sums. The first is bounded as follows.
+
+<div class="div-table">
+    <div class="div-table-row">
+        <div class="div-table-col_eq">
+            <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_1(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_1(t-1)}} \leq \mu_1 - \epsilon\}]"> 
+        </div>
+        <div class="div-table-col_expl">
+        &nbsp;     
+        </div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{t=1}^{n}\sum_{s=1}^{n} \mathbb{P}\{\hat{\mu}_{1s} %2B \sqrt{ \frac{2\log{f(t)}}{s} } \leq \mu_1 - \epsilon\}"> 
+        </div>
+        <div class="div-table-col_expl">
+        union bound over all possible values of <img src="https://render.githubusercontent.com/render/math?math=T_1(t-1)"> 
+        TODO: better formulation.    
+        </div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{t=1}^{n}\sum_{s=1}^{n} \exp(-\frac{s(\sqrt{\frac{2\log{f(t)}}{s}} %2B \epsilon)^2}{2})"> 
+        </div>                    
+        <div class="div-table-col_expl">
+        by <a href="5_concentration_of_measure.html#bounding-the-sample-reward-mean">bounding the tail behavior of the subgaussian</a>                
+        </div>
+    </div>  
+    <div class="div-table-row">
+        <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{t=1}^{n} \frac{1}{f(t)}\sum_{s=1}^{n} \exp(-\frac{s\epsilon^2}{2}) \leq \frac{5}{\epsilon^2}"> 
+        </div>                    
+        <div class="div-table-col_expl">
+        Algebraic exercise               
+        </div>
+    </div>   
+</div> 
+
+CONT: in the book
 
 If you have any questions or comments, I would be happy if you write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/7-ucb) section. 
  
