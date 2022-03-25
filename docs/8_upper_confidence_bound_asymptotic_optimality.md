@@ -13,44 +13,67 @@ The asymptotically optimally UCB differs from the previously introduced UCB algo
 
 The proof goes as follows.
 <div class="div-table">
-   <div class="div-table-row">
-        <div class="div-table-col_eq">
-        <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\kappa] \leq \mathbb{E}[\kappa\prime]">             
-        </div>
-        <div class="div-table-col_expl">
-        Since <img src="https://render.githubusercontent.com/render/math?math=X_i"> are independent 1-subgaussians with          <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\hat{\mu}_t] = 0">, then in expectation <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_t %2B \sqrt{\frac{2a}{t}}"> cannot be smaller than <img src="https://render.githubusercontent.com/render/math?math=\epsilon"> until <img src="https://render.githubusercontent.com/render/math?math=t"> is at least <img src="https://render.githubusercontent.com/render/math?math=2a/\epsilon^2">. Note that when <img src="https://render.githubusercontent.com/render/math?math=t=u">, then <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{2a}{t}} = \epsilon"> so all steps before <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{2a}{t}} > \epsilon">. 
-       </div>                  
-   </div>
     <div class="div-table-row">
         <div class="div-table-col_eq">
-        <img src="https://render.githubusercontent.com/render/math?math== u %2B \sum_{t=\lceil u \rceil}^{t=n} \mathbb{P} (\hat{\mu}_t %2B \sqrt{\frac{2a}{t}})">                     
+            <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\kappa] \leq \mathbb{E}[\kappa\prime]">
         </div>
         <div class="div-table-col_expl">
-         indicator function was changed to probability because of the expected value
-       </div>                  
-   </div>   
+            Since <img src="https://render.githubusercontent.com/render/math?math=X_i"> are
+            independent 1-subgaussians with <img
+                src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\hat{\mu}_t] = 0">,
+            then in expectation <img
+                src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_t %2B \sqrt{\frac{2a}{t}}">
+            cannot be smaller than <img src="https://render.githubusercontent.com/render/math?math=\epsilon"> until <img src="https://render.githubusercontent.com/render/math?math=t"> is at least <img src="https://render.githubusercontent.com/render/math?math=2a/\epsilon^2">. Note
+            that when <img src="https://render.githubusercontent.com/render/math?math=t=u">, then
+            <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{2a}{t}} = \epsilon">
+            so all steps before <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{2a}{t}} > \epsilon">.
+        </div>
+    </div>
     <div class="div-table-row">
-               <img src="https://render.githubusercontent.com/render/math?math=\leq u %2B \sum_{t=\lceil u \rceil}^{t=n} \exp(-\frac{t(\epsilon-\sqrt{\frac{2a}{t}})^2}{2})">        
+        <div class="div-table-col_eq">
+            <img src="https://render.githubusercontent.com/render/math?math== u %2B \sum_{t=\lceil u \rceil}^{t=n} \mathbb{P} (\hat{\mu}_t %2B \sqrt{\frac{2a}{t}})">
         </div>
         <div class="div-table-col_expl">
-         by <a href="5_concentration_of_measure.html#bounding-the-sample-reward-mean">bounding the tail behavior of the subgaussian</a> (with <img src="https://render.githubusercontent.com/render/math?math=\mu=0">)        
-       </div>                             
-   </div>
-      <div class="div-table-row">
-               <img src="https://render.githubusercontent.com/render/math?math=\leq 1 %2B u %2B \int_{u}^{\infinity} \exp(-\frac{t(\epsilon-\sqrt{\frac{2a}{t}})^2}{2}) \,dt">        
+            indicator function was changed to probability because of the expected value
         </div>
-        <div class="div-table-col_expl">
-         the 1 was added because of the ceiling operator was removed from <img src="https://render.githubusercontent.com/render/math?math=u"> and the integral from <img src="https://render.githubusercontent.com/render/math?math=u"> to <img src="https://render.githubusercontent.com/render/math?math=\infinity"> substituted the sum that goes only till <img src="https://render.githubusercontent.com/render/math?math=n">    
-       </div>                             
-   </div>
+    </div>
     <div class="div-table-row">
-               <img src="https://render.githubusercontent.com/render/math?math== 1 %2B \frac{2}{\epsilon^2}(a %2B \sqrt{\pi a} %2B 1)">        
+        <div class="div-table-col_eq">
+            <img src="https://render.githubusercontent.com/render/math?math=\leq u %2B \sum_{t=\lceil u \rceil}^{t=n} \exp(-\frac{t(\epsilon-\sqrt{\frac{2a}{t}})^2}{2})">
         </div>
         <div class="div-table-col_expl">
-         using Algebra    
-       </div>                             
-   </div>
- </div>
+            by <a href="5_concentration_of_measure.html#bounding-the-sample-reward-mean">bounding
+            the
+            tail behavior of the subgaussian</a> (with <img
+                src="https://render.githubusercontent.com/render/math?math=\mu=0">)
+        </div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col_eq">
+            <img src="https://render.githubusercontent.com/render/math?math=\leq 1 %2B u %2B \int_{u}^{\infinity} \exp(-\frac{t(\epsilon-\sqrt{\frac{2a}{t}})^2}{2}) \,dt">
+        </div>
+        <div class="div-table-col_expl">
+            the 1 was added because of the ceiling operator was removed from <img
+                src="https://render.githubusercontent.com/render/math?math=u"> and the integral
+            from
+            <img
+                    src="https://render.githubusercontent.com/render/math?math=u"> to <img
+                src="https://render.githubusercontent.com/render/math?math=\infinity">
+            substituted the
+            sum
+            that goes only till <img
+                src="https://render.githubusercontent.com/render/math?math=n">
+        </div>
+    </div>
+    <div class="div-table-row">
+        <div class="div-table-col_eq">
+            <img src="https://render.githubusercontent.com/render/math?math== 1 %2B \frac{2}{\epsilon^2}(a %2B \sqrt{\pi a} %2B 1)">
+        </div>
+        <div class="div-table-col_expl">
+            using Algebra
+        </div>
+    </div>
+</div>
 
 If you have any questions or comments, I would be happy if you write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/7-ucb) section. 
  
