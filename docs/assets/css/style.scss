@@ -35,7 +35,16 @@ blockquote{
   padding-top: 3px;
 }
 
-.div-table-col_eq_narrow {
+.div-table-col_expl {
+  text-align: right;
+  float: left;
+  display: table-column;
+  width: 47.5%;
+  padding-top: 3px;
+}
+
+// wide expl
+.div-table-col_eq_wide_expl {
   float: left;
   margin-right: 5%;
   display: table-column;
@@ -44,19 +53,11 @@ blockquote{
   padding-top: 3px;
 }
 
-.div-table-col_wide_expl {
+.div-table-col_expl_wide_expl {
   text-align: right;
   float: left;
   display: table-column;
-  width: 47.5%;
-  padding-top: 3px;
-}
-
-.div-table-col_wide_expl {
-  text-align: right;
-  float: left;
-  display: table-column;
-  width: 60%;
+  width: 65%;
   padding-top: 3px;
 }
 

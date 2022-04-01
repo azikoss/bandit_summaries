@@ -187,7 +187,7 @@ The second term in (8.4) we use Lemma 8.2.
    
 The proof gets completed by substituting the results of two above bounds into (8.4), choosing <img src="https://render.githubusercontent.com/render/math?math=\epsilon=\log^{-1/4}(n)">, and taking the limit of <img src="https://render.githubusercontent.com/render/math?math=n"> going to infinity. 
 
-
+CNOT --> ## Regret Analysis review
   
 
 If you have any questions or comments, I would be happy if you write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/7-ucb) section. 
