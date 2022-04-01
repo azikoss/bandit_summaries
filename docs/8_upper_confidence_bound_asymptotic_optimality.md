@@ -26,7 +26,7 @@ The proof goes as follows.
             cannot be smaller than <img src="https://render.githubusercontent.com/render/math?math=\epsilon"> until <img src="https://render.githubusercontent.com/render/math?math=t"> is at least <img src="https://render.githubusercontent.com/render/math?math=2a/\epsilon^2">. Note
             that when <img src="https://render.githubusercontent.com/render/math?math=t=u">, then
             <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{2a}{t}} = \epsilon">
-            so all steps before <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{2a}{t}} > \epsilon">.
+            so all steps before it holds that <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{2a}{t}} > \epsilon">.
         </div>
     </div>
     <div class="div-table-row">
