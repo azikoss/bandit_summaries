@@ -166,9 +166,26 @@ The second term in (8.4) we use Lemma 8.2.
         <div class="div-table-col_expl">
          The UCB index is calculated for all steps <img src="https://render.githubusercontent.com/render/math?math=s \in [n]"> and not just steps when arm <img src="https://render.githubusercontent.com/render/math?math=i"> is pulled    
         </div>
+    </div>        
+    <div class="div-table-row">
+        <div class="div-table-col_eq">
+            <img src="https://render.githubusercontent.com/render/math?math== \mathbb{E}[\sum_{s=1}^{n} \mathbb{I}\{\hat{\mu}_i(t-1) - \mu_i %2B \sqrt{\frac{2\log{f(n)}}{s}} \geq \Delta_i - \epsilon]"> 
+        </div>
+        <div class="div-table-col_expl">
+        <img src="https://render.githubusercontent.com/render/math?math=\mu_1 = \mu_i - \Delta_i">     
+        </div>
+    </div>    
+    <div class="div-table-row">
+        <div class="div-table-col_eq">
+            <img src="https://render.githubusercontent.com/render/math?math=\leq 1 %2B \frac{2}{(\Delta_i - \epsilon)^2}(\log{f(n)} %2B    \sqrt{\pi\log{{f(n)}}} %2B 1) ">
+        </div>
+        <div class="div-table-col_expl">
+        by Theorem 8.2     
+        </div>
     </div>    
 </div>
    
+The proof gets completed by substituting the results of two above bounds into (8.4), choosing <img src="https://render.githubusercontent.com/render/math?math=\epsilon=\log^{-1/4}(n)">, and taking the limit of <img src="https://render.githubusercontent.com/render/math?math=n"> going to infinity. 
 
 
   
