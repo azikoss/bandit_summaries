@@ -14,10 +14,10 @@ The asymptotically optimally UCB introduced in this chapter differs from the pre
 The proof goes as follows.
 <div class="div-table">
     <div class="div-table-row">
-        <div class="div-table-col_eq">
+        <div class="div-table-col_eq_wide_expl">
             <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\kappa] \leq \mathbb{E}[\kappa^']">
         </div>
-        <div class="div-table-col_expl">
+        <div class="div-table-col_expl_wide_expl">
             Since <img src="https://render.githubusercontent.com/render/math?math=X_i"> are
             independent 1-subgaussians with <img
                 src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\hat{\mu}_t] = 0">,
@@ -29,18 +29,18 @@ The proof goes as follows.
         </div>
     </div>
     <div class="div-table-row">
-        <div class="div-table-col_eq">
+        <div class="div-table-col_eq_wide_expl">
             <img src="https://render.githubusercontent.com/render/math?math== u %2B \sum_{t=\lceil u \rceil}^{t=n} \mathbb{P} (\hat{\mu}_t %2B \sqrt{\frac{2a}{t}})">
         </div>
-        <div class="div-table-col_expl">
+        <div class="div-table-col_expl_wide_expl">
             indicator function was changed to probability because of the expected value
         </div>
     </div>
     <div class="div-table-row">
-        <div class="div-table-col_eq">
+        <div class="div-table-col_eq_wide_expl">
             <img src="https://render.githubusercontent.com/render/math?math=\leq u %2B \sum_{t=\lceil u \rceil}^{t=n} \exp(-\frac{t(\epsilon-\sqrt{\frac{2a}{t}})^2}{2})">
         </div>
-        <div class="div-table-col_expl">
+        <div class="div-table-col_expl_wide_expl">
             by <a href="5_concentration_of_measure.html#bounding-the-sample-reward-mean">bounding
             the
             tail behavior of the subgaussian</a> (with <img
@@ -48,10 +48,10 @@ The proof goes as follows.
         </div>
     </div>
     <div class="div-table-row">
-        <div class="div-table-col_eq">
+        <div class="div-table-col_eq_wide_expl">
             <img src="https://render.githubusercontent.com/render/math?math=\leq 1 %2B u %2B \int_{u}^{\infinity} \exp(-\frac{t(\epsilon-\sqrt{\frac{2a}{t}})^2}{2}) \,dt">
         </div>
-        <div class="div-table-col_expl">
+        <div class="div-table-col_expl_wide_expl">
             the 1 was added because of the ceiling operator was removed from <img
                 src="https://render.githubusercontent.com/render/math?math=u"> and the integral
             from
@@ -65,10 +65,10 @@ The proof goes as follows.
         </div>
     </div>
     <div class="div-table-row">
-        <div class="div-table-col_eq">
+        <div class="div-table-col_eq_wide_expl">
             <img src="https://render.githubusercontent.com/render/math?math== 1 %2B \frac{2}{\epsilon^2}(a %2B \sqrt{\pi a} %2B 1)">
         </div>
-        <div class="div-table-col_expl">
+        <div class="div-table-col_expl_wide_expl">
             using Algebra
         </div>
     </div>

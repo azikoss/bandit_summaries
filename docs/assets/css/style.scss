@@ -34,11 +34,29 @@ blockquote{
   text-align: left;
   padding-top: 3px;
 }
-.div-table-col_expl {
+
+.div-table-col_eq_narrow {
+  float: left;
+  margin-right: 5%;
+  display: table-column;
+  width: 35%;
+  text-align: left;
+  padding-top: 3px;
+}
+
+.div-table-col_wide_expl {
   text-align: right;
   float: left;
   display: table-column;
   width: 47.5%;
+  padding-top: 3px;
+}
+
+.div-table-col_wide_expl {
+  text-align: right;
+  float: left;
+  display: table-column;
+  width: 60%;
   padding-top: 3px;
 }
 
