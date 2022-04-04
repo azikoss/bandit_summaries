@@ -30,7 +30,7 @@ The proof goes as follows.
     </div>
     <div class="div-table-row">
         <div class="div-table-col_eq_wide_expl">
-            <img src="https://render.githubusercontent.com/render/math?math== u %2B \sum_{t=\lceil u \rceil}^{t=n} \mathbb{P} (\hat{\mu}_t %2B \sqrt{\frac{2a}{t}} \leq \epsilon)">
+            <img src="https://render.githubusercontent.com/render/math?math== u %2B \sum_{t=\lceil u \rceil}^{n} \mathbb{P} (\hat{\mu}_t %2B \sqrt{\frac{2a}{t}} \leq \epsilon)">
         </div>
         <div class="div-table-col_expl_wide_expl">
             indicator function was changed to probability because of the expected value
@@ -38,7 +38,7 @@ The proof goes as follows.
     </div>
     <div class="div-table-row">
         <div class="div-table-col_eq_wide_expl">
-            <img src="https://render.githubusercontent.com/render/math?math=\leq u %2B \sum_{t=\lceil u \rceil}^{t=n} \exp(-\frac{t(\epsilon-\sqrt{\frac{2a}{t}})^2}{2})">
+            <img src="https://render.githubusercontent.com/render/math?math=\leq u %2B \sum_{t=\lceil u \rceil}^{n} \exp(-\frac{t(\epsilon-\sqrt{\frac{2a}{t}})^2}{2})">
         </div>
         <div class="div-table-col_expl_wide_expl">
             by <a href="5_concentration_of_measure.html#bounding-the-sample-reward-mean">bounding
