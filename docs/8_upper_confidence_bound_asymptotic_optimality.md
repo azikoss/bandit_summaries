@@ -94,7 +94,7 @@ TODO: Why? we are not comparing the indexes???
     </div>
     <div class="div-table-row">
         <div class="div-table-col_eq">
-            <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_1(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_1(t-1)}} \leq \mu_1 - \epsilon\}"> <img src="https://render.githubusercontent.com/render/math?math=%2B \sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_i(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_i(t-1)}} \geq \mu_1 - \epsilon"> and <img src="https://render.githubusercontent.com/render/math?math=A_t = i\}">   
+            <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_1(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_1(t-1)}} \leq \mu_1 - \epsilon\}"> <img src="https://render.githubusercontent.com/render/math?math=%2B \sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_i(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_i(t-1)}} \geq \mu_1 - \epsilon \: \textrm{and} \: A_t = i\}">   
         </div>
         <div class="div-table-col_expl">
         (8.4)     
@@ -187,7 +187,7 @@ The second term in (8.4) we use Lemma 8.2.
    
 The proof gets completed by substituting the results of two above bounds into (8.4), choosing <img src="https://render.githubusercontent.com/render/math?math=\epsilon=\log^{-1/4}(n)">, and taking the limit of <img src="https://render.githubusercontent.com/render/math?math=n"> going to infinity. 
 
-CNOT --> ## Regret Analysis review
+CNOT --> "Next we bound the expectation of each..."
 CONOT --> Bold.  
 
 If you have any questions or comments, I would be happy if you write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/7-ucb) section. 
