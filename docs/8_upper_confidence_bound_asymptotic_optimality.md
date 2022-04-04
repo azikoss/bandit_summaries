@@ -54,7 +54,7 @@ The proof goes as follows.
         <div class="div-table-col_expl_wide_expl">
               <img src="https://render.githubusercontent.com/render/math?math=1"> was added because the ceiling operator was removed from <img
                 src="https://render.githubusercontent.com/render/math?math=u"> and the integral
-            from
+            spanning from
             <img
                     src="https://render.githubusercontent.com/render/math?math=u"> to <img
                 src="https://render.githubusercontent.com/render/math?math=\infinity">
