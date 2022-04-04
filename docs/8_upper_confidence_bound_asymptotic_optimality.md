@@ -1,7 +1,7 @@
 # 8. The Upper Confidence Bound Algorithm: Asymptotic Optimality
-The Upper Confidence Bound (UCB) algorithm [introduced](7_upper_confidence_bound.md) in the previous chapter is not anytime as it requires advanced knowledge of the horizon <img src="https://render.githubusercontent.com/render/math?math=n">. This drawback is resovled in this chapter. 
+**The Upper Confidence Bound (UCB)** algorithm [introduced](7_upper_confidence_bound.md) in the previous chapter is **not anytime** as it requires advanced knowledge of the horizon <img src="https://render.githubusercontent.com/render/math?math=n">. This drawback is resolved in this chapter. 
 
-The asymptotically optimally UCB introduced in this chapter differs from the previously introduced UCB algorithm just in the choice of the confidence level - dictated by the regret analysis. The algorithm goes as follows
+The **asymptotically optimally UCB** introduced in this chapter differs from the previously introduced UCB algorithm just in the **choice of the confidence level** - dictated by the regret analysis. **The algorithm goes as follows**
 1. Input: <img src="https://render.githubusercontent.com/render/math?math=k"> arms
 1. Choose each arm once
 1. Choose <img src="https://render.githubusercontent.com/render/math?math=A_t = \argmax_i(\hat{\mu}_i(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_i(t-1)}})"> where <img src="https://render.githubusercontent.com/render/math?math=f(t) = 1 %2B t\log^2(t)">
@@ -188,7 +188,7 @@ The second term in (8.4) we use Lemma 8.2.
 The proof gets completed by substituting the results of two above bounds into (8.4), choosing <img src="https://render.githubusercontent.com/render/math?math=\epsilon=\log^{-1/4}(n)">, and taking the limit of <img src="https://render.githubusercontent.com/render/math?math=n"> going to infinity. 
 
 CNOT --> ## Regret Analysis review
-  
+CONOT --> Bold.  
 
 If you have any questions or comments, I would be happy if you write them in the [discussion](https://github.com/azikoss/bandit_summaries/discussions/categories/7-ucb) section. 
  
