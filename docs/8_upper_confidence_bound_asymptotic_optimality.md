@@ -52,7 +52,7 @@ The proof goes as follows.
             <img src="https://render.githubusercontent.com/render/math?math=\leq 1 %2B u %2B \int_{u}^{\infinity} \exp(-\frac{t(\epsilon-\sqrt{\frac{2a}{t}})^2}{2}) \,dt">
         </div>
         <div class="div-table-col_expl_wide_expl">
-            the 1 was added because of the ceiling operator was removed from <img
+              <img src="https://render.githubusercontent.com/render/math?math=1"> was added because the ceiling operator was removed from <img
                 src="https://render.githubusercontent.com/render/math?math=u"> and the integral
             from
             <img
