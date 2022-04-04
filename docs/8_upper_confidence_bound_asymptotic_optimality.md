@@ -25,7 +25,7 @@ The proof goes as follows.
                 src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_t %2B \sqrt{\frac{2a}{t}}">
             cannot be smaller than <img src="https://render.githubusercontent.com/render/math?math=\epsilon"> until <img src="https://render.githubusercontent.com/render/math?math=t"> is at least <img src="https://render.githubusercontent.com/render/math?math=2a/epsilon^-2">. This is because when <img src="https://render.githubusercontent.com/render/math?math=t=u">, then
             <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{2a}{t}} = \epsilon">
-            so all steps before it holds that <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{2a}{t}} \geq \epsilon">. If <img src="https://render.githubusercontent.com/render/math?math=u"> would be integer, then <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\kappa] = \mathbb{E}[\kappa^']">.                        
+            so all steps before it holds that <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{2a}{t}} \geq \epsilon">. If <img src="https://render.githubusercontent.com/render/math?math=u"> would be an integer, then <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\kappa] = \mathbb{E}[\kappa^']">.                        
         </div>
     </div>
     <div class="div-table-row">
