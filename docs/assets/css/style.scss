@@ -4,11 +4,15 @@
 @import "{{ site.theme }}";
 
 section{
-  width: 666px;
+  width: 676px;
+}
+
+header{
+  width:250px;
 }
 
 .wrapper{
-  width: 930px;
+  width: 940px;
 }
 
 blockquote{
