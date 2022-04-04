@@ -23,14 +23,14 @@ The proof goes as follows.
                 src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\hat{\mu}_t] = 0">,
             then in expectation <img
                 src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_t %2B \sqrt{\frac{2a}{t}}">
-            cannot be smaller than <img src="https://render.githubusercontent.com/render/math?math=\epsilon"> until <img src="https://render.githubusercontent.com/render/math?math=t"> is at least <img src="https://render.githubusercontent.com/render/math?math=2a/epsilon^-2">. This is because when <img src="https://render.githubusercontent.com/render/math?math=t=u">, then
+            cannot be smaller than <img src="https://render.githubusercontent.com/render/math?math=\epsilon"> until <img src="https://render.githubusercontent.com/render/math?math=t"> is at least <img src="https://render.githubusercontent.com/render/math?math=2a\epsilon^{-2}">. This is because when <img src="https://render.githubusercontent.com/render/math?math=t=u">, then
             <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{2a}{t}} = \epsilon">
             so all steps before it holds that <img src="https://render.githubusercontent.com/render/math?math=\sqrt{\frac{2a}{t}} \geq \epsilon">. If <img src="https://render.githubusercontent.com/render/math?math=u"> would be an integer, then <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\kappa] = \mathbb{E}[\kappa^']">.                        
         </div>
     </div>
     <div class="div-table-row">
         <div class="div-table-col_eq_wide_expl">
-            <img src="https://render.githubusercontent.com/render/math?math== u %2B \sum_{t=\lceil u \rceil}^{t=n} \mathbb{P} (\hat{\mu}_t %2B \sqrt{\frac{2a}{t}})">
+            <img src="https://render.githubusercontent.com/render/math?math== u %2B \sum_{t=\lceil u \rceil}^{t=n} \mathbb{P} (\hat{\mu}_t %2B \sqrt{\frac{2a}{t}} \leq \epsilon)">
         </div>
         <div class="div-table-col_expl_wide_expl">
             indicator function was changed to probability because of the expected value
