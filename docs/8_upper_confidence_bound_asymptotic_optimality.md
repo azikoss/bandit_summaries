@@ -94,7 +94,7 @@ TODO: Why? we are not comparing the indexes???
     </div>
     <div class="div-table-row">
         <div class="div-table-col_eq">
-            <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_1(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_1(t-1)}} \leq \mu_1 - \epsilon\} %2B \sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_i(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_i(t-1)}} \geq \mu_1 - \epsilon"> and <img src="https://render.githubusercontent.com/render/math?math=A_t = i\}">  
+            <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_1(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_1(t-1)}} \leq \mu_1 - \epsilon\}"> <img src="https://render.githubusercontent.com/render/math?math=%2B \sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_i(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_i(t-1)}} \geq \mu_1 - \epsilon"> and <img src="https://render.githubusercontent.com/render/math?math=A_t = i\}">   
         </div>
         <div class="div-table-col_expl">
         (8.4)     
