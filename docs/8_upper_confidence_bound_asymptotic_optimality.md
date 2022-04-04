@@ -6,8 +6,8 @@ The **asymptotically optimally UCB** introduced in this chapter differs from the
 1. Choose each arm once
 1. Choose <img src="https://render.githubusercontent.com/render/math?math=A_t = \argmax_i(\hat{\mu}_i(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_i(t-1)}})"> where <img src="https://render.githubusercontent.com/render/math?math=f(t) = 1 %2B t\log^2(t)">
 
-
- Before the regret analysis, we introduce a **lemma that bounds the number of times the index (such as UCB) of a suboptimal arm will be larger than some threshold above its mean**. 
+## Bounding the frequency of an index
+Before the regret analysis, we introduce a lemma that **bounds the number of times the index** (such as UCB) of a suboptimal arm will be **larger** than some **threshold above its mean**. 
  
  > Lemma 8.2. Let <img src="https://render.githubusercontent.com/render/math?math=f(t) = X_1, ..., X_n"> be a sequence of independent 1-subgaussian random variables, <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_t = \frac{1}{t}\sum_{s=1}^{t} X_s">, <img src="https://render.githubusercontent.com/render/math?math=\epsilon > 0">,  <img src="https://render.githubusercontent.com/render/math?math=a > 0">, and <img src="https://render.githubusercontent.com/render/math?math=\kappa = \sum_{t=1}^{n} \mathbb{1} \{\hat{\mu}_t %2B \sqrt{\frac{2a}{t}} \geq \epsilon\}">, <img src="https://render.githubusercontent.com/render/math?math=\kappa^' = u %2B \sum_{t=\lceil u \rceil}^{t=n} \mathbb{1} \{\hat{\mu}_t %2B \sqrt{\frac{2a}{t}} \geq \epsilon\}">, where <img src="https://render.githubusercontent.com/render/math?math=u=2a\epsilon^{-2}">. Then it holds that <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\kappa] \leq \mathbb{E}[\kappa^'] \leq 1 %2B \frac{2}{\epsilon^2}(a + \sqrt{\pi a} %2B 1)">.
 
