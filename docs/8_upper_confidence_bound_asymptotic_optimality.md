@@ -160,7 +160,7 @@ The second term in (8.4) we use Lemma 8.2.
     </div>    
     <div class="div-table-row">
         <div class="div-table-col_eq">
-            <img src="https://render.githubusercontent.com/render/math?math=\leq \mathbb{E}[\sum_{s=1}^{n} \mathbb{I}\{\hat{\mu}_i(t-1) %2B \sqrt{\frac{2\log{f(n)}}{s}} \geq \mu_1 - \epsilon]"> 
+            <img src="https://render.githubusercontent.com/render/math?math=\leq \mathbb{E}[\sum_{s=1}^{n} \mathbb{I}\{\hat{\mu}_{is} %2B \sqrt{\frac{2\log{f(n)}}{s}} \geq \mu_1 - \epsilon]"> 
         </div>
         <div class="div-table-col_expl">
          The UCB index is calculated for all steps <img src="https://render.githubusercontent.com/render/math?math=s \in [n]"> and not just steps when arm <img src="https://render.githubusercontent.com/render/math?math=i"> is pulled    
@@ -168,7 +168,7 @@ The second term in (8.4) we use Lemma 8.2.
     </div>        
     <div class="div-table-row">
         <div class="div-table-col_eq">
-            <img src="https://render.githubusercontent.com/render/math?math== \mathbb{E}[\sum_{s=1}^{n} \mathbb{I}\{\hat{\mu}_i(t-1) - \mu_i %2B \sqrt{\frac{2\log{f(n)}}{s}} \geq \Delta_i - \epsilon]"> 
+            <img src="https://render.githubusercontent.com/render/math?math== \mathbb{E}[\sum_{s=1}^{n} \mathbb{I}\{\hat{\mu}_{is} - \mu_i %2B \sqrt{\frac{2\log{f(n)}}{s}} \geq \Delta_i - \epsilon]"> 
         </div>
         <div class="div-table-col_expl">
         <img src="https://render.githubusercontent.com/render/math?math=\mu_1"> was substituted by <img src="https://render.githubusercontent.com/render/math?math=\mu_i - \Delta_i">     
