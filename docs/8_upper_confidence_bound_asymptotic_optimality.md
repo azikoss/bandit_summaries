@@ -132,7 +132,7 @@ Next we bound the expectation of each of the above sums. The first is bounded as
           <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{t=1}^{n} \frac{1}{f(t)}\sum_{s=1}^{n} \exp(-\frac{s\epsilon^2}{2})"> 
         </div>                    
         <div class="div-table-col_expl">
-        Algebraic exercise               
+        Using algebra within <img src="https://render.githubusercontent.com/render/math?math=\exp"> and leaving some terms out (from <img src="https://render.githubusercontent.com/render/math?math=\exp">)       
         </div>
     </div>  
       <div class="div-table-row">
