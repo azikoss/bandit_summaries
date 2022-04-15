@@ -118,8 +118,7 @@ Next we bound the expectation of each of the above sums. The first is bounded as
           <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{t=1}^{n}\sum_{s=1}^{n} \mathbb{P}\{\hat{\mu}_{1s} %2B \sqrt{ \frac{2\log{f(t)}}{s} } \leq \mu_1 - \epsilon\}"> 
         </div>
         <div class="div-table-col_expl">
-        union bound over all possible values of <img src="https://render.githubusercontent.com/render/math?math=T_1(t-1)"> 
-        TODO: better formulation.    
+        union bound over all possible values of <img src="https://render.githubusercontent.com/render/math?math=T_1(t-1)">         
         </div>
     </div>
     <div class="div-table-row">
