@@ -176,7 +176,7 @@ The second term in (8.4) we use Lemma 8.2.
     </div>    
     <div class="div-table-row">
         <div class="div-table-col_eq">
-            <img src="https://render.githubusercontent.com/render/math?math=\leq 1 %2B \frac{2}{(\Delta_i - \epsilon)^2}(\log{f(n)} %2B    \sqrt{\pi\log{{f(n)}}} %2B 1) ">
+            <img src="https://render.githubusercontent.com/render/math?math=\leq 1 %2B \frac{2}{(\Delta_i - \epsilon)^2}(\log{f(n)} %2B    \sqrt{\pi\log{f(n)}} %2B 1) ">
         </div>
         <div class="div-table-col_expl">
         by Theorem 8.2     
