@@ -134,7 +134,15 @@ Next we bound the expectation of each of the above sums. The first is bounded as
         <div class="div-table-col_expl">
         Algebraic exercise               
         </div>
-    </div>   
+    </div>  
+      <div class="div-table-row">
+        <div class="div-table-col_eq">
+          <img src="https://render.githubusercontent.com/render/math?math=\leq \frac{5}{\epsilon^2}"> 
+        </div>                    
+        <div class="div-table-col_expl">
+        Algebraic exercise               
+        </div>
+    </div>    
 </div> 
 
 The second term in (8.4) we use Lemma 8.2. 
