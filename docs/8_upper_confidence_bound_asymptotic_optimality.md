@@ -171,7 +171,7 @@ The second term in (8.4) we use Lemma 8.2.
             <img src="https://render.githubusercontent.com/render/math?math== \mathbb{E}[\sum_{s=1}^{n} \mathbb{I}\{\hat{\mu}_i(t-1) - \mu_i %2B \sqrt{\frac{2\log{f(n)}}{s}} \geq \Delta_i - \epsilon]"> 
         </div>
         <div class="div-table-col_expl">
-        <img src="https://render.githubusercontent.com/render/math?math=\mu_1"> was substituted by = <img src="https://render.githubusercontent.com/render/math?math=\mu_i - \Delta_i">     
+        <img src="https://render.githubusercontent.com/render/math?math=\mu_1"> was substituted by <img src="https://render.githubusercontent.com/render/math?math=\mu_i - \Delta_i">     
         </div>
     </div>    
     <div class="div-table-row">
