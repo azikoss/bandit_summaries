@@ -106,34 +106,34 @@ Next we bound the expectation of each of the above sums. The first is bounded as
 
 <div class="div-table">
     <div class="div-table-row">
-        <div class="div-table-col_eq">
+        <div class="div-table-col_eq_wide_expl">
             <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_1(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_1(t-1)}} \leq \mu_1 - \epsilon\}]"> 
         </div>
-        <div class="div-table-col_expl">
+        <div class="div-table-col_expl_wide_expl">
         &nbsp;     
         </div>
     </div>
     <div class="div-table-row">
-        <div class="div-table-col_eq">
+        <div class="div-table-col_eq_wide_expl">
           <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{t=1}^{n}\sum_{s=1}^{n} \mathbb{P}\{\hat{\mu}_{1s} %2B \sqrt{ \frac{2\log{f(t)}}{s} } \leq \mu_1 - \epsilon\}"> 
         </div>
-        <div class="div-table-col_expl">
+        <div class="div-table-col_expl_wide_expl">
         union bound over all possible values of <img src="https://render.githubusercontent.com/render/math?math=T_1(t-1)">         
         </div>
     </div>
     <div class="div-table-row">
-        <div class="div-table-col_eq">
+        <div class="div-table-col_eq_wide_expl">
           <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{t=1}^{n}\sum_{s=1}^{n} \exp(-\frac{s(\sqrt{\frac{2\log{f(t)}}{s}} %2B \epsilon)^2}{2})"> 
         </div>                    
-        <div class="div-table-col_expl">
+        <div class="div-table-col_expl_wide_expl">
         by <a href="5_concentration_of_measure.html#bounding-the-sample-reward-mean">bounding the tail behavior of the subgaussian</a>                
         </div>
     </div>  
     <div class="div-table-row">
-        <div class="div-table-col_eq">
+        <div class="div-table-col_eq_wide_expl">
           <img src="https://render.githubusercontent.com/render/math?math=\leq \sum_{t=1}^{n} \frac{1}{f(t)}\sum_{s=1}^{n} \exp(-\frac{s\epsilon^2}{2}) \leq \frac{5}{\epsilon^2}"> 
         </div>                    
-        <div class="div-table-col_expl">
+        <div class="div-table-col_expl_wide_expl">
         Algebraic exercise               
         </div>
     </div>   
