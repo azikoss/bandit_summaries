@@ -144,7 +144,7 @@ The second term in (8.4) we use Lemma 8.2.
 <div class="div-table">
     <div class="div-table-row">
         <div class="div-table-col_eq">
-            <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_i(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_i(t-1)}} \geq \mu_1 - \epsilon"> and <img src="https://render.githubusercontent.com/render/math?math=A_t = i\}]">
+            <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[\sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_i(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_i(t-1)}} \geq \mu_1 - \epsilon \: \textrm{and} \: A_t = i\}]">
         </div>
         <div class="div-table-col_expl">
         &nbsp;     
@@ -152,7 +152,7 @@ The second term in (8.4) we use Lemma 8.2.
     </div>
      <div class="div-table-row">
         <div class="div-table-col_eq">
-            <img src="https://render.githubusercontent.com/render/math?math=\leq\mathbb{E}[ \sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_i(t-1) %2B \sqrt{\frac{2\log{f(n)}}{T_i(t-1)}} \geq \mu_1 - \epsilon"> and <img src="https://render.githubusercontent.com/render/math?math=A_t = i\}]">
+            <img src="https://render.githubusercontent.com/render/math?math=\leq\mathbb{E}[ \sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_i(t-1) %2B \sqrt{\frac{2\log{f(n)}}{T_i(t-1)}} \geq \mu_1 - \epsilon \: \textrm{and} \: A_t = i\}]">
         </div>
         <div class="div-table-col_expl">
          <img src="https://render.githubusercontent.com/render/math?math=f(t)"> was replaced by <img src="https://render.githubusercontent.com/render/math?math=f(n)"> in the fraction. Is f(t) < f(n)???     
