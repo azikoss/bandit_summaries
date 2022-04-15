@@ -81,8 +81,6 @@ Let's introduce and proof the theorem that bound the introduced algorithm above.
 
 The proof is build up on the [regret decomposition lemma](4_stochastic_bandits.md#decomposing-the-regret) <img src="https://render.githubusercontent.com/render/math?math=\sum_{i=1}^{k} \Delta_i \mathbb{E}[T_i(n)]"> and on bounding <img src="https://render.githubusercontent.com/render/math?math=\mathbb{E}[T_i(n)]"> such that <img src="https://render.githubusercontent.com/render/math?math=T_i"> of a suboptimal arm <img src="https://render.githubusercontent.com/render/math?math=i"> is decomposed into two terms. The first measures the number of times the index of the optimal arm is less than <img src="https://render.githubusercontent.com/render/math?math=\mu_1 - \epsilon">. The second measures the number of times that suboptimal arm is played (<img src="https://render.githubusercontent.com/render/math?math=A_t=i">) and its index is larger than <img src="https://render.githubusercontent.com/render/math?math=\mu_1 - \epsilon">.
 
-TODO: Why? we are not comparing the indexes???
-
 <div class="div-table">
     <div class="div-table-row">
         <div class="div-table-col_eq">
