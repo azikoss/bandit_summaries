@@ -155,7 +155,7 @@ The second term in (8.4) we use Lemma 8.2.
             <img src="https://render.githubusercontent.com/render/math?math=\leq\mathbb{E}[ \sum_{t=1}^{n} \mathbb{I}\{\hat{\mu}_i(t-1) %2B \sqrt{\frac{2\log{f(n)}}{T_i(t-1)}} \geq \mu_1 - \epsilon \: \textrm{and} \: A_t = i\}]">
         </div>
         <div class="div-table-col_expl">
-         <img src="https://render.githubusercontent.com/render/math?math=f(t)"> was replaced by <img src="https://render.githubusercontent.com/render/math?math=f(n)"> in the fraction as <img src="https://render.githubusercontent.com/render/math?math=f(t) <= f(n)">     
+         <img src="https://render.githubusercontent.com/render/math?math=f(t)"> was replaced by <img src="https://render.githubusercontent.com/render/math?math=f(n)"> in the fraction as <img src="https://render.githubusercontent.com/render/math?math=f(t) \leq f(n)">     
         </div>
     </div>    
     <div class="div-table-row">
