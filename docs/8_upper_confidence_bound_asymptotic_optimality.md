@@ -5,7 +5,7 @@
 
 **The Upper Confidence Bound (UCB)** algorithm [introduced](7_upper_confidence_bound.md) in the previous chapter is **not anytime** as it requires advanced knowledge of the horizon <img src="https://render.githubusercontent.com/render/math?math=n">. This drawback is resolved in this chapter. 
 
-The **asymptotically optimally UCB** introduced in this chapter differs from the previously introduced UCB algorithm just in the **choice of the confidence level** - dictated by the regret analysis. **The algorithm goes as follows**
+The **asymptotically optimal UCB** introduced in this chapter differs from the previously introduced UCB algorithm just in the **choice of the confidence level** - dictated by the regret analysis. **The algorithm goes as follows**
 1. Input: <img src="https://render.githubusercontent.com/render/math?math=k"> arms
 1. Choose each arm once
 1. Choose <img src="https://render.githubusercontent.com/render/math?math=A_t = \argmax_i(\hat{\mu}_i(t-1) %2B \sqrt{\frac{2\log{f(t)}}{T_i(t-1)}})"> where <img src="https://render.githubusercontent.com/render/math?math=f(t) = 1 %2B t\log^2(t)">
@@ -79,7 +79,7 @@ The proof goes as follows.
 </div>
 
 ## Regret Analysis
-Let's introduce and proof the theorem that bound the introduced algorithm above.
+Let's introduce and proof the theorem that bounds the introduced algorithm above.
 
 > Theorem 8.1. For any 1-subgaussian bandit, the regret of the algorithm above satisfies <img src="https://render.githubusercontent.com/render/math?math=R_n \leq \sum_{i:\Delta_i > 0} \inf_{\epsilon \in (0, \Delta_i)} \Delta_i (1 %2B \frac{5}{\epsilon^2} %2B \frac{2(\log{f(n)} %2B \sqrt{\pi \log{f(n)}} %2B 1)}{(\Delta_i - \epsilon)^2})">.
 
