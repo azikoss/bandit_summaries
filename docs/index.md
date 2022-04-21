@@ -10,4 +10,4 @@ The digests that I've written so far are
 * [5. Chapter - Concentration of Measure](5_concentration_of_measure.md)
 * [6. Chapter - Explore Then Commit](6_explore_then_commit.md)
 * [7. Chapter - Upper Confidence Bound](7_upper_confidence_bound.md)
-* [WIP! 8. Chapter - Upper Confidence Bound: Asymptotic Optimality](8_upper_confidence_bound_asymptotic_optimality.md)
+* [8. Chapter - Upper Confidence Bound: Asymptotic Optimality](8_upper_confidence_bound_asymptotic_optimality.md)
