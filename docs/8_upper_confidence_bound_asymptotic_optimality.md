@@ -1,4 +1,8 @@
 # 8. The Upper Confidence Bound Algorithm: Asymptotic Optimality
+<center>
+<img width="480" src="./assets/8_ucb_asymptotic.png">
+</center>
+
 **The Upper Confidence Bound (UCB)** algorithm [introduced](7_upper_confidence_bound.md) in the previous chapter is **not anytime** as it requires advanced knowledge of the horizon <img src="https://render.githubusercontent.com/render/math?math=n">. This drawback is resolved in this chapter. 
 
 The **asymptotically optimally UCB** introduced in this chapter differs from the previously introduced UCB algorithm just in the **choice of the confidence level** - dictated by the regret analysis. **The algorithm goes as follows**
