@@ -196,7 +196,7 @@ The second term in (8.4) we use Lemma 8.2.
    
 The proof gets completed by substituting the results of two above bounds into (8.4).
 
-# Comparison with the UCB algo from Chapter 7
+## Comparison with the UCB algo from Chapter 7
 Part of the Theorem 8.1 that was not mentioned yet is that the **worst-case bound** of the UCB algorithm introduced in this chapter is <img src="https://render.githubusercontent.com/render/math?math=R_n \leq C \sum_{i=0}^{k} \Delta_i %2B 2 \sqrt{C n  k \log(n)}">. This bound has the **same order** as the one of the **UCB algorithm introduced in Chapter 7** (<a href="7_upper_confidence_bound.html#regret-bound-without-suboptimality-gaps">Theorem 7.2</a>). The **leading term** that governs the asymptotic growth of the bound of the algorithm introduced in this chapter is however **smaller**, thus better. This improvement yields from making **the confidence interval slightly smaller** as we did not need to proof that <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_{1s} \geq \mu_1"> for all <img src="https://render.githubusercontent.com/render/math?math=s"> with high probability but only that <img src="https://render.githubusercontent.com/render/math?math=\hat{\mu}_{1s} \geq \mu_1 - \epsilon"> for small <img src="https://render.githubusercontent.com/render/math?math=\epsilon">. 
 
 
